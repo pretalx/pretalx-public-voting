@@ -55,13 +55,12 @@ class VoteForm(forms.Form):
         self.fields["submission"].queryset = self.event.submissions.filter(
             state="submitted"
         )
-        self.min_value = int(event.settings.review_min_score)
-        self.max_value = int(event.settings.review_max_score)
+        self.min_value = int(event.settings.public_voting_min_score)
+        self.max_value = int(event.settings.public_voting_max_score)
         choices = []
         for counter in range(abs(self.max_value - self.min_value) + 1):
             value = self.min_value + counter
-            name = event.settings.get(f"public_vote_score_name_{value}")
-            name = f"{value} (“{name}”)" if name else value
+            name = event.settings.get(f"public_voting_score_name_{value}") or value
             choices.append((value, name))
         self.fields["score"] = forms.ChoiceField(
             choices=choices, required=True, widget=forms.RadioSelect,
