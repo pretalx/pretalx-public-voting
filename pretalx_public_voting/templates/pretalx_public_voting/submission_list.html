@@ -1,0 +1,42 @@
+{% extends "cfp/event/base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% load rich_text %}
+{% load static %}
+
+{% block content %}
+<script src="{% static "vendored/jquery-3.1.1.js" %}"></script>
+<script src="{% static "pretalx_public_voting/vote.js" %}"></script>
+<link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
+
+<h1>{% trans "Public voting" %}</h1>
+{% if hashed_email %}
+    {% for vote_form, submission in vote_forms %}
+        <article>
+            <header>
+                <h3>{{ submission.title }}</h3>
+            </header>
+            <div class="d-flex">
+                <div class="content">
+                    {{ submission.abstract|rich_text|default:'-' }}
+                </div>
+                <div class="form ml-auto">
+                    <form>
+                        {% csrf_token %}
+                        {% bootstrap_form vote_form layout="inline" %}
+                    </form>
+                </div>
+            </div>
+        </article>
+        <hr>
+    {% empty %}
+        <p>No submissions yet.</p>
+    {% endfor %}
+{% else %}
+<p>{% blocktrans trimmed %}
+This page is invalid. Please double-check that you have followed a complete link to this place.
+{% endblocktrans %}
+<a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
+</p>
+{% endif %}
+{% endblock %}

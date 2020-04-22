@@ -1,0 +1,14 @@
+{% extends "cfp/event/base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Thanks for signing up!" %}</h1>
+
+{% blocktrans trimmed %}
+
+Thanks for signing up for public voting. You've received an email with your personal link
+to the vote. If you don't see an email within five minutes, please also check your spam folder.
+
+{% endblocktrans %}
+{% endblock %}

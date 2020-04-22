@@ -40,14 +40,14 @@ The organiser team
             to=self.cleaned_data["email"],
             subject=_("Public voting registration"),
             text=mail_text,
-        )
+        ).send()
 
 
 class VoteForm(forms.Form):
     submission = forms.ModelChoiceField(
-        queryset=Submission.objects.none(), required=True
+        queryset=Submission.objects.none(), required=True, widget=forms.HiddenInput()
     )
-    user = forms.CharField(required=True)
+    user = forms.CharField(required=True, widget=forms.HiddenInput())
 
     def __init__(self, *args, event=None, **kwargs):
         self.event = event

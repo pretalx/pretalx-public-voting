@@ -49,22 +49,34 @@ class SubmissionListView(ListView):
             return None
 
         votes = PublicVote.objects.filter(
-            hashed_email=self.hashed_email, submission_id=OuterRef("pk")
+            email_hash=self.hashed_email, submission_id=OuterRef("pk")
         ).values("score")
-        signed_user = self.kwargs["signed_user"]
         submissions = list(Submission.objects.all().annotate(score=Subquery(votes)))
         random.seed(self.hashed_email)
         random.shuffle(submissions)
-        for submission in submissions:
-            submission.vote_form = VoteForm(
-                initial={
-                    "submission": submission,
-                    "user": signed_user,
-                    "score": submission.score.first(),
-                },
-                event=self.request.event,
-            )
         return submissions
+
+    @context
+    @cached_property
+    def vote_forms(self):
+        signed_user = self.kwargs["signed_user"]
+        return [
+            (
+                VoteForm(
+                    initial={
+                        "submission": submission,
+                        "user": signed_user,
+                        "score": submission.score.first().score
+                        if submission.score
+                        else None,
+                    },
+                    event=self.request.event,
+                    prefix=submission.code,
+                ),
+                submission,
+            )
+            for submission in self.get_queryset()
+        ]
 
     def post(self, request, *args, **kwargs):
         form = VoteForm(self.request.POST, event=self.request.event)
