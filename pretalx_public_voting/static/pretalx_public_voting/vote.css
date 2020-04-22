@@ -1,0 +1,21 @@
+.submission-card {
+  margin-top: 18px;
+}
+.submission-card .card-footer {
+  display: flex;
+  align-items: center;
+}
+.submission-card .card-footer .form-group {
+  margin-bottom: 0;
+}
+.submission-card .card-footer .radio {
+  display: flex;
+  margin-left: auto;
+}
+.submission-card .card-footer .radio .form-check {
+  margin-left: 24px;
+}
+.submission-card .card-img-top-wrapper {
+  max-height: 200px;
+  overflow: hidden;
+}
