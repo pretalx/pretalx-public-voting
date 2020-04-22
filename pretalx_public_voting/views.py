@@ -36,6 +36,7 @@ class ThanksView(TemplateView):
 class SubmissionListView(ListView):
     model = Submission
     template_name = "pretalx_public_voting/submission_list.html"
+    paginate_by = 10
 
     @context
     @cached_property

@@ -32,6 +32,7 @@
     {% empty %}
         <p>No submissions yet.</p>
     {% endfor %}
+    {% include "orga/pagination.html" %}
 {% else %}
 <p>{% blocktrans trimmed %}
 This page is invalid. Please double-check that you have followed a complete link to this place.
