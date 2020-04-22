@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-23 00:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pretalx_public_voting/__init__.py:10
+msgid "pretalx public voting plugin"
+msgstr ""
+
+#: pretalx_public_voting/__init__.py:12
+msgid "A public voting plugin for pretalx"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:41
+msgid "Public voting registration"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:77
+#, python-brace-format
+msgid "Please assign a score between {self.min_value} and {self.max_value}!"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:94
+msgid ""
+"No public votes will be possible before this time. Submissions will not be "
+"publicly visible."
+msgstr ""
+
+#: pretalx_public_voting/forms.py:96
+msgid "Start"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:101
+msgid ""
+"No public votes will be possible after this time. Submissions will not be "
+"publicly visible."
+msgstr ""
+
+#: pretalx_public_voting/forms.py:103
+msgid "End"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:108
+msgid "Anonymise content"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:109
+msgid "Hide speaker names and use anonymized content where available?"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:112
+msgid "Minimum score"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:113
+msgid "The minimum score voters can assign"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:117
+msgid "Maximum score"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:118
+msgid "The maximum score voters can assign"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:132
+msgid "Score label ({})"
+msgstr ""
+
+#: pretalx_public_voting/forms.py:134
+msgid ""
+"Human readable explanation of what a score of \"{}\" actually means, e.g. "
+"\"great!\"."
+msgstr ""
+
+#: pretalx_public_voting/forms.py:147
+msgid "Please assign a minimum score smaller than the maximum score!"
+msgstr ""
+
+#: pretalx_public_voting/models.py:7
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:32
+msgid "Score"
+msgstr ""
+
+#: pretalx_public_voting/signals.py:13
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:12
+msgid "Public voting"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/settings.html:15
+msgid "Set up public voting"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/settings.html:17
+msgid ""
+"Public voting will show your submissions publicly, and will allow anybody "
+"who provides a valid email address to vote. The email addresses are not "
+"saved, so the process is anonymous."
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/settings.html:34
+msgid "Save"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/signup.html:6
+msgid "Public voting signup"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/signup.html:8
+msgid ""
+"Welcome to the voting process for this event! Voting is open to the public, "
+"and we just need to confirm your email address first. You will only need to "
+"do this once."
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/signup.html:14
+msgid ""
+"Please note that we do <strong>not</strong> store your email address, and "
+"all votes will be completely anonymous."
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:19
+msgid "This talk's header image"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:46
+msgid "Save!"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:51
+msgid ""
+"This page is invalid. Please double-check that you have followed a complete "
+"link to this place."
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:54
+msgid "Click here to sign up for voting."
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:6
+msgid "Thanks for signing up!"
+msgstr ""
+
+#: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:8
+msgid ""
+"Thanks for signing up for public voting. You've received an email with your "
+"personal link to the vote. If you don't see an email within five minutes, "
+"please also check your spam folder."
+msgstr ""
+
+#: pretalx_public_voting/views.py:104
+msgid "Thank you for your vote!"
+msgstr ""
