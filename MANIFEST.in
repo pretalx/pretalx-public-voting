@@ -1,0 +1,3 @@
+recursive-include pretalx_public_voting/static *
+recursive-include pretalx_public_voting/templates *
+recursive-include pretalx_public_voting/locale *
