@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.db.models import OuterRef, Subquery
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.functional import cached_property
@@ -99,9 +100,10 @@ class SubmissionListView(ListView):
             form = self.get_form_for_submission(submission)
             if form.is_valid():
                 form.save()
-
-        messages.success(self.request, _("Thank you for your vote!"))
-        return redirect(self.request.path)
+        if request.POST.get("action") == "manual":
+            messages.success(self.request, _("Thank you for your vote!"))
+            return redirect(self.request.path)
+        return JsonResponse({})
 
 
 class PublicVotingSettings(PermissionRequired, FormView):

@@ -19,3 +19,23 @@
   max-height: 200px;
   overflow: hidden;
 }
+nav {
+  margin-top: 32px;
+}
+#save-bar {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  position: fixed;
+
+  right: 0;
+  bottom: 0;
+  background: #eff5f4;
+  width: 100%;
+  z-index: 50;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.12), 1px 1px 4px rgba(0, 0, 0, 0.24);
+}
+#save-bar button {
+  margin: 16px;
+}
