@@ -36,7 +36,8 @@ class ThanksView(TemplateView):
 class SubmissionListView(ListView):
     model = Submission
     template_name = "pretalx_public_voting/submission_list.html"
-    paginate_by = 10
+    paginate_by = 20
+    context_object_name = "submissions"
 
     @context
     @cached_property
@@ -52,32 +53,41 @@ class SubmissionListView(ListView):
         votes = PublicVote.objects.filter(
             email_hash=self.hashed_email, submission_id=OuterRef("pk")
         ).values("score")
-        submissions = list(Submission.objects.all().annotate(score=Subquery(votes)))
-        random.seed(self.hashed_email)
-        random.shuffle(submissions)
-        return submissions
+        return Submission.objects.all().annotate(score=Subquery(votes)).prefetch_related("speakers").order_by("code")
+        # random.seed(self.hashed_email)
+        # random.shuffle(submissions)
+        # return submissions
 
-    @context
-    @cached_property
-    def vote_forms(self):
-        signed_user = self.kwargs["signed_user"]
-        return [
-            (
-                VoteForm(
+
+    def get_form_for_submission(self, submission):
+        if self.request.method == "POST":
+            return VoteForm(
+                        data=self.request.POST,
+                        submission= submission,
+                        user= self.kwargs["signed_user"],
+                        initial={
+                            "score": submission.score.first().score
+                            if submission.score
+                            else None,
+                        },
+                        event=self.request.event,
+                        prefix=submission.code,
+                    )
+        return VoteForm(
                     initial={
-                        "submission": submission,
-                        "user": signed_user,
                         "score": submission.score.first().score
                         if submission.score
                         else None,
                     },
                     event=self.request.event,
                     prefix=submission.code,
-                ),
-                submission,
-            )
-            for submission in self.get_queryset()
-        ]
+                )
+
+    def get_context_data(self, **kwargs):
+        result = super().get_context_data(**kwargs)
+        for submission in result["submissions"]:
+            submission.vote_form = self.get_form_for_submission(submission)
+        return result
 
     def post(self, request, *args, **kwargs):
         form = VoteForm(self.request.POST, event=self.request.event)

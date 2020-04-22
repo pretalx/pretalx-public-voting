@@ -11,28 +11,35 @@
 
 <h1>{% trans "Public voting" %}</h1>
 {% if hashed_email %}
-    {% for vote_form, submission in vote_forms %}
-        <article>
-            <header>
-                <h3>{{ submission.title }}</h3>
-            </header>
-            <div class="d-flex">
-                <div class="content">
+<form>{% csrf_token %}
+    {% for submission in submissions %}
+        <div class="card submission-card">
+            {% if submission.image %}
+            <div class="card-img-top-wrapper">
+            <img src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h3 class="card-title">{{ submission.title }}</h3>
+                {% if not request.event.settings.public_voting_anonymize_speakers %}
+                <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
+                {% endif %}
+                <div class="card-text">
                     {{ submission.abstract|rich_text|default:'-' }}
                 </div>
+            </div>
+            <div class="card-header card-footer">
+                <strong>{% trans "Score" %}:</strong>
                 <div class="form ml-auto">
-                    <form>
-                        {% csrf_token %}
-                        {% bootstrap_form vote_form layout="inline" %}
-                    </form>
+                    {% bootstrap_field submission.vote_form.score layout="inline" %}
                 </div>
             </div>
-        </article>
-        <hr>
+        </div>
     {% empty %}
         <p>No submissions yet.</p>
     {% endfor %}
     {% include "orga/pagination.html" %}
+    </form>
 {% else %}
 <p>{% blocktrans trimmed %}
 This page is invalid. Please double-check that you have followed a complete link to this place.

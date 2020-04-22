@@ -44,17 +44,15 @@ The organiser team
 
 
 class VoteForm(forms.Form):
-    submission = forms.ModelChoiceField(
-        queryset=Submission.objects.none(), required=True, widget=forms.HiddenInput()
-    )
-    user = forms.CharField(required=True, widget=forms.HiddenInput())
 
-    def __init__(self, *args, event=None, **kwargs):
+    def __init__(self, *args, event=None, submission=None, user=None, **kwargs):
         self.event = event
+        self.submission=submission
+        if user:
+            self.user = event_unsign(self.cleaned_data["user"], self.event)
+            if not self.user:
+                raise forms.ValidationError(_("Unknown user"))
         super().__init__(*args, **kwargs)
-        self.fields["submission"].queryset = self.event.submissions.filter(
-            state="submitted"
-        )
         self.min_value = int(event.settings.public_voting_min_score)
         self.max_value = int(event.settings.public_voting_max_score)
         choices = []
@@ -66,12 +64,6 @@ class VoteForm(forms.Form):
             choices=choices, required=True, widget=forms.RadioSelect,
         )
         self.fields["score"].widget.attrs["autocomplete"] = "off"
-
-    def clean_user(self):
-        user = event_unsign(self.cleaned_data["user"], self.event)
-        if not user:
-            raise forms.ValidationError(_("Unknown user"))
-        return user
 
     def clean_score(self):
         score = int(self.cleaned_data.get("score"))
