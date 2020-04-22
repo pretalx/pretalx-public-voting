@@ -3,9 +3,9 @@ from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
-from pretalx.submission.models import Submission
 
-from .utils import event_sign, event_unsign, hash_email
+from .models import PublicVote
+from .utils import event_sign, hash_email
 
 
 class SignupForm(forms.Form):
@@ -44,14 +44,18 @@ The organiser team
 
 
 class VoteForm(forms.Form):
-
-    def __init__(self, *args, event=None, submission=None, user=None, **kwargs):
+    def __init__(
+        self,
+        *args,
+        event=None,
+        submission=None,
+        hashed_email=None,
+        require_score=False,
+        **kwargs,
+    ):
         self.event = event
-        self.submission=submission
-        if user:
-            self.user = event_unsign(self.cleaned_data["user"], self.event)
-            if not self.user:
-                raise forms.ValidationError(_("Unknown user"))
+        self.submission = submission
+        self.hashed_email = hashed_email
         super().__init__(*args, **kwargs)
         self.min_value = int(event.settings.public_voting_min_score)
         self.max_value = int(event.settings.public_voting_max_score)
@@ -59,9 +63,9 @@ class VoteForm(forms.Form):
         for counter in range(abs(self.max_value - self.min_value) + 1):
             value = self.min_value + counter
             name = event.settings.get(f"public_voting_score_name_{value}") or value
-            choices.append((value, name))
+            choices.append((str(value), name))
         self.fields["score"] = forms.ChoiceField(
-            choices=choices, required=True, widget=forms.RadioSelect,
+            choices=choices, required=require_score, widget=forms.RadioSelect,
         )
         self.fields["score"].widget.attrs["autocomplete"] = "off"
 
@@ -74,6 +78,13 @@ class VoteForm(forms.Form):
                 )
             )
         return score
+
+    def save(self):
+        return PublicVote.objects.update_or_create(
+            submission=self.submission,
+            email_hash=self.hashed_email,
+            defaults={"score": self.cleaned_data["score"]},
+        )
 
 
 class PublicVotingSettingsForm(HierarkeyForm):

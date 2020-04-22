@@ -11,7 +11,7 @@
 
 <h1>{% trans "Public voting" %}</h1>
 {% if hashed_email %}
-<form>{% csrf_token %}
+<form method="POST">{% csrf_token %}
     {% for submission in submissions %}
         <div class="card submission-card">
             {% if submission.image %}
@@ -39,6 +39,10 @@
         <p>No submissions yet.</p>
     {% endfor %}
     {% include "orga/pagination.html" %}
+
+    <div id="vote-submission-bar">
+        <button class="form-control btn btn-success">{% trans "Save!" %}</button>
+    </div>
     </form>
 {% else %}
 <p>{% blocktrans trimmed %}

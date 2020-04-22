@@ -1,7 +1,6 @@
-import random
-
 from django.contrib import messages
 from django.db.models import OuterRef, Subquery
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -53,35 +52,32 @@ class SubmissionListView(ListView):
         votes = PublicVote.objects.filter(
             email_hash=self.hashed_email, submission_id=OuterRef("pk")
         ).values("score")
-        return Submission.objects.all().annotate(score=Subquery(votes)).prefetch_related("speakers").order_by("code")
+        return (
+            Submission.objects.all()
+            .annotate(score=Subquery(votes))
+            .prefetch_related("speakers")
+            .order_by("code")
+        )
         # random.seed(self.hashed_email)
         # random.shuffle(submissions)
         # return submissions
 
-
     def get_form_for_submission(self, submission):
         if self.request.method == "POST":
             return VoteForm(
-                        data=self.request.POST,
-                        submission= submission,
-                        user= self.kwargs["signed_user"],
-                        initial={
-                            "score": submission.score.first().score
-                            if submission.score
-                            else None,
-                        },
-                        event=self.request.event,
-                        prefix=submission.code,
-                    )
+                data=self.request.POST,
+                submission=submission,
+                hashed_email=self.hashed_email,
+                require_score=True,
+                initial={"score": submission.score},
+                event=self.request.event,
+                prefix=submission.code,
+            )
         return VoteForm(
-                    initial={
-                        "score": submission.score.first().score
-                        if submission.score
-                        else None,
-                    },
-                    event=self.request.event,
-                    prefix=submission.code,
-                )
+            initial={"score": submission.score},
+            event=self.request.event,
+            prefix=submission.code,
+        )
 
     def get_context_data(self, **kwargs):
         result = super().get_context_data(**kwargs)
@@ -90,23 +86,22 @@ class SubmissionListView(ListView):
         return result
 
     def post(self, request, *args, **kwargs):
-        form = VoteForm(self.request.POST, event=self.request.event)
-        if not form.is_valid():
-            messages.error(self.request, _("This vote could not be saved."))
-            return self.get(request, *args, **kwargs)
+        submissions = {
+            submission.code: submission for submission in self.get_queryset()
+        }
+        for key, value in self.request.POST.items():
+            if "score" not in key:
+                continue
+            prefix, __ = key.split("-", maxsplit=1)
+            submission = submissions.get(prefix)
+            if not submission:
+                continue
+            form = self.get_form_for_submission(submission)
+            if form.is_valid():
+                form.save()
 
-        try:
-            PublicVote.objects.update_or_create(
-                submission=form.cleaned_data["submission"],
-                hashed_email=form.cleaned_data["user"],
-                defaults={"score": form.cleaned_data["score"]},
-            )
-        except Exception:
-            messages.error(self.request, _("This vote could not be saved."))
-            return self.get(request, *args, **kwargs)
-
-        messages.success(self.request, _("Thank you for your vote!."))
-        return self.get(request, *args, **kwargs)
+        messages.success(self.request, _("Thank you for your vote!"))
+        return redirect(self.request.path)
 
 
 class PublicVotingSettings(PermissionRequired, FormView):
