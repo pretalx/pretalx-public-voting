@@ -19,5 +19,14 @@ class PublicVote(models.Model):
     class Meta:
         unique_together = (("submission", "email_hash"),)
 
+    def __init__(self, *args, **kwargs):
+        super(PublicVote, self).__init__(*args, **kwargs)
+        self.existing_score = self.score
+
     def __str__(self):
         return f"Vote(score={self.score}, email_hash={self.email_hash}, timestamp={self.timestamp}, submission={self.submission.title})"
+
+    def save(self, *args, **kwargs):
+        # Only save if the score has changed
+        if self.existing_score != self.score:
+            super(PublicVote, self).save(*args, **kwargs)
