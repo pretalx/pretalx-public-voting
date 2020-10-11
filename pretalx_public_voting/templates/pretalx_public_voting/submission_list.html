@@ -41,10 +41,14 @@
     {% include "orga/pagination.html" %}
 
     <div id="save-bar">
-        <span>
-            <i class="fa fa-spinner fa-spin d-none"></i>
+        <i class="fa fa-spinner fa-spin d-none"></i>
+        <div id="js-save" class="m-2">
+            <span class="badge badge-primary invisible">Saving…</span>
+            <span class="badge badge-success invisible">Saved!</span>
+        </div>
+        <noscript>
             <button class="btn btn-lg btn-info" name="action" value="manual">{% trans "Save!" %}</button>
-        </span>
+        </noscript>
     </div>
     </form>
 {% else %}
