@@ -2,7 +2,7 @@ from django.urls import re_path
 
 from pretalx.event.models.event import SLUG_CHARS
 
-from . import views
+from . import views, exporters
 
 urlpatterns = [
     re_path(
@@ -24,5 +24,10 @@ urlpatterns = [
         f"^(?P<event>[{SLUG_CHARS}]+)/p/voting/talks/(?P<signed_user>[^/]+)/$",
         views.SubmissionListView.as_view(),
         name="talks",
+    ),
+    re_path(
+        f"^(?P<event>[{SLUG_CHARS}]+)/p/voting/export/$",
+        exporters.csv_export,
+        name="csv",
     ),
 ]
