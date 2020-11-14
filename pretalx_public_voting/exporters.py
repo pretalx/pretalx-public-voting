@@ -1,6 +1,6 @@
 from defusedcsv import csv
 
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 
 from .models import PublicVote
 
@@ -24,6 +24,9 @@ def get_data(event):
     return fieldnames, data
 
 def csv_export(request, event):
+    if not request.user.has_perm("orga.change_settings", request.event):
+        raise Http404()
+
     filename = "voting.csv"
 
     response = HttpResponse(content_type='text/csv')
