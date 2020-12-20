@@ -1,21 +1,23 @@
 'use strict'
 
 let voteDirty = false;
-let submitButton = null;
 
 $(() => {
   const csrftoken = getCookie("pretalx_csrftoken")
-  submitButton = $("#save-bar button")
-  submitButton.prop("disabled", true)
+  const saveIndicator = $("#js-save")
+  const saving = saveIndicator.children(".badge-primary")
+  const saved = saveIndicator.children(".badge-success")
 
   $('label').on('click', (event) => {
-    submitButton.prop("disabled", false)
     $(".fa-spin").removeClass("d-none")
+    saved.addClass("invisible")
+    saving.removeClass("invisible")
     window.setTimeout(() => {
       const form = $("form")
       $.post(form.attr('action'), form.serialize(), function(res){
-          submitButton.prop("disabled", true)
           $(".fa-spin").addClass("d-none")
+          saved.removeClass("invisible")
+          saving.addClass("invisible")
       })
     }, 5)
     return true
