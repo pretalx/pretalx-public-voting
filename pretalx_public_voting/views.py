@@ -1,5 +1,7 @@
+import random
+
 from django.contrib import messages
-from django.db.models import OuterRef, Subquery
+from django.db.models import Case, OuterRef, Subquery, When
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -54,15 +56,21 @@ class SubmissionListView(ListView):
         votes = PublicVote.objects.filter(
             email_hash=self.hashed_email, submission_id=OuterRef("pk")
         ).values("score")
+
+        # Idea is from https://stackoverflow.com/questions/4916851/django-get-a-queryset-from-array-of-ids-in-specific-order/37648265#37648265
+        submission_pks = list(Submission.objects.all().values_list("pk", flat=True))
+        random.seed(self.hashed_email)
+        random.shuffle(submission_pks)
+        user_order = Case(
+            *[When(pk=pk, then=pos) for pos, pk in enumerate(submission_pks)]
+        )
+
         return (
             Submission.objects.all()
             .annotate(score=Subquery(votes))
             .prefetch_related("speakers")
-            .order_by("code")
+            .order_by(user_order)
         )
-        # random.seed(self.hashed_email)
-        # random.shuffle(submissions)
-        # return submissions
 
     def get_form_for_submission(self, submission):
         if self.request.method == "POST":
