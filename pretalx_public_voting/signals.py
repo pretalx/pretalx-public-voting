@@ -2,6 +2,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from pretalx.common.signals import register_data_exporters
 from pretalx.orga.signals import nav_event_settings
 
 
@@ -20,3 +21,10 @@ def public_voting_settings(sender, request, **kwargs):
             == "plugins:pretalx_public_voting:settings",
         }
     ]
+
+
+@receiver(register_data_exporters)
+def register_data_exporter(sender, **kwargs):
+    from .exporters import PublicVotingCSVExporter
+
+    return PublicVotingCSVExporter
