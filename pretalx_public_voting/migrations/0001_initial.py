@@ -34,6 +34,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"unique_together": {("submission", "email_hash")},},
+            options={
+                "unique_together": {("submission", "email_hash")},
+            },
         ),
     ]

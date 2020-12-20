@@ -66,7 +66,9 @@ class VoteForm(forms.Form):
             name = event.settings.get(f"public_voting_score_name_{value}") or value
             choices.append((str(value), name))
         self.fields["score"] = forms.ChoiceField(
-            choices=choices, required=require_score, widget=forms.RadioSelect,
+            choices=choices,
+            required=require_score,
+            widget=forms.RadioSelect,
         )
         self.fields["score"].widget.attrs["autocomplete"] = "off"
 
