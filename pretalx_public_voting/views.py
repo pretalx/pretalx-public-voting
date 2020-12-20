@@ -100,7 +100,9 @@ class SubmissionListView(ListView):
                 continue
             form = self.get_form_for_submission(submission)
             if form.is_valid():
-                form.save()
+                # Only save the form if the score has changed
+                if form.initial['score'] != form.cleaned_data['score']:
+                    form.save()
         if request.POST.get("action") == "manual":
             messages.success(self.request, _("Thank you for your vote!"))
             return redirect(self.request.path)
