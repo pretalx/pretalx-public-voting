@@ -126,7 +126,6 @@ class PublicVotingSettingsForm(HierarkeyForm):
         maximum = obj.settings.public_voting_max_score
         minimum = int(minimum) if minimum is not None else 1
         maximum = int(maximum) if maximum is not None else 3
-        self.score_label_fields = []
         for number in range(abs(maximum - minimum + 1)):
             index = minimum + number
             self.fields[f"public_voting_score_name_{index}"] = forms.CharField(
