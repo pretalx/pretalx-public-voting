@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-03 03:59+0000\n"
+"POT-Creation-Date: 2020-12-23 23:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,70 +25,74 @@ msgstr ""
 msgid "A public voting plugin for pretalx"
 msgstr ""
 
+#: local/pretalx-public-voting/pretalx_public_voting/exporters.py:17
+msgid "Public Voting CSV"
+msgstr ""
+
 #: local/pretalx-public-voting/pretalx_public_voting/forms.py:42
 msgid "Public voting registration"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:78
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:80
 #, python-brace-format
 msgid "Please assign a score between {self.min_value} and {self.max_value}!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:95
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:97
 msgid ""
 "No public votes will be possible before this time. Submissions will not be "
 "publicly visible."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:97
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:99
 msgid "Start"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:102
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:104
 msgid ""
 "No public votes will be possible after this time. Submissions will not be "
 "publicly visible."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:104
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:106
 msgid "End"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:109
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:111
 msgid "Anonymise content"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:110
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:112
 msgid "Hide speaker names and use anonymized content where available?"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:113
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:115
 msgid "Minimum score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:114
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:116
 msgid "The minimum score voters can assign"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:118
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:120
 msgid "Maximum score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:119
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:121
 msgid "The maximum score voters can assign"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:132
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:134
 msgid "Score label ({})"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:134
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:136
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:147
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:149
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
 
@@ -97,7 +101,7 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
+#: local/pretalx-public-voting/pretalx_public_voting/signals.py:15
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:12
 msgid "Public voting"
 msgstr ""
@@ -138,17 +142,17 @@ msgstr ""
 msgid "This talk's header image"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:46
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:50
 msgid "Save!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:51
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:55
 msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:54
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:58
 msgid "Click here to sign up for voting."
 msgstr ""
 
@@ -163,6 +167,6 @@ msgid ""
 "please also check your spam folder."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:105
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:115
 msgid "Thank you for your vote!"
 msgstr ""
