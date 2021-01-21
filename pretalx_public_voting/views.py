@@ -11,7 +11,6 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django_context_decorator import context
-
 from pretalx.common.mixins.views import PermissionRequired
 from pretalx.submission.models import Submission
 
@@ -109,7 +108,7 @@ class SubmissionListView(ListView):
             form = self.get_form_for_submission(submission)
             if form.is_valid():
                 # Only save the form if the score has changed
-                if form.initial['score'] != form.cleaned_data['score']:
+                if form.initial["score"] != form.cleaned_data["score"]:
                     form.save()
         if request.POST.get("action") == "manual":
             messages.success(self.request, _("Thank you for your vote!"))

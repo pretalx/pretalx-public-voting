@@ -1,5 +1,4 @@
 from django.utils.translation import gettext_lazy as _
-
 from pretalx.common.exporter import BaseExporter, CSVExporterMixin
 
 from .models import PublicVote

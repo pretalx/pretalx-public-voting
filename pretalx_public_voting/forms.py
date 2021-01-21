@@ -1,7 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
-
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
 

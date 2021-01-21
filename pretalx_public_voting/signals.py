@@ -1,7 +1,6 @@
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-
 from pretalx.common.signals import register_data_exporters
 from pretalx.orga.signals import nav_event_settings
 
