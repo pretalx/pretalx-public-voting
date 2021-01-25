@@ -14,7 +14,7 @@
 <form method="POST" >{% csrf_token %}
     {% for submission in submissions %}
         <div class="card submission-card">
-            {% if submission.image %}
+            {% if submission.image and request.event.settings.public_voting_show_session_image %}
             <div class="card-img-top-wrapper">
             <img src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
             </div>

@@ -110,6 +110,12 @@ class PublicVotingSettingsForm(HierarkeyForm):
         label=_("Anonymise content"),
         help_text=_("Hide speaker names and use anonymized content where available?"),
     )
+    public_voting_show_session_image = forms.BooleanField(
+        required=False,
+        label=_("Show session image"),
+        help_text=_("Show the session image if one was uploaded."),
+        initial=True,
+    )
     public_voting_min_score = forms.IntegerField(
         label=_("Minimum score"),
         help_text=_("The minimum score voters can assign"),
