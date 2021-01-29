@@ -133,4 +133,9 @@ class PublicVotingSettings(PermissionRequired, FormView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        return {"obj": self.request.event, "attribute_name": "settings", **kwargs}
+        return {
+            "obj": self.request.event,
+            "attribute_name": "settings",
+            "locales": self.request.event.locales,
+            **kwargs
+        }
