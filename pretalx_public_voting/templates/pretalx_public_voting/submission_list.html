@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
 
 <h1>{% trans "Public voting" %}</h1>
+{{ request.event.settings.public_voting_text|rich_text }}
 {% if hashed_email %}
 <form method="POST" >{% csrf_token %}
     {% for submission in submissions %}
