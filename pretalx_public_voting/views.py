@@ -137,5 +137,5 @@ class PublicVotingSettings(PermissionRequired, FormView):
             "obj": self.request.event,
             "attribute_name": "settings",
             "locales": self.request.event.locales,
-            **kwargs
+            **kwargs,
         }

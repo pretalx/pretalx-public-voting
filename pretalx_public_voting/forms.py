@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.fields import I18nFormField, I18nTextarea
 from i18nfield.forms import I18nFormMixin
-
 from pretalx.common.phrases import phrases
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
@@ -96,9 +95,7 @@ class VoteForm(forms.Form):
 class PublicVotingSettingsForm(I18nFormMixin, HierarkeyForm):
 
     public_voting_text = I18nFormField(
-        help_text=_(
-            "This text will be shown at the top of the public voting page."
-        )
+        help_text=_("This text will be shown at the top of the public voting page.")
         + " "
         + phrases.base.use_markdown,
         label=_("Text"),
