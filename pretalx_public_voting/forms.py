@@ -26,7 +26,9 @@ class SignupForm(forms.Form):
             "plugins:pretalx_public_voting:talks",
             kwargs={"event": event.slug, "signed_user": email_signed},
         )
-        mail_text = f"""Hi,
+
+        mail_text = _(
+            """Hi,
 
 you have registered to vote for submissions for {event.name}.
 Please confirm that this email address is valid by following this link:
@@ -36,8 +38,10 @@ Please confirm that this email address is valid by following this link:
 If you did not register for voting, you can ignore this email.
 
 Thank you for participating in the vote!
-The organiser team
+
+The {event.name} organisers
 """
+        )
         QueuedMail(
             event=event,
             to=self.cleaned_data["email"],
