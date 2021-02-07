@@ -48,12 +48,12 @@ msgstr ""
 "Hi,\n"
 "\n"
 "du hast dich bei {event.name} registriert um über die Einreichungen "
-"abzustimmen\n"
+"abzustimmen.\n"
 "Bitte bestätige mit folgendem Link, dass deine E-Mail-Adresse korrekt ist:\n"
 "\n"
 "    {vote_url}\n"
 "\n"
-"Falls du nicht dich nicht für die Stimmabgabe registriert hast, kannst du"
+"Falls du nicht dich nicht für die Stimmabgabe registriert hast, kannst du "
 "diese E-Mail einfach ignorieren.\n"
 "\n"
 "Vielen Dank, dass du an der Abstimmung teilnimmst!\n"
@@ -109,7 +109,8 @@ msgstr "Text anonymisieren"
 
 #: pretalx_public_voting/forms.py:124
 msgid "Hide speaker names and use anonymized content where available?"
-msgstr "Wenn möglich, Namen der Vortragenden und anonymisierten Text verwenden?"
+msgstr ""
+"Wenn möglich, Namen der Vortragenden und anonymisierten Text verwenden?"
 
 #: pretalx_public_voting/forms.py:128
 msgid "Show session image"
@@ -189,7 +190,7 @@ msgid ""
 "and we just need to confirm your email address first. You will only need to "
 "do this once."
 msgstr ""
-"Wiillkommen zur Abstimmung über die Vorträge dieser Veranstaltung! Die "
+"Willkommen zur Abstimmung über die Vorträge dieser Veranstaltung! Die "
 "Stimmabgabe steht jedem offen, wir brauchen nur deine E-Mail-Adresse."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/signup.html:14
@@ -198,7 +199,7 @@ msgid ""
 "all votes will be completely anonymous."
 msgstr ""
 "Bitte beachte, dass wir deine E-Mail-Adresse <strong>nicht</strong> "
-"speichern und dass die Stimmabgabe vollständig anonym sind."
+"speichern und dass die Stimmabgabe vollständig anonym ist."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:20
 msgid "This talk's header image"
@@ -218,7 +219,7 @@ msgstr ""
 
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
 msgid "Click here to sign up for voting."
-msgstr "Bitte klicke hier, um dich für das Bewerten anzumelden."
+msgstr "Bitte klicke hier, um dich für die Abstimmung anzumelden."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:6
 msgid "Thanks for signing up!"
