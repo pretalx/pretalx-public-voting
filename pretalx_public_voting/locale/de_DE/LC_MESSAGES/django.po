@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-31 01:11+0100\n"
+"POT-Creation-Date: 2021-02-07 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "Ein Plugin für eine öffentliche Abstimmung in pretalx"
 msgid "Public Voting CSV"
 msgstr "CSV der öffentlichen Abstimmung"
 
-#: pretalx_public_voting/forms.py:30
+#: pretalx_public_voting/forms.py:31
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -60,26 +60,26 @@ msgstr ""
 "\n"
 "Das {event.name}-Team\n"
 
-#: pretalx_public_voting/forms.py:46
+#: pretalx_public_voting/forms.py:48
 msgid "Public voting registration"
 msgstr "Registrierung zur öffentlichen Abstimmung"
 
-#: pretalx_public_voting/forms.py:84
+#: pretalx_public_voting/forms.py:86
 #, python-brace-format
 msgid "Please assign a score between {self.min_value} and {self.max_value}!"
 msgstr ""
 "Bitte wähle eine Wertung zwischen {self.min_value} und {self.max_value}!"
 
-#: pretalx_public_voting/forms.py:100
+#: pretalx_public_voting/forms.py:102
 msgid "This text will be shown at the top of the public voting page."
 msgstr ""
 "Dieser Text wird ganz oben auf der öffentlichen Abstimmungsseite gezeigt."
 
-#: pretalx_public_voting/forms.py:103
+#: pretalx_public_voting/forms.py:105
 msgid "Text"
 msgstr "Text"
 
-#: pretalx_public_voting/forms.py:109
+#: pretalx_public_voting/forms.py:111
 msgid ""
 "No public votes will be possible before this time. Submissions will not be "
 "publicly visible."
@@ -87,11 +87,11 @@ msgstr ""
 "Vor diesem Zeitpunkt ist keine öffentliche Abstimmung möglich. Die "
 "Einreichungen sind dann nicht öffentlich einsehbar."
 
-#: pretalx_public_voting/forms.py:111
+#: pretalx_public_voting/forms.py:113
 msgid "Start"
 msgstr "Beginn"
 
-#: pretalx_public_voting/forms.py:116
+#: pretalx_public_voting/forms.py:118
 msgid ""
 "No public votes will be possible after this time. Submissions will not be "
 "publicly visible."
@@ -99,55 +99,55 @@ msgstr ""
 "Nach diesem Zeitpunkt ist keine öffentliche Abstimmung mehr möglich. Die "
 "Einreichungen sind dann nicht mehr öffentlich einsehbar."
 
-#: pretalx_public_voting/forms.py:118
+#: pretalx_public_voting/forms.py:120
 msgid "End"
 msgstr "Ende"
 
-#: pretalx_public_voting/forms.py:123
+#: pretalx_public_voting/forms.py:125
 msgid "Anonymise content"
 msgstr "Text anonymisieren"
 
-#: pretalx_public_voting/forms.py:124
+#: pretalx_public_voting/forms.py:126
 msgid "Hide speaker names and use anonymized content where available?"
 msgstr ""
 "Wenn möglich, Namen der Vortragenden und anonymisierten Text verwenden?"
 
-#: pretalx_public_voting/forms.py:128
+#: pretalx_public_voting/forms.py:130
 msgid "Show session image"
 msgstr "Bild anzeigen"
 
-#: pretalx_public_voting/forms.py:129
+#: pretalx_public_voting/forms.py:131
 msgid "Show the session image if one was uploaded."
 msgstr "Wenn ein Bild zum Vortrag hochgeladen wurde, dieses anzeigen."
 
-#: pretalx_public_voting/forms.py:133
+#: pretalx_public_voting/forms.py:135
 msgid "Minimum score"
 msgstr "Mindestwertung"
 
-#: pretalx_public_voting/forms.py:134
+#: pretalx_public_voting/forms.py:136
 msgid "The minimum score voters can assign"
 msgstr "Die geringste Wertung, die vergeben werden kann."
 
-#: pretalx_public_voting/forms.py:138
+#: pretalx_public_voting/forms.py:140
 msgid "Maximum score"
 msgstr "Höchstwertung"
 
-#: pretalx_public_voting/forms.py:139
+#: pretalx_public_voting/forms.py:141
 msgid "The maximum score voters can assign"
 msgstr "Die höchte Wertung, die vergeben werden kann."
 
-#: pretalx_public_voting/forms.py:152
+#: pretalx_public_voting/forms.py:154
 msgid "Score label ({})"
 msgstr "Bezeichnung"
 
-#: pretalx_public_voting/forms.py:154
+#: pretalx_public_voting/forms.py:156
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
 "Menschenlesbare Erklärung, was die Wertung \"{}\" bedeutet, z.B. \"super"
 
-#: pretalx_public_voting/forms.py:167
+#: pretalx_public_voting/forms.py:169
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
 "Bitte wähle eine Mindestwertung, die kleiner als die Höchstwertung ist!"
