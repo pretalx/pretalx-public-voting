@@ -1,0 +1,241 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-07 20:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pretalx_public_voting/__init__.py:10
+msgid "pretalx public voting plugin"
+msgstr "pretalx Plugin für die offentliche Abstimmung"
+
+#: pretalx_public_voting/__init__.py:12
+msgid "A public voting plugin for pretalx"
+msgstr "Ein Plugin für eine öffentliche Abstimmung in pretalx"
+
+#: pretalx_public_voting/exporters.py:16
+msgid "Public Voting CSV"
+msgstr "CSV der öffentlichen Abstimmung"
+
+#: pretalx_public_voting/forms.py:31
+#, python-brace-format
+msgid ""
+"Hi,\n"
+"\n"
+"you have registered to vote for submissions for {event.name}.\n"
+"Please confirm that this email address is valid by following this link:\n"
+"\n"
+"    {vote_url}\n"
+"\n"
+"If you did not register for voting, you can ignore this email.\n"
+"\n"
+"Thank you for participating in the vote!\n"
+"\n"
+"The {event.name} organisers\n"
+msgstr ""
+"Hi,\n"
+"\n"
+"du hast dich bei {event.name} registriert um über die Einreichungen "
+"abzustimmen.\n"
+"Bitte bestätige mit folgendem Link, dass deine E-Mail-Adresse korrekt ist:\n"
+"\n"
+"    {vote_url}\n"
+"\n"
+"Falls du nicht dich nicht für die Stimmabgabe registriert hast, kannst du "
+"diese E-Mail einfach ignorieren.\n"
+"\n"
+"Vielen Dank, dass du an der Abstimmung teilnimmst!\n"
+"\n"
+"Das {event.name}-Team\n"
+
+#: pretalx_public_voting/forms.py:48
+msgid "Public voting registration"
+msgstr "Registrierung zur öffentlichen Abstimmung"
+
+#: pretalx_public_voting/forms.py:86
+#, python-brace-format
+msgid "Please assign a score between {self.min_value} and {self.max_value}!"
+msgstr ""
+"Bitte wähle eine Wertung zwischen {self.min_value} und {self.max_value}!"
+
+#: pretalx_public_voting/forms.py:102
+msgid "This text will be shown at the top of the public voting page."
+msgstr ""
+"Dieser Text wird ganz oben auf der öffentlichen Abstimmungsseite gezeigt."
+
+#: pretalx_public_voting/forms.py:105
+msgid "Text"
+msgstr "Text"
+
+#: pretalx_public_voting/forms.py:111
+msgid ""
+"No public votes will be possible before this time. Submissions will not be "
+"publicly visible."
+msgstr ""
+"Vor diesem Zeitpunkt ist keine öffentliche Abstimmung möglich. Die "
+"Einreichungen sind dann nicht öffentlich einsehbar."
+
+#: pretalx_public_voting/forms.py:113
+msgid "Start"
+msgstr "Beginn"
+
+#: pretalx_public_voting/forms.py:118
+msgid ""
+"No public votes will be possible after this time. Submissions will not be "
+"publicly visible."
+msgstr ""
+"Nach diesem Zeitpunkt ist keine öffentliche Abstimmung mehr möglich. Die "
+"Einreichungen sind dann nicht mehr öffentlich einsehbar."
+
+#: pretalx_public_voting/forms.py:120
+msgid "End"
+msgstr "Ende"
+
+#: pretalx_public_voting/forms.py:125
+msgid "Anonymise content"
+msgstr "Text anonymisieren"
+
+#: pretalx_public_voting/forms.py:126
+msgid "Hide speaker names and use anonymized content where available?"
+msgstr ""
+"Wenn möglich, Namen der Vortragenden und anonymisierten Text verwenden?"
+
+#: pretalx_public_voting/forms.py:130
+msgid "Show session image"
+msgstr "Bild anzeigen"
+
+#: pretalx_public_voting/forms.py:131
+msgid "Show the session image if one was uploaded."
+msgstr "Wenn ein Bild zum Vortrag hochgeladen wurde, dieses anzeigen."
+
+#: pretalx_public_voting/forms.py:135
+msgid "Minimum score"
+msgstr "Mindestwertung"
+
+#: pretalx_public_voting/forms.py:136
+msgid "The minimum score voters can assign"
+msgstr "Die geringste Wertung, die vergeben werden kann."
+
+#: pretalx_public_voting/forms.py:140
+msgid "Maximum score"
+msgstr "Höchstwertung"
+
+#: pretalx_public_voting/forms.py:141
+msgid "The maximum score voters can assign"
+msgstr "Die höchte Wertung, die vergeben werden kann."
+
+#: pretalx_public_voting/forms.py:154
+msgid "Score label ({})"
+msgstr "Bezeichnung"
+
+#: pretalx_public_voting/forms.py:156
+msgid ""
+"Human readable explanation of what a score of \"{}\" actually means, e.g. "
+"\"great!\"."
+msgstr ""
+"Menschenlesbare Erklärung, was die Wertung \"{}\" bedeutet, z.B. \"super"
+
+#: pretalx_public_voting/forms.py:169
+msgid "Please assign a minimum score smaller than the maximum score!"
+msgstr ""
+"Bitte wähle eine Mindestwertung, die kleiner als die Höchstwertung ist!"
+
+#: pretalx_public_voting/models.py:15
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:33
+msgid "Score"
+msgstr "Wertung"
+
+#: pretalx_public_voting/signals.py:14
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:12
+msgid "Public voting"
+msgstr "Öffentliche Abstimmung"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/settings.html:15
+msgid "Set up public voting"
+msgstr "Öffentliche Abstimmung einstellen"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/settings.html:17
+msgid ""
+"Public voting will show your submissions publicly, and will allow anybody "
+"who provides a valid email address to vote. The email addresses are not "
+"saved, so the process is anonymous."
+msgstr ""
+"Die öffentliche Abstimmung zeigt alle Einreichungen öffentlich an und "
+"ermöglicht es jedem, der eine gültige E-Mail-Adresse hat, abzustimmen. "
+"E-Mail-Adressen werden nicht gespeichert. Die Abstimmung ist also anonym."
+
+#: pretalx_public_voting/templates/pretalx_public_voting/settings.html:34
+msgid "Save"
+msgstr "Speichern"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/signup.html:6
+msgid "Public voting signup"
+msgstr "Anmeldung zur öffentlichen Abstimmung"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/signup.html:8
+msgid ""
+"Welcome to the voting process for this event! Voting is open to the public, "
+"and we just need to confirm your email address first. You will only need to "
+"do this once."
+msgstr ""
+"Willkommen zur Abstimmung über die Vorträge dieser Veranstaltung! Die "
+"Stimmabgabe steht jedem offen, wir brauchen nur deine E-Mail-Adresse."
+
+#: pretalx_public_voting/templates/pretalx_public_voting/signup.html:14
+msgid ""
+"Please note that we do <strong>not</strong> store your email address, and "
+"all votes will be completely anonymous."
+msgstr ""
+"Bitte beachte, dass wir deine E-Mail-Adresse <strong>nicht</strong> "
+"speichern und dass die Stimmabgabe vollständig anonym ist."
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:20
+msgid "This talk's header image"
+msgstr "Das Titelbild des Vortags"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:51
+msgid "Save!"
+msgstr "Speichern!"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:56
+msgid ""
+"This page is invalid. Please double-check that you have followed a complete "
+"link to this place."
+msgstr ""
+"Diese Seite ist nicht zulässig. Bitte vergewissere dich, dass du den "
+"gesamten Link verwendet hast."
+
+#: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
+msgid "Click here to sign up for voting."
+msgstr "Bitte klicke hier, um dich für die Abstimmung anzumelden."
+
+#: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:6
+msgid "Thanks for signing up!"
+msgstr "Vielen Dank für das Anmelden!"
+
+#: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:8
+msgid ""
+"Thanks for signing up for public voting. You've received an email with your "
+"personal link to the vote. If you don't see an email within five minutes, "
+"please also check your spam folder."
+msgstr ""
+"Vielen Dank für das Anmelden zur öffentlichen Abstimmung. Du hast soeben "
+"eine E-Mail bekommen, die einen auf dich zugeschnittenen Link zur "
+"Stimmabgabe enthält. Falls du innerhalb von fünf Minuten keine E-Mail "
+"erhalten hast, guck im Spam nach!"
+
+#: pretalx_public_voting/views.py:114
+msgid "Thank you for your vote!"
+msgstr "Vielen Dank für deine Stimmabgabe!"
