@@ -27,7 +27,7 @@ msgstr "Ein Plugin für eine öffentliche Abstimmung in pretalx"
 
 #: pretalx_public_voting/exporters.py:16
 msgid "Public Voting CSV"
-msgstr "CSV der öffentliche Abstimmung"
+msgstr "CSV der öffentlichen Abstimmung"
 
 #: pretalx_public_voting/forms.py:30
 #, python-brace-format
@@ -47,15 +47,16 @@ msgid ""
 msgstr ""
 "Hi,\n"
 "\n"
-"du hast dich registriert um über Einreichungen von {event.name} abzustimmen\n"
+"du hast dich bei {event.name} registriert um über die Einreichungen "
+"abzustimmen\n"
 "Bitte bestätige mit folgendem Link, dass deine E-Mail-Adresse korrekt ist:\n"
 "\n"
 "    {vote_url}\n"
 "\n"
-"Falls du nicht dich nicht für die Stimmabgabe registriert hast, ignorier "
-"diese E-Mail einfach.\n"
+"Falls du nicht dich nicht für die Stimmabgabe registriert hast, kannst du"
+"diese E-Mail einfach ignorieren.\n"
 "\n"
-"Vielen Dank, dass du bei der Abstimmung teilnimmst!\n"
+"Vielen Dank, dass du an der Abstimmung teilnimmst!\n"
 "\n"
 "Das {event.name}-Team\n"
 
@@ -96,7 +97,7 @@ msgid ""
 "publicly visible."
 msgstr ""
 "Nach diesem Zeitpunkt ist keine öffentliche Abstimmung mehr möglich. Die "
-"Einreichungen sind dann icht mehr öffentlich einsehbar."
+"Einreichungen sind dann nicht mehr öffentlich einsehbar."
 
 #: pretalx_public_voting/forms.py:118
 msgid "End"
@@ -108,7 +109,7 @@ msgstr "Text anonymisieren"
 
 #: pretalx_public_voting/forms.py:124
 msgid "Hide speaker names and use anonymized content where available?"
-msgstr "Wenn möglich, Namen der Vortrageden und anonymisierten Text verwenden?"
+msgstr "Wenn möglich, Namen der Vortragenden und anonymisierten Text verwenden?"
 
 #: pretalx_public_voting/forms.py:128
 msgid "Show session image"
@@ -124,7 +125,7 @@ msgstr "Mindestwertung"
 
 #: pretalx_public_voting/forms.py:134
 msgid "The minimum score voters can assign"
-msgstr "Die geringste Wertung. die vergeben werden kann."
+msgstr "Die geringste Wertung, die vergeben werden kann."
 
 #: pretalx_public_voting/forms.py:138
 msgid "Maximum score"
@@ -171,8 +172,8 @@ msgid ""
 "saved, so the process is anonymous."
 msgstr ""
 "Die öffentliche Abstimmung zeigt alle Einreichungen öffentlich an und "
-"ermöglicht es jedem, der eine gültige E-Mail-Adresse hat, abzustimmen. Die "
-"E-Mail-Adressen werden nicht gespeichert, es ist also anonym."
+"ermöglicht es jedem, der eine gültige E-Mail-Adresse hat, abzustimmen. "
+"E-Mail-Adressen werden nicht gespeichert. Die Abstimmung ist also anonym."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/settings.html:34
 msgid "Save"
@@ -217,7 +218,7 @@ msgstr ""
 
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
 msgid "Click here to sign up for voting."
-msgstr "Bitte klicke hier um dich für das Bewerten anzumelden."
+msgstr "Bitte klicke hier, um dich für das Bewerten anzumelden."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:6
 msgid "Thanks for signing up!"
