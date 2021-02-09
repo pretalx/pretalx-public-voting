@@ -46,7 +46,7 @@ The {event.name} organisers
             event=event,
             to=self.cleaned_data["email"],
             subject=_("Public voting registration"),
-            text=mail_text,
+            text=str(mail_text).format(vote_url=vote_url),
         ).send()
 
 
