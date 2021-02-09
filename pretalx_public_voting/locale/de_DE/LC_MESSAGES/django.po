@@ -3,31 +3,32 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-07 20:48+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2021-02-09 13:40+0100\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: pretalx_public_voting/__init__.py:10
 msgid "pretalx public voting plugin"
-msgstr "pretalx Plugin für die offentliche Abstimmung"
+msgstr "pretalx-Plugin für die offentliche Bewertung von Einreichungen"
 
 #: pretalx_public_voting/__init__.py:12
 msgid "A public voting plugin for pretalx"
-msgstr "Ein Plugin für eine öffentliche Abstimmung in pretalx"
+msgstr ""
+"Ein Plugin für eine öffentliche Bewertung von Einreichungen in pretalx"
 
 #: pretalx_public_voting/exporters.py:16
 msgid "Public Voting CSV"
-msgstr "CSV der öffentlichen Abstimmung"
+msgstr "CSV der öffentlichen Bewertungen"
 
 #: pretalx_public_voting/forms.py:31
 #, python-brace-format
@@ -110,7 +111,8 @@ msgstr "Text anonymisieren"
 #: pretalx_public_voting/forms.py:126
 msgid "Hide speaker names and use anonymized content where available?"
 msgstr ""
-"Wenn möglich, Namen der Vortragenden und anonymisierten Text verwenden?"
+"Namen der Vortragenden verbergen und anonymisierten Text verwenden, soweit "
+"verfügbar?"
 
 #: pretalx_public_voting/forms.py:130
 msgid "Show session image"
@@ -126,7 +128,7 @@ msgstr "Mindestwertung"
 
 #: pretalx_public_voting/forms.py:136
 msgid "The minimum score voters can assign"
-msgstr "Die geringste Wertung, die vergeben werden kann."
+msgstr "Die geringste Wertung, die vergeben werden kann"
 
 #: pretalx_public_voting/forms.py:140
 msgid "Maximum score"
@@ -134,23 +136,23 @@ msgstr "Höchstwertung"
 
 #: pretalx_public_voting/forms.py:141
 msgid "The maximum score voters can assign"
-msgstr "Die höchte Wertung, die vergeben werden kann."
+msgstr "Die höchte Wertung, die vergeben werden kann"
 
 #: pretalx_public_voting/forms.py:154
 msgid "Score label ({})"
-msgstr "Bezeichnung"
+msgstr "Bezeichnung ({})"
 
 #: pretalx_public_voting/forms.py:156
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
-"Menschenlesbare Erklärung, was die Wertung \"{}\" bedeutet, z.B. \"super"
+"Menschenlesbare Erklärung, was die Wertung \"{}\" bedeutet, z.B. \"super\"."
 
 #: pretalx_public_voting/forms.py:169
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
-"Bitte wähle eine Mindestwertung, die kleiner als die Höchstwertung ist!"
+"Bitte wähle eine Mindestwertung, die niedriger als die Höchstwertung ist!"
 
 #: pretalx_public_voting/models.py:15
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:33
@@ -164,7 +166,7 @@ msgstr "Öffentliche Abstimmung"
 
 #: pretalx_public_voting/templates/pretalx_public_voting/settings.html:15
 msgid "Set up public voting"
-msgstr "Öffentliche Abstimmung einstellen"
+msgstr "Öffentliche Abstimmung einrichten"
 
 #: pretalx_public_voting/templates/pretalx_public_voting/settings.html:17
 msgid ""
@@ -173,8 +175,8 @@ msgid ""
 "saved, so the process is anonymous."
 msgstr ""
 "Die öffentliche Abstimmung zeigt alle Einreichungen öffentlich an und "
-"ermöglicht es jedem, der eine gültige E-Mail-Adresse hat, abzustimmen. "
-"E-Mail-Adressen werden nicht gespeichert. Die Abstimmung ist also anonym."
+"ermöglicht es jedem, der eine gültige E-Mail-Adresse hat, abzustimmen. E-"
+"Mail-Adressen werden nicht gespeichert. Die Abstimmung ist also anonym."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/settings.html:34
 msgid "Save"
@@ -232,9 +234,9 @@ msgid ""
 "please also check your spam folder."
 msgstr ""
 "Vielen Dank für das Anmelden zur öffentlichen Abstimmung. Du hast soeben "
-"eine E-Mail bekommen, die einen auf dich zugeschnittenen Link zur "
-"Stimmabgabe enthält. Falls du innerhalb von fünf Minuten keine E-Mail "
-"erhalten hast, guck im Spam nach!"
+"eine E-Mail erhalten, die deinen persönlichen Link zur Stimmabgabe enthält. "
+"Falls du innerhalb von fünf Minuten keine E-Mail erhalten hast, guck bitte "
+"im Spam nach!"
 
 #: pretalx_public_voting/views.py:114
 msgid "Thank you for your vote!"
