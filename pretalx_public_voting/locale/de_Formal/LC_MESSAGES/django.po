@@ -215,7 +215,7 @@ msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
 msgstr ""
-"Diese Seite ist nicht zulässig. Bitte vergewisseren Sie sich, dass Sie den "
+"Diese Seite ist nicht zulässig. Bitte vergewissern Sie sich, dass Sie den "
 "gesamten Link verwendet haben."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
@@ -234,7 +234,7 @@ msgid ""
 msgstr ""
 "Vielen Dank für das Anmelden zur öffentlichen Abstimmung. Sie haben soeben "
 "eine E-Mail bekommen, die einen auf Sie zugeschnittenen Link zur "
-"Stimmabgabe enthält. Falls sie innerhalb von fünf Minuten keine E-Mail "
+"Stimmabgabe enthält. Falls Sie innerhalb von fünf Minuten keine E-Mail "
 "erhalten haben, sehen Sie bitte im Spam nach!"
 
 #: pretalx_public_voting/views.py:114
