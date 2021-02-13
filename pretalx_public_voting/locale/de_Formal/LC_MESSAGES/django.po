@@ -45,11 +45,10 @@ msgid ""
 "\n"
 "The {event.name} organisers\n"
 msgstr ""
-"Guten Tag,\n"
+"Hallo!\n"
 "\n"
-"Sie haben sich bei {event.name} registriert um über die Einreichungen "
-"abzustimmen.\n"
-"Bitte bestätigen Sie mit folgendem Link, dass deine E-Mail-Adresse korrekt "
+"Sie haben sich für die Abstimmung der Einreichungen zur {event.name} registriert.\n"
+"Bitte bestätigen Sie mit folgendem Link, dass Ihre E-Mail-Adresse korrekt "
 "ist:\n"
 "\n"
 "    {vote_url}\n"
@@ -57,7 +56,7 @@ msgstr ""
 "Falls Sie sich nicht für die Stimmabgabe registriert haben, können Sie "
 "diese E-Mail einfach ignorieren.\n"
 "\n"
-"Vielen Dank, dass Sie an der Abstimmung teilnehmen!\n"
+"Vielen Dank, dass Sie an der öffentlichen Abstimmung teilnehmen!\n"
 "\n"
 "Das {event.name}-Team\n"
 
@@ -152,7 +151,7 @@ msgstr ""
 #: pretalx_public_voting/forms.py:169
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
-"Bitte wähle eine Mindestwertung, die niedriger als die Höchstwertung ist!"
+"Bitte wählen Sie eine Mindestwertung, die niedriger als die Höchstwertung ist!"
 
 #: pretalx_public_voting/models.py:15
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:33
@@ -192,8 +191,8 @@ msgid ""
 "and we just need to confirm your email address first. You will only need to "
 "do this once."
 msgstr ""
-"Willkommen zur Abstimmung über die Vorträge dieser Veranstaltung! Die "
-"Stimmabgabe steht jedem offen, wir brauchen nur deine E-Mail-Adresse."
+"Willkommen zur öffentlichen Abstimmung über die Einreichungen zu dieser Veranstaltung! Die "
+"Stimmabgabe steht jedem offen, wir brauchen nur Ihre E-Mail-Adresse."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/signup.html:14
 msgid ""
@@ -221,11 +220,11 @@ msgstr ""
 
 #: pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
 msgid "Click here to sign up for voting."
-msgstr "Bitte klicken Sie hier, um sich für die Abstimmung anzumelden."
+msgstr "Bitte klicken Sie hier, um sich für die öffentliche Abstimmung anzumelden."
 
 #: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:6
 msgid "Thanks for signing up!"
-msgstr "Vielen Dank für das Anmelden!"
+msgstr "Vielen Dank für Ihre Anmeldung!"
 
 #: pretalx_public_voting/templates/pretalx_public_voting/thanks.html:8
 msgid ""
@@ -233,9 +232,9 @@ msgid ""
 "personal link to the vote. If you don't see an email within five minutes, "
 "please also check your spam folder."
 msgstr ""
-"Vielen Dank für das Anmelden zur öffentlichen Abstimmung. Sie haben soeben "
-"eine E-Mail erhalten, die deinen persönlichen Link zur Stimmabgabe enthält. "
-"Falls du innerhalb von fünf Minuten keine E-Mail erhalten hast, guck bitte "
+"Vielen Dank für ihre Anmeldung zur öffentlichen Abstimmung. Sie haben soeben "
+"eine E-Mail erhalten, die Ihren persönlichen Link zur Stimmabgabe enthält. "
+"Falls Sie innerhalb von fünf Minuten keine E-Mail erhalten hast, schauen Sie bitte "
 "im Spam nach!"
 
 #: pretalx_public_voting/views.py:114
