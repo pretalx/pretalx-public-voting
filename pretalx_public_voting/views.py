@@ -2,10 +2,11 @@ import random
 
 from django.contrib import messages
 from django.db.models import Case, OuterRef, Subquery, When
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.functional import cached_property
+from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
@@ -19,7 +20,19 @@ from .models import PublicVote
 from .utils import event_unsign
 
 
-class SignupView(FormView):
+class PublicVotingRequired:
+    def dispatch(self, request, *args, **kwargs):
+        start = request.event.settings.public_voting_start
+        end = request.event.settings.public_voting_end
+        _now = now()
+        start_valid = (not start) or _now > start
+        end_valid = (not end) or _now < end
+        if not start_valid or not end_valid:
+            raise Http404()
+        return super().dispatch(request, *args, **kwargs)
+
+
+class SignupView(PublicVotingRequired, FormView):
     template_name = "pretalx_public_voting/signup.html"
     form_class = SignupForm
 
@@ -31,11 +44,11 @@ class SignupView(FormView):
         return super().form_valid(form)
 
 
-class ThanksView(TemplateView):
+class ThanksView(PublicVotingRequired, TemplateView):
     template_name = "pretalx_public_voting/thanks.html"
 
 
-class SubmissionListView(ListView):
+class SubmissionListView(PublicVotingRequired, ListView):
     model = Submission
     template_name = "pretalx_public_voting/submission_list.html"
     paginate_by = 20
