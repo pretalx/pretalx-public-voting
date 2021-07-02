@@ -3,23 +3,23 @@
 {% load i18n %}
 
 {% block content %}
-<h1>{% trans "Public voting signup" %}</h1>
+    <h1>{% trans "Public voting signup" %}</h1>
 
-<p>{% blocktrans trimmed with event_name=request.event.name %}
-Welcome to the voting process for this event! Voting is open to
-the public, and we just need to confirm your email address first. You will only
-need to do this once.
-{% endblocktrans %}</p>
+    <p>{% blocktrans trimmed with event_name=request.event.name %}
+        Welcome to the voting process for this event! Voting is open to
+        the public, and we just need to confirm your email address first. You will only
+        need to do this once.
+    {% endblocktrans %}</p>
 
-<p>{% blocktrans trimmed with event_name=request.event.name %}
-Please note that we do <strong>not</strong> store your email address, and all votes will be completely anonymous.
-{% endblocktrans %}</p>
+    <p>{% blocktrans trimmed with event_name=request.event.name %}
+        Please note that we do <strong>not</strong> store your email address, and all votes will be completely anonymous.
+    {% endblocktrans %}</p>
 
-<form method="post">{% csrf_token %}
-    {% bootstrap_form form layout="inline" %}
-    <p class="d-flex">
-        <input type="submit" class="btn btn-success ml-auto" value="Sign up">
-    </p>
-</form>
+    <form method="post">{% csrf_token %}
+        {% bootstrap_form form layout="inline" %}
+        <p class="d-flex">
+            <input type="submit" class="btn btn-success ml-auto" value="Sign up">
+        </p>
+    </form>
 
 {% endblock %}

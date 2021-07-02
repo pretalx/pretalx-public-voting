@@ -6,35 +6,35 @@
 
 {% block content %}
     {% compress js %}
-    <script defer src="{% static "vendored/moment-with-locales.js" %}"></script>
-    <script defer src="{% static "vendored/moment-timezone-with-data-2012-2022.js" %}"></script>
-    <script defer src="{% static "vendored/datetimepicker/bootstrap-datetimepicker.js" %}"></script>
-    <script defer src="{% static "orga/js/datetimepicker.js" %}"></script>
+        <script defer src="{% static "vendored/moment-with-locales.js" %}"></script>
+        <script defer src="{% static "vendored/moment-timezone-with-data-2012-2022.js" %}"></script>
+        <script defer src="{% static "vendored/datetimepicker/bootstrap-datetimepicker.js" %}"></script>
+        <script defer src="{% static "orga/js/datetimepicker.js" %}"></script>
     {% endcompress %}
 
-<h2>{% trans "Set up public voting" %}</h2>
-<p>
-{% blocktrans trimmed %}
-  Public voting will show your submissions publicly, and will allow anybody who
-  provides a valid email address to vote. The email addresses are not saved,
-  so the process is anonymous.
-{% endblocktrans %}
-</p><p></p>
-<form method="post">
-  {% csrf_token %}
-  {% bootstrap_form form layout='event' %}
-  <div class="submit-group panel">
-      <span></span>
-      <span class="d-flex flex-row-reverse">
-          <button
-            type="submit" class="btn btn-success btn-lg"
-            name="action" value="save"
-          >
-              <i class="fa fa-check"></i>
-              {% trans "Save" %}
-          </button>
-      </span>
-  </div>
-</form>
+    <h2>{% trans "Set up public voting" %}</h2>
+    <p>
+        {% blocktrans trimmed %}
+            Public voting will show your submissions publicly, and will allow anybody who
+            provides a valid email address to vote. The email addresses are not saved,
+            so the process is anonymous.
+        {% endblocktrans %}
+    </p><p></p>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form layout='event' %}
+        <div class="submit-group panel">
+            <span></span>
+            <span class="d-flex flex-row-reverse">
+                <button
+                    type="submit" class="btn btn-success btn-lg"
+                    name="action" value="save"
+                >
+                    <i class="fa fa-check"></i>
+                    {% trans "Save" %}
+                </button>
+            </span>
+        </div>
+    </form>
 
 {% endblock %}

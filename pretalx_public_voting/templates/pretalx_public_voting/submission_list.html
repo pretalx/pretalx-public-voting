@@ -5,58 +5,58 @@
 {% load static %}
 
 {% block content %}
-<script src="{% static "vendored/jquery-3.1.1.js" %}"></script>
-<script src="{% static "pretalx_public_voting/vote.js" %}"></script>
-<link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
+    <script src="{% static "vendored/jquery-3.1.1.js" %}"></script>
+    <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
+    <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
 
-<h1>{% trans "Public voting" %}</h1>
-{{ request.event.settings.public_voting_text|rich_text }}
-{% if hashed_email %}
-<form method="POST" >{% csrf_token %}
-    {% for submission in submissions %}
-        <div class="card submission-card">
-            {% if submission.image and request.event.settings.public_voting_show_session_image %}
-            <div class="card-img-top-wrapper">
-            <img src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
-            </div>
-            {% endif %}
-            <div class="card-body">
-                <h3 class="card-title">{{ submission.title }}</h3>
-                {% if not request.event.settings.public_voting_anonymize_speakers %}
-                <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
-                {% endif %}
-                <div class="card-text">
-                    {{ submission.abstract|rich_text|default:'-' }}
+    <h1>{% trans "Public voting" %}</h1>
+    {{ request.event.settings.public_voting_text|rich_text }}
+    {% if hashed_email %}
+        <form method="POST" >{% csrf_token %}
+            {% for submission in submissions %}
+                <div class="card submission-card">
+                    {% if submission.image and request.event.settings.public_voting_show_session_image %}
+                        <div class="card-img-top-wrapper">
+                            <img src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ submission.title }}</h3>
+                        {% if not request.event.settings.public_voting_anonymize_speakers %}
+                            <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
+                        {% endif %}
+                        <div class="card-text">
+                            {{ submission.abstract|rich_text|default:'-' }}
+                        </div>
+                    </div>
+                    <div class="card-header card-footer">
+                        <strong>{% trans "Score" %}:</strong>
+                        <div class="form ml-auto">
+                            {% bootstrap_field submission.vote_form.score layout="inline" %}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card-header card-footer">
-                <strong>{% trans "Score" %}:</strong>
-                <div class="form ml-auto">
-                    {% bootstrap_field submission.vote_form.score layout="inline" %}
-                </div>
-            </div>
-        </div>
-    {% empty %}
-        <p>No submissions yet.</p>
-    {% endfor %}
-    {% include "orga/pagination.html" %}
+            {% empty %}
+                <p>No submissions yet.</p>
+            {% endfor %}
+            {% include "orga/pagination.html" %}
 
-    <div id="save-bar">
-        <i class="fa fa-spinner fa-spin d-none"></i>
-        <div id="js-save" class="m-2">
-            <span class="badge badge-primary invisible">Saving…</span>
-            <span class="badge badge-success invisible">Saved!</span>
-        </div>
-        <noscript>
-            <button class="btn btn-lg btn-info" name="action" value="manual">{% trans "Save!" %}</button>
-        </noscript>
-    </div>
-    </form>
-{% else %}
-<p>{% blocktrans trimmed %}
-This page is invalid. Please double-check that you have followed a complete link to this place.
-{% endblocktrans %}
-<a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
-</p>
-{% endif %}
+            <div id="save-bar">
+                <i class="fa fa-spinner fa-spin d-none"></i>
+                <div id="js-save" class="m-2">
+                    <span class="badge badge-primary invisible">Saving…</span>
+                    <span class="badge badge-success invisible">Saved!</span>
+                </div>
+                <noscript>
+                    <button class="btn btn-lg btn-info" name="action" value="manual">{% trans "Save!" %}</button>
+                </noscript>
+            </div>
+        </form>
+    {% else %}
+        <p>{% blocktrans trimmed %}
+            This page is invalid. Please double-check that you have followed a complete link to this place.
+        {% endblocktrans %}
+            <a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
+        </p>
+    {% endif %}
 {% endblock %}
