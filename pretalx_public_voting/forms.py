@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.fields import I18nFormField, I18nTextarea
 from i18nfield.forms import I18nFormMixin
+
 from pretalx.common.phrases import phrases
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
