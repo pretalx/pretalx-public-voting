@@ -15,6 +15,3 @@ class PluginApp(AppConfig):
 
     def ready(self):
         from . import signals  # NOQA
-
-
-default_app_config = "pretalx_public_voting.PluginApp"
