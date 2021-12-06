@@ -7,7 +7,7 @@ from django.core import signing
 def hash_email(email, event):
     return blake2b(
         email.encode("utf-8"),
-        salt=event.slug.encode("utf-8"),
+        salt=event.slug.encode("utf-8")[:16],
         digest_size=16,
     ).hexdigest()
 
