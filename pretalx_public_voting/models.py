@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_scopes import ScopedManager
 from i18nfield.strings import LazyI18nString
-
 from pretalx.common.models.settings import hierarkey
 
 hierarkey.add_default("public_voting_start", None, dt.datetime)
