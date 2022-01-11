@@ -42,7 +42,7 @@ class PublicVotingSettings(models.Model):
     anonymize_speakers = models.BooleanField(
         verbose_name=_("Anonymise content"),
         help_text=_(
-            "Hide speaker verbose_names and use anonymized content where available?"
+            "Hide speaker names and use anonymized content where available?"
         ),
         default=False,
     )
