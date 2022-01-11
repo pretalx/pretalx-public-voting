@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
 
     <h1>{% trans "Public voting" %}</h1>
-    {{ request.event.settings.public_voting_text|rich_text }}
+    {{ request.event.public_vote_settings.text|rich_text }}
     {% if hashed_email %}
         <form method="POST" >{% csrf_token %}
             {% for submission in submissions %}
                 <div class="card submission-card">
-                    {% if submission.image and request.event.settings.public_voting_show_session_image %}
+                    {% if submission.image and request.event.public_vote_settings.show_session_image %}
                         <div class="card-img-top-wrapper">
                             <img src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
                         </div>
                     {% endif %}
                     <div class="card-body">
                         <h3 class="card-title">{{ submission.title }}</h3>
-                        {% if not request.event.settings.public_voting_anonymize_speakers %}
+                        {% if not request.event.public_vote_settings.anonymize_speakers %}
                             <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
                         {% endif %}
                         <div class="card-text">
