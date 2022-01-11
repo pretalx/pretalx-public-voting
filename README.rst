@@ -1,7 +1,31 @@
 pretalx public voting plugin
 ============================
 
-This is a plugin for `pretalx`_. 
+This is a plugin for `pretalx`_, allowing attendees (or anybody interested) to vote on submitted proposals.
+
+Changelog
+---------
+
+v0.2.1, 2021-12-07
+~~~~~~~~~~~~~~~~~~
+
+- Added compatibility with the latest pretalx release
+- Fixed a bug involving salt lengths
+
+v0.2.0, 2021-03-11
+~~~~~~~~~~~~~~~~~~
+
+- Added a CSV export of voting results
+- Added an indicator of the vote being saved
+- Added localisation (multi-language support) to settings
+- Optionally hide session images
+- Added a German translation
+- Added start and end time settings
+
+v0.1.0, 2020-04-23
+~~~~~~~~~~~~~~~~~~
+
+Initial release
 
 Development setup
 -----------------
