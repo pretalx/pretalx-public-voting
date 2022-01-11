@@ -6,6 +6,8 @@ This is a plugin for `pretalx`_, allowing attendees (or anybody interested) to v
 Changelog
 ---------
 
+- Added link to public voting page from organiser backend
+
 v0.2.1, 2021-12-07
 ~~~~~~~~~~~~~~~~~~
 

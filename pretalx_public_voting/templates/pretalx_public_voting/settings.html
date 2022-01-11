@@ -12,14 +12,19 @@
         <script defer src="{% static "orga/js/datetimepicker.js" %}"></script>
     {% endcompress %}
 
-    <h2>{% trans "Set up public voting" %}</h2>
+    <h2 class="d-flex">
+        {% trans "Set up public voting" %}
+        <a class="btn btn-info ml-auto" href="{% if request.event.custom_domain %}{{ request.event.custom_domain }}{% endif %}{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">
+            {% translate "Go to public voting" %}
+        </a>
+    </h2>
     <p>
         {% blocktrans trimmed %}
             Public voting will show your submissions publicly, and will allow anybody who
             provides a valid email address to vote. The email addresses are not saved,
             so the process is anonymous.
         {% endblocktrans %}
-    </p><p></p>
+    </p><p> </p>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form layout='event' %}
