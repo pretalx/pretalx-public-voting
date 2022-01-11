@@ -11,7 +11,20 @@ from .utils import event_sign, hash_email
 class SignupForm(forms.Form):
     email = forms.EmailField(required=True)
 
-    def send_email(self, event):
+    def __init__(self, *args, event=None, **kwargs):
+        self.event = event
+        super().__init__(*args, **kwargs)
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if not self.event.public_vote_settings.allowed_email_list:
+            return email
+        if email.strip().lower() in self.event.public_vote_settings.allowed_email_list:
+            return email
+        raise forms.ValidationError(_("This address is not allowed to cast a vote."))
+
+    def send_email(self):
+        event = self.event
         email_hashed = hash_email(self.cleaned_data["email"], event)
         email_signed = event_sign(email_hashed, event)
 
@@ -138,6 +151,7 @@ class PublicVotingSettingsForm(I18nModelForm):
             "text",
             "anonymize_speakers",
             "show_session_image",
+            "allowed_emails",
             "min_score",
             "max_score",
         )

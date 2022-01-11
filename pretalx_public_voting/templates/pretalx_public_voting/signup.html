@@ -16,6 +16,7 @@
     {% endblocktrans %}</p>
 
     <form method="post">{% csrf_token %}
+        {% bootstrap_form_errors form %}
         {% bootstrap_form form layout="inline" %}
         <p class="d-flex">
             <input type="submit" class="btn btn-success ml-auto" value="Sign up">

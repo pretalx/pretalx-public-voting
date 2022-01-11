@@ -39,8 +39,13 @@ class SignupView(PublicVotingRequired, FormView):
     def get_success_url(self):
         return reverse("plugins:pretalx_public_voting:thanks", kwargs=self.kwargs)
 
+    def get_form_kwargs(self):
+        result = super().get_form_kwargs()
+        result["event"] = self.request.event
+        return result
+
     def form_valid(self, form):
-        form.send_email(self.request.event)
+        form.send_email()
         return super().form_valid(form)
 
 

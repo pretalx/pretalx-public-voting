@@ -6,6 +6,7 @@ This is a plugin for `pretalx`_, allowing attendees (or anybody interested) to v
 Changelog
 ---------
 
+- Added the option to restrict voting to a set of known email addresses
 - Added link to public voting page from organiser backend
 
 v0.2.1, 2021-12-07

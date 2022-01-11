@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_scopes import ScopedManager
 from i18nfield.fields import I18nTextField
@@ -61,6 +62,21 @@ class PublicVotingSettings(models.Model):
         help_text=_("The maximum score voters can assign"),
     )
     score_names = models.JSONField(default=get_dict)
+    allowed_emails = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Allowed emails"),
+        help_text=_(
+            "You can limit who is allowed to cast a vote. Please enter one email address per line."
+        ),
+    )
+
+    @cached_property
+    def allowed_email_list(self):
+        l = (self.allowed_emails or "").strip().lower()
+        if not l:
+            return []
+        return set(mail.strip() for mail in l.split("\n"))
 
 
 class PublicVote(models.Model):
