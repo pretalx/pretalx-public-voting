@@ -16,14 +16,14 @@ from pretalx.common.mixins.views import PermissionRequired
 from pretalx.submission.models import Submission
 
 from .forms import PublicVotingSettingsForm, SignupForm, VoteForm
-from .models import PublicVote
+from .models import PublicVote, PublicVotingSettings
 from .utils import event_unsign
 
 
 class PublicVotingRequired:
     def dispatch(self, request, *args, **kwargs):
-        start = request.event.settings.public_voting_start
-        end = request.event.settings.public_voting_end
+        start = request.event.public_vote_settings.start
+        end = request.event.public_vote_settings.end
         _now = now()
         start_valid = (not start) or _now > start
         end_valid = (not end) or _now < end
@@ -129,7 +129,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         return JsonResponse({})
 
 
-class PublicVotingSettings(PermissionRequired, FormView):
+class PublicVotingSettingsView(PermissionRequired, FormView):
     form_class = PublicVotingSettingsForm
     permission_required = "orga.change_settings"
     template_name = "pretalx_public_voting/settings.html"
@@ -146,9 +146,11 @@ class PublicVotingSettings(PermissionRequired, FormView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
+        settings, _ = PublicVotingSettings.objects.get_or_create(
+            event=self.request.event
+        )
         return {
-            "obj": self.request.event,
-            "attribute_name": "settings",
+            "instance": settings,
             "locales": self.request.event.locales,
             **kwargs,
         }

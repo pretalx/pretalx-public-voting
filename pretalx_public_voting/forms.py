@@ -1,13 +1,10 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from hierarkey.forms import HierarkeyForm
-from i18nfield.fields import I18nFormField, I18nTextarea
-from i18nfield.forms import I18nFormMixin
-from pretalx.common.phrases import phrases
+from i18nfield.forms import I18nModelForm
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
 
-from .models import PublicVote
+from .models import PublicVote, PublicVotingSettings
 from .utils import event_sign, hash_email
 
 
@@ -64,12 +61,12 @@ class VoteForm(forms.Form):
         self.submission = submission
         self.hashed_email = hashed_email
         super().__init__(*args, **kwargs)
-        self.min_value = int(event.settings.public_voting_min_score)
-        self.max_value = int(event.settings.public_voting_max_score)
+        self.min_value = event.public_vote_settings.min_score
+        self.max_value = event.public_vote_settings.max_score
         choices = []
         for counter in range(abs(self.max_value - self.min_value) + 1):
             value = self.min_value + counter
-            name = event.settings.get(f"public_voting_score_name_{value}") or value
+            name = event.public_vote_settings.score_names.get(value) or value
             choices.append((str(value), name))
         self.fields["score"] = forms.ChoiceField(
             choices=choices,
@@ -96,77 +93,55 @@ class VoteForm(forms.Form):
         )
 
 
-class PublicVotingSettingsForm(I18nFormMixin, HierarkeyForm):
-
-    public_voting_text = I18nFormField(
-        help_text=_("This text will be shown at the top of the public voting page.")
-        + " "
-        + phrases.base.use_markdown,
-        label=_("Text"),
-        widget=I18nTextarea,
-        required=False,
-    )
-    public_voting_start = forms.DateTimeField(
-        help_text=_(
-            "No public votes will be possible before this time. Submissions will not be publicly visible."
-        ),
-        label=_("Start"),
-        widget=forms.DateTimeInput(attrs={"class": "datetimepickerfield"}),
-    )
-    public_voting_end = forms.DateTimeField(
-        help_text=_(
-            "No public votes will be possible after this time. Submissions will not be publicly visible."
-        ),
-        label=_("End"),
-        widget=forms.DateTimeInput(attrs={"class": "datetimepickerfield"}),
-    )
-    public_voting_anonymize_speakers = forms.BooleanField(
-        required=False,
-        label=_("Anonymise content"),
-        help_text=_("Hide speaker names and use anonymized content where available?"),
-    )
-    public_voting_show_session_image = forms.BooleanField(
-        required=False,
-        label=_("Show session image"),
-        help_text=_("Show the session image if one was uploaded."),
-        initial=True,
-    )
-    public_voting_min_score = forms.IntegerField(
-        label=_("Minimum score"),
-        help_text=_("The minimum score voters can assign"),
-        initial=1,
-    )
-    public_voting_max_score = forms.IntegerField(
-        label=_("Maximum score"),
-        help_text=_("The maximum score voters can assign"),
-        initial=3,
-    )
-
-    def __init__(self, obj, *args, **kwargs):
-        super().__init__(*args, obj=obj, **kwargs)
-        minimum = obj.settings.public_voting_min_score
-        maximum = obj.settings.public_voting_max_score
-        minimum = int(minimum) if minimum is not None else 1
-        maximum = int(maximum) if maximum is not None else 3
+class PublicVotingSettingsForm(I18nModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        minimum = self.instance.min_score
+        maximum = self.instance.max_score
         for number in range(abs(maximum - minimum + 1)):
             index = minimum + number
-            self.fields[f"public_voting_score_name_{index}"] = forms.CharField(
+            self.fields[f"score_name_{index}"] = forms.CharField(
                 label=_("Score label ({})").format(index),
                 help_text=_(
                     'Human readable explanation of what a score of "{}" actually means, e.g. "great!".'
                 ).format(index),
                 required=False,
+                initial=self.instance.score_names.get(str(index)),
             )
 
     def clean(self):
         data = self.cleaned_data
-        minimum = int(data.get("public_voting_min_score"))
-        maximum = int(data.get("public_voting_max_score"))
+        minimum = int(data.get("min_score"))
+        maximum = int(data.get("max_score"))
         if minimum >= maximum:
             self.add_error(
-                "public_voting_min_score",
+                "min_score",
                 forms.ValidationError(
                     _("Please assign a minimum score smaller than the maximum score!")
                 ),
             )
         return data
+
+    def save(self, *args, **kwargs):
+        instance = super().save()
+        for number in range(abs(instance.max_score - instance.min_score + 1)):
+            index = instance.min_score + number
+            instance.score_names[index] = self.cleaned_data.get(f"score_name_{index}")
+        instance.save()
+        return instance
+
+    class Meta:
+        model = PublicVotingSettings
+        fields = (
+            "start",
+            "end",
+            "text",
+            "anonymize_speakers",
+            "show_session_image",
+            "min_score",
+            "max_score",
+        )
+        widgets = {
+            "start": forms.DateTimeInput(attrs={"class": "datetimepickerfield"}),
+            "end": forms.DateTimeInput(attrs={"class": "datetimepickerfield"}),
+        }
