@@ -6,6 +6,9 @@ This is a plugin for `pretalx`_, allowing attendees (or anybody interested) to v
 Changelog
 ---------
 
+v1.1.0, 2022-01-12
+~~~~~~~~~~~~~~~~~~
+
 - Fixes bug where score labels would sometimes not show up.
 - Public voting settings will be copied when a new event is created from an old one.
 
