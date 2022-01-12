@@ -79,7 +79,7 @@ class VoteForm(forms.Form):
         choices = []
         for counter in range(abs(self.max_value - self.min_value) + 1):
             value = self.min_value + counter
-            name = event.public_vote_settings.score_names.get(value) or value
+            name = event.public_vote_settings.score_names.get(str(value)) or value
             choices.append((str(value), name))
         self.fields["score"] = forms.ChoiceField(
             choices=choices,
