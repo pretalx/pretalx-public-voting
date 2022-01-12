@@ -2,7 +2,9 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from pretalx.common.signals import register_data_exporters
-from pretalx.orga.signals import nav_event_settings
+from pretalx.orga.signals import event_copy_data, nav_event_settings
+
+from .models import PublicVotingSettings
 
 
 @receiver(nav_event_settings)
@@ -27,3 +29,12 @@ def register_data_exporter(sender, **kwargs):
     from .exporters import PublicVotingCSVExporter
 
     return PublicVotingCSVExporter
+
+
+@receiver(event_copy_data)
+def copy_event_settings(sender, other, **kwargs):
+    old_settings = getattr(other, "public_vote_settings", None)
+    if old_settings:
+        old_settings.id = None
+        old_settings.event = sender
+        old_settings.save()
