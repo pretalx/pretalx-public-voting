@@ -27,6 +27,9 @@
                         {% endif %}
                         <div class="card-text">
                             {{ submission.abstract|rich_text|default:'-' }}
+                            {% if request.event.public_vote_settings.show_session_description and submission.description %}
+                                {{ submission.description|rich_text|default:'-' }}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card-header card-footer">

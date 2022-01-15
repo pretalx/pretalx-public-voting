@@ -151,6 +151,7 @@ class PublicVotingSettingsForm(I18nModelForm):
             "text",
             "anonymize_speakers",
             "show_session_image",
+            # "show_session_description",
             "allowed_emails",
             "min_score",
             "max_score",

@@ -41,15 +41,20 @@ class PublicVotingSettings(models.Model):
     )
     anonymize_speakers = models.BooleanField(
         verbose_name=_("Anonymise content"),
-        help_text=_(
-            "Hide speaker names and use anonymized content where available?"
-        ),
+        help_text=_("Hide speaker names and use anonymized content where available?"),
         default=False,
     )
     show_session_image = models.BooleanField(
         verbose_name=_("Show session image"),
         help_text=_("Show the session image if one was uploaded."),
         default=True,
+    )
+    show_session_description = models.BooleanField(
+        verbose_name=_("Show session description"),
+        help_text=_(
+            "By default, only the abstract of each session is listed. By enabling this, the longer description text will also be shown."
+        ),
+        default=False,
     )
     min_score = models.IntegerField(
         default=1,

@@ -6,6 +6,8 @@ This is a plugin for `pretalx`_, allowing attendees (or anybody interested) to v
 Changelog
 ---------
 
+- Added the option to show the full description of proposals, not just the abstract.
+
 v1.1.0, 2022-01-12
 ~~~~~~~~~~~~~~~~~~
 
