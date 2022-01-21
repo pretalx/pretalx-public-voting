@@ -15,6 +15,7 @@ from django_context_decorator import context
 from pretalx.common.mixins.views import PermissionRequired
 from pretalx.submission.models import Submission, SubmissionStates
 
+from .exporters import PublicVotingCSVExporter
 from .forms import PublicVotingSettingsForm, SignupForm, VoteForm
 from .models import PublicVote, PublicVotingSettings
 from .utils import event_unsign
@@ -161,3 +162,10 @@ class PublicVotingSettingsView(PermissionRequired, FormView):
             "locales": self.request.event.locales,
             **kwargs,
         }
+
+    def get_context_data(self, **kwargs):
+        result = super().get_context_data(**kwargs)
+        result["export_url"] = PublicVotingCSVExporter(
+            self.request.event
+        ).urls.base.full()
+        return result

@@ -6,6 +6,8 @@ This is a plugin for `pretalx`_, allowing attendees (or anybody interested) to v
 Changelog
 ---------
 
+- Add a direct link to the CSV export to the settings page.
+
 v1.2.0, 2022-01-21
 ~~~~~~~~~~~~~~~~~~
 

@@ -14,9 +14,14 @@
 
     <h2 class="d-flex">
         {% trans "Set up public voting" %}
-        <a class="btn btn-info ml-auto" href="{% if request.event.custom_domain %}{{ request.event.custom_domain }}{% endif %}{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">
-            {% translate "Go to public voting" %}
-        </a>
+        <div class="ml-auto">
+            <a class="btn btn-outline-info" href="{{ export_url }}">
+                {% translate "Download results CSV" %}
+            </a>
+            <a class="btn btn-info" href="{% if request.event.custom_domain %}{{ request.event.custom_domain }}{% endif %}{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">
+                {% translate "Go to public voting" %}
+            </a>
+        </div>
     </h2>
     <p>
         {% blocktrans trimmed %}
