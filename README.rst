@@ -7,6 +7,7 @@ Changelog
 ---------
 
 - Added the option to show the full description of proposals, not just the abstract.
+- Fixed a bug where withdrawn proposals would also show up.
 
 v1.1.0, 2022-01-12
 ~~~~~~~~~~~~~~~~~~

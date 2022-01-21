@@ -13,7 +13,7 @@ from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django_context_decorator import context
 from pretalx.common.mixins.views import PermissionRequired
-from pretalx.submission.models import Submission
+from pretalx.submission.models import Submission, SubmissionStates
 
 from .forms import PublicVotingSettingsForm, SignupForm, VoteForm
 from .models import PublicVote, PublicVotingSettings
@@ -75,7 +75,10 @@ class SubmissionListView(PublicVotingRequired, ListView):
         ).values("score")
 
         # Idea is from https://stackoverflow.com/questions/4916851/django-get-a-queryset-from-array-of-ids-in-specific-order/37648265#37648265
-        submission_pks = list(Submission.objects.all().values_list("pk", flat=True))
+        base_qs = self.request.event.submissions.all().filter(
+            state=SubmissionStates.SUBMITTED
+        )
+        submission_pks = list(base_qs.values_list("pk", flat=True))
         random.seed(self.hashed_email)
         random.shuffle(submission_pks)
         user_order = Case(
@@ -83,8 +86,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         )
 
         return (
-            Submission.objects.all()
-            .annotate(score=Subquery(votes))
+            base_qs.annotate(score=Subquery(votes))
             .prefetch_related("speakers")
             .order_by(user_order)
         )
