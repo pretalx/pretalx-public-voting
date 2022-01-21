@@ -11,7 +11,7 @@ class PluginApp(AppConfig):
         author = "Tobias Kunze"
         description = gettext_lazy("A public voting plugin for pretalx")
         visible = True
-        version = "1.1.0"
+        version = "1.2.0"
 
     def ready(self):
         from . import signals  # NOQA
