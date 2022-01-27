@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-11 16:24+0000\n"
+"POT-Creation-Date: 2022-01-24 06:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,50 +105,60 @@ msgstr ""
 msgid "Anonymise content"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:45
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:44
 msgid "Hide speaker names and use anonymized content where available?"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:50
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:48
 msgid "Show session image"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:51
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:49
 msgid "Show the session image if one was uploaded."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:56
-msgid "Minimum score"
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:53
+msgid "Show session description"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:57
-msgid "The minimum score voters can assign"
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:55
+msgid ""
+"By default, only the abstract of each session is listed. By enabling this, "
+"the longer description text will also be shown."
 msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:61
-msgid "Maximum score"
+msgid "Minimum score"
 msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:62
+msgid "The minimum score voters can assign"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:66
+msgid "Maximum score"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:67
 msgid "The maximum score voters can assign"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:68
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:73
 msgid "Allowed emails"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:70
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:75
 msgid ""
 "You can limit who is allowed to cast a vote. Please enter one email address "
 "per line."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:83
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:33
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:88
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:36
 msgid "Score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
+#: local/pretalx-public-voting/pretalx_public_voting/signals.py:16
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:12
 msgid "Public voting"
 msgstr ""
@@ -157,18 +167,22 @@ msgstr ""
 msgid "Set up public voting"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:18
-msgid "Go to public voting"
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:19
+msgid "Download results CSV"
 msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:22
+msgid "Go to public voting"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:27
 msgid ""
 "Public voting will show your submissions publicly, and will allow anybody "
 "who provides a valid email address to vote. The email addresses are not "
 "saved, so the process is anonymous."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:39
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:44
 msgid "Save"
 msgstr ""
 
@@ -193,17 +207,17 @@ msgstr ""
 msgid "This talk's header image"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:51
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:54
 msgid "Save!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:56
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
 msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:59
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:62
 msgid "Click here to sign up for voting."
 msgstr ""
 
@@ -218,6 +232,6 @@ msgid ""
 "please also check your spam folder."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:132
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:135
 msgid "Thank you for your vote!"
 msgstr ""
