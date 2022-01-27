@@ -119,7 +119,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         submissions = {
             submission.code: submission for submission in self.get_queryset()
         }
-        for key, value in self.request.POST.items():
+        for key in self.request.POST.keys():
             if "score" not in key:
                 continue
             prefix, __ = key.split("-", maxsplit=1)

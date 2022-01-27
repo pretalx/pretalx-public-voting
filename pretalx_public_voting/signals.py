@@ -4,8 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from pretalx.common.signals import register_data_exporters
 from pretalx.orga.signals import event_copy_data, nav_event_settings
 
-from .models import PublicVotingSettings
-
 
 @receiver(nav_event_settings)
 def public_voting_settings(sender, request, **kwargs):

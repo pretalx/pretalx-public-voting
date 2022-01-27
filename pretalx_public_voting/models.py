@@ -78,10 +78,10 @@ class PublicVotingSettings(models.Model):
 
     @cached_property
     def allowed_email_list(self):
-        l = (self.allowed_emails or "").strip().lower()
-        if not l:
+        allowed = (self.allowed_emails or "").strip().lower()
+        if not allowed:
             return []
-        return {mail.strip() for mail in l.split("\n")}
+        return {mail.strip() for mail in allowed.split("\n")}
 
 
 class PublicVote(models.Model):
