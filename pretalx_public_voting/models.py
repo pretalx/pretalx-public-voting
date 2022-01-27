@@ -81,7 +81,7 @@ class PublicVotingSettings(models.Model):
         l = (self.allowed_emails or "").strip().lower()
         if not l:
             return []
-        return set(mail.strip() for mail in l.split("\n"))
+        return {mail.strip() for mail in l.split("\n")}
 
 
 class PublicVote(models.Model):
