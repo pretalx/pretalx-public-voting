@@ -1,3 +1,6 @@
 recursive-include pretalx_public_voting/static *
 recursive-include pretalx_public_voting/templates *
+exclude pretalx_public_voting/locale/django.pot
 recursive-include pretalx_public_voting/locale *
+recursive-include pretalx_public_voting *.py
+include Makefile
