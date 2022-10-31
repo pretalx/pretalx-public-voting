@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     re_path(
-        fr"^orga/event/(?P<event>[{SLUG_CHARS}]+)/settings/p/public_voting/$",
+        rf"^orga/event/(?P<event>[{SLUG_CHARS}]+)/settings/p/public_voting/$",
         views.PublicVotingSettingsView.as_view(),
         name="settings",
     ),
