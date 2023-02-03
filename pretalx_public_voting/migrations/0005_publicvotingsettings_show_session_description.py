@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("pretalx_public_voting", "0004_publicvotingsettings_allowed_emails"),
     ]

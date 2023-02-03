@@ -5,7 +5,6 @@ from .models import PublicVote
 
 
 class PublicVotingCSVExporter(CSVExporterMixin, BaseExporter):
-
     public = False
     icon = "fa-list"
     identifier = "public_votes.csv"

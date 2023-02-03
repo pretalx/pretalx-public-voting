@@ -67,7 +67,6 @@ def remove_data(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("pretalx_public_voting", "0002_publicvotingsettings"),
     ]

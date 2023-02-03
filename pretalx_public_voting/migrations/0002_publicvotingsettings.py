@@ -7,7 +7,6 @@ import pretalx_public_voting.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("event", "0029_event_domain"),
         ("pretalx_public_voting", "0001_initial"),
