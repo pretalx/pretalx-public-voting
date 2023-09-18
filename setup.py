@@ -24,7 +24,7 @@ cmdclass = {"build": CustomBuild}
 
 setup(
     name="pretalx-public-voting",
-    version="1.2.2",
+    version="1.3.0",
     description="A public voting plugin for pretalx",
     long_description=long_description,
     url="https://github.com/pretalx/pretalx-public-voting",
