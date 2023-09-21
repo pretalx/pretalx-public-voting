@@ -109,7 +109,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install Dependencies
-        run: pip3 install twine check-manifest -Ue .
+        run: pip3 install twine check-manifest pretalx -e .
       - name: Run check-manifest
         run: check-manifest .
         working-directory: .
