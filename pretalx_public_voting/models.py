@@ -75,6 +75,9 @@ class PublicVotingSettings(models.Model):
             "You can limit who is allowed to cast a vote. Please enter one email address per line."
         ),
     )
+    limit_tracks = models.ManyToManyField(
+        to="submission.Track", verbose_name=_("Limit to tracks"), blank=True
+    )
 
     @cached_property
     def allowed_email_list(self):
