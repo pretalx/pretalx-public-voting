@@ -117,6 +117,9 @@ class PublicVotingSettingsForm(I18nModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["limit_tracks"].queryset = self.instance.event.tracks.all()
+        self.fields[
+            "limit_submission_types"
+        ].queryset = self.instance.event.submission_types.all()
         minimum = self.instance.min_score
         maximum = self.instance.max_score
         for number in range(abs(maximum - minimum + 1)):
@@ -161,6 +164,7 @@ class PublicVotingSettingsForm(I18nModelForm):
             "show_session_image",
             "show_session_description",
             "limit_tracks",
+            "limit_submission_types",
             "allowed_emails",
             "min_score",
             "max_score",
@@ -169,7 +173,9 @@ class PublicVotingSettingsForm(I18nModelForm):
             "start": HtmlDateTimeInput,
             "end": HtmlDateTimeInput,
             "limit_tracks": EnhancedSelectMultiple(color_field="color"),
+            "limit_submission_types": EnhancedSelectMultiple(color_field="color"),
         }
         field_classes = {
             "limit_tracks": SafeModelMultipleChoiceField,
+            "limit_submission_types": SafeModelMultipleChoiceField,
         }
