@@ -17,7 +17,7 @@
                 <div class="card submission-card">
                     {% if submission.image and request.event.public_vote_settings.show_session_image %}
                         <div class="card-img-top-wrapper">
-                            <img src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
+                            <img loading="lazy" src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
                         </div>
                     {% endif %}
                     <div class="card-body">
