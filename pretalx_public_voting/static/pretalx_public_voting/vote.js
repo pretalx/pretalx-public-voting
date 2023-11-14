@@ -1,42 +1,25 @@
-'use strict'
+document.addEventListener('DOMContentLoaded', () => {
+  const saveIndicator = document.querySelector("#js-save")
+  const saving = saveIndicator.querySelector(".badge-primary")
+  const saved = saveIndicator.querySelector(".badge-success")
+  const savingSpinner = document.querySelector(".fa-spin")
+  const form = document.querySelector("form")
 
-let voteDirty = false;
-
-$(() => {
-  const csrftoken = getCookie("pretalx_csrftoken")
-  const saveIndicator = $("#js-save")
-  const saving = saveIndicator.children(".badge-primary")
-  const saved = saveIndicator.children(".badge-success")
-
-  $('label').on('click', (event) => {
-    $(".fa-spin").removeClass("d-none")
-    saved.addClass("invisible")
-    saving.removeClass("invisible")
-    window.setTimeout(() => {
-      const form = $("form")
-      $.post(form.attr('action'), form.serialize(), function(res){
-          $(".fa-spin").addClass("d-none")
-          saved.removeClass("invisible")
-          saving.addClass("invisible")
-      })
-    }, 5)
-    return true
+  document.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.addEventListener('change', (event) => {
+      savingSpinner.classList.remove("d-none")
+      saved.classList.add("d-none")
+      saving.classList.remove("d-none")
+      window.setTimeout(() => {
+          fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+          }).then((res) => {
+            savingSpinner.classList.add("d-none")
+            saved.classList.remove("d-none")
+            saving.classList.add("d-none")
+          })
+      }, 5)
+    })
   })
-
 })
-
-const getCookie = (name) => {
-  let cookieValue = null
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';')
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim()
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
-        break
-      }
-    }
-  }
-  return cookieValue;
-}
