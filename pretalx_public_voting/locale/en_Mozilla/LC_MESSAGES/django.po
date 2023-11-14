@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-19 15:38+0000\n"
+"POT-Creation-Date: 2023-11-03 08:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/apps.py:10
+#: local/pretalx-public-voting/pretalx_public_voting/apps.py:12
 msgid "pretalx public voting plugin"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/apps.py:12
+#: local/pretalx-public-voting/pretalx_public_voting/apps.py:14
 msgid "A public voting plugin for pretalx"
 msgstr ""
 
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Public Voting CSV"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:24
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:25
 msgid "This address is not allowed to cast a vote."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:41
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:42
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -50,26 +50,26 @@ msgid ""
 "The {event.name} organisers\n"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:58
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:59
 msgid "Public voting registration"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:96
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:97
 #, python-brace-format
 msgid "Please assign a score between {self.min_value} and {self.max_value}!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:117
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:119
 msgid "Score label ({})"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:119
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:121
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:133
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:135
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
 
@@ -153,7 +153,11 @@ msgid ""
 "per line."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:88
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:79
+msgid "Limit to tracks"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:91
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:36
 msgid "Score"
 msgstr ""
@@ -232,6 +236,6 @@ msgid ""
 "please also check your spam folder."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:135
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:138
 msgid "Thank you for your vote!"
 msgstr ""

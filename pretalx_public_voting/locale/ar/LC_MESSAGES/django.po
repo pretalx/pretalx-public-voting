@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 19:21+0000\n"
+"POT-Creation-Date: 2023-11-03 08:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/apps.py:10
+#: local/pretalx-public-voting/pretalx_public_voting/apps.py:12
 msgid "pretalx public voting plugin"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/apps.py:12
+#: local/pretalx-public-voting/pretalx_public_voting/apps.py:14
 msgid "A public voting plugin for pretalx"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/exporters.py:16
+#: local/pretalx-public-voting/pretalx_public_voting/exporters.py:15
 msgid "Public Voting CSV"
 msgstr ""
 
@@ -61,106 +61,110 @@ msgstr ""
 msgid "Please assign a score between {self.min_value} and {self.max_value}!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:118
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:119
 msgid "Score label ({})"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:120
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:121
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:134
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:135
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:23
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:22
 msgid ""
 "No public votes will be possible before this time. Submissions will not be "
 "publicly visible."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:25
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:24
 msgid "Start"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:31
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:30
 msgid ""
 "No public votes will be possible after this time. Submissions will not be "
 "publicly visible."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:33
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:32
 msgid "End"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:38
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:37
 msgid "Text"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:39
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:38
 msgid "This text will be shown at the top of the public voting page."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:44
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:43
 msgid "Anonymise content"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:45
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:44
 msgid "Hide speaker names and use anonymized content where available?"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:49
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:48
 msgid "Show session image"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:50
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:49
 msgid "Show the session image if one was uploaded."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:54
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:53
 msgid "Show session description"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:56
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:55
 msgid ""
 "By default, only the abstract of each session is listed. By enabling this, "
 "the longer description text will also be shown."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:62
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:61
 msgid "Minimum score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:63
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:62
 msgid "The minimum score voters can assign"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:67
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:66
 msgid "Maximum score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:68
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:67
 msgid "The maximum score voters can assign"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:74
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:73
 msgid "Allowed emails"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:76
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:75
 msgid ""
 "You can limit who is allowed to cast a vote. Please enter one email address "
 "per line."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:89
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:79
+msgid "Limit to tracks"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:91
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:36
 msgid "Score"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/signals.py:15
+#: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:12
 msgid "Public voting"
 msgstr ""
@@ -234,6 +238,6 @@ msgid ""
 "please also check your spam folder."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:136
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:138
 msgid "Thank you for your vote!"
 msgstr ""
