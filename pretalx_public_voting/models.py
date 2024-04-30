@@ -3,7 +3,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_scopes import ScopedManager
 from i18nfield.fields import I18nTextField
-from pretalx.common.phrases import phrases
+from pretalx.common.text.phrases import phrases
 
 
 def get_dict():
