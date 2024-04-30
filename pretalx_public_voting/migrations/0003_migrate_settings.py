@@ -2,7 +2,7 @@
 
 import json
 
-import dateutil
+import dateutil.parser
 from django.db import migrations
 from i18nfield.strings import LazyI18nString
 
