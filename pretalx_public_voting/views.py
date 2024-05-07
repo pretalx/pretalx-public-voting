@@ -12,7 +12,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django_context_decorator import context
-from pretalx.common.mixins.views import PermissionRequired
+from pretalx.common.views.mixins import PermissionRequired
 from pretalx.submission.models import Submission, SubmissionStates
 
 from .exporters import PublicVotingCSVExporter
