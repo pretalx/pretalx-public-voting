@@ -82,6 +82,11 @@ class SubmissionListView(PublicVotingRequired, ListView):
         tracks = self.request.event.public_vote_settings.limit_tracks.all()
         if tracks:
             base_qs = base_qs.filter(track__in=tracks)
+        submission_types = (
+            self.request.event.public_vote_settings.limit_submission_types.all()
+        )
+        if submission_types:
+            base_qs = base_qs.filter(submission_type__in=submission_types)
         submission_pks = list(base_qs.values_list("pk", flat=True))
         random.seed(self.hashed_email)
         random.shuffle(submission_pks)
