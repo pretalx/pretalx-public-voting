@@ -78,6 +78,12 @@ class PublicVotingSettings(models.Model):
     limit_tracks = models.ManyToManyField(
         to="submission.Track", verbose_name=_("Limit to tracks"), blank=True
     )
+    limit_submission_types = models.ManyToManyField(
+        to="submission.SubmissionType",
+        verbose_name=_("Limit to session types"),
+        blank=True,
+        help_text=_("If no session type is selected, then all submission are shown."),
+    )
 
     @cached_property
     def allowed_email_list(self):
