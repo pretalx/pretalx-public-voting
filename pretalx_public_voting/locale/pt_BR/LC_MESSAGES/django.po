@@ -86,7 +86,7 @@ msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/forms.py:135
 msgid "Please assign a minimum score smaller than the maximum score!"
-msgstr "Por favor, atribua uma pontuação mínima menor do que a pontuação máxima!
+msgstr "Por favor, atribua uma pontuação mínima menor do que a pontuação máxima!"
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:22
 msgid ""
