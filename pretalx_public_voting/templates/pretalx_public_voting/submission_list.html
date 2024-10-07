@@ -1,18 +1,30 @@
 {% extends "cfp/event/base.html" %}
+
 {% load bootstrap4 %}
+{% load compress %}
 {% load i18n %}
 {% load rich_text %}
 {% load static %}
 
-{% block content %}
-    <script src="{% static "vendored/jquery-3.1.1.js" %}"></script>
-    <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
-    <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
+{% block scripts %}
+    {% compress js %}
+        <script src="{% static "js/jquery.js" %}"></script>
+        <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
+    {% endcompress %}
+{% endblock %}
 
+{% block stylesheets %}
+    {% compress css %}
+        <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
     <h1>{% trans "Public voting" %}</h1>
     {{ request.event.public_vote_settings.text|rich_text }}
     {% if hashed_email %}
-        <form method="POST" >{% csrf_token %}
+        <form method="POST">
+            {% csrf_token %}
             {% for submission in submissions %}
                 <div class="card submission-card">
                     {% if submission.image and request.event.public_vote_settings.show_session_image %}
@@ -56,9 +68,10 @@
             </div>
         </form>
     {% else %}
-        <p>{% blocktrans trimmed %}
-            This page is invalid. Please double-check that you have followed a complete link to this place.
-        {% endblocktrans %}
+        <p>
+            {% blocktrans trimmed %}
+                This page is invalid. Please double-check that you have followed a complete link to this place.
+            {% endblocktrans %}
             <a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
         </p>
     {% endif %}
