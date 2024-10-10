@@ -1,5 +1,4 @@
 {% extends "orga/base.html" %}
-{% load bootstrap4 %}
 {% load compress %}
 {% load i18n %}
 {% load static %}
@@ -23,21 +22,6 @@
             so the process is anonymous.
         {% endblocktrans %}
     </p><p> </p>
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form layout='event' %}
-        <div class="submit-group panel">
-            <span></span>
-            <span class="d-flex flex-row-reverse">
-                <button
-                    type="submit" class="btn btn-success btn-lg"
-                    name="action" value="save"
-                >
-                    <i class="fa fa-check"></i>
-                    {% trans "Save" %}
-                </button>
-            </span>
-        </div>
-    </form>
+    {% include "pretalx/includes/base_form.html" %}
 
 {% endblock %}

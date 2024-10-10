@@ -1,6 +1,5 @@
 {% extends "cfp/event/base.html" %}
 
-{% load bootstrap4 %}
 {% load compress %}
 {% load i18n %}
 {% load rich_text %}
@@ -47,7 +46,7 @@
                     <div class="card-header card-footer">
                         <strong>{% trans "Score" %}:</strong>
                         <div class="form ml-auto">
-                            {% bootstrap_field submission.vote_form.score layout="inline" %}
+                            {{ submission.vote_form.score.as_field_group }}
                         </div>
                     </div>
                 </div>

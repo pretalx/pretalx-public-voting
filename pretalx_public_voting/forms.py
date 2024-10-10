@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from django_scopes.forms import SafeModelMultipleChoiceField
 from i18nfield.forms import I18nModelForm
+from pretalx.common.forms.renderers import FormInlineLabelRenderer, FormInlineRenderer
 from pretalx.common.forms.widgets import EnhancedSelectMultiple
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
@@ -11,6 +12,8 @@ from .utils import event_sign, hash_email
 
 
 class SignupForm(forms.Form):
+    default_renderer = FormInlineLabelRenderer
+
     email = forms.EmailField(required=True)
 
     def __init__(self, *args, event=None, **kwargs):
@@ -63,6 +66,8 @@ The {event.name} organisers
 
 
 class VoteForm(forms.Form):
+    default_renderer = FormInlineRenderer
+
     def __init__(
         self,
         *args,
