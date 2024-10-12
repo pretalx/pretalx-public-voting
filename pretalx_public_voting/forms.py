@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django_scopes.forms import SafeModelMultipleChoiceField
 from i18nfield.forms import I18nModelForm
 from pretalx.common.forms.renderers import InlineFormLabelRenderer, InlineFormRenderer
-from pretalx.common.forms.widgets import EnhancedSelectMultiple
+from pretalx.common.forms.widgets import EnhancedSelectMultiple, HtmlDateTimeInput
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
 
@@ -166,8 +166,8 @@ class PublicVotingSettingsForm(I18nModelForm):
             "max_score",
         )
         widgets = {
-            "start": forms.DateTimeInput(attrs={"type": "datetime-local"}),
-            "end": forms.DateTimeInput(attrs={"type": "datetime-local"}),
+            "start": HtmlDateTimeInput,
+            "end": HtmlDateTimeInput,
             "limit_tracks": EnhancedSelectMultiple(color_field="color"),
         }
         field_classes = {
