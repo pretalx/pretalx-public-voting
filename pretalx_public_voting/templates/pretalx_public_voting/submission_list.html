@@ -14,6 +14,7 @@
 
 {% block stylesheets %}
     {% compress css %}
+        <link rel="stylesheet" type="text/css" href="{% static "common/css/_forms.css" %}" />
         <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
     {% endcompress %}
 {% endblock %}
