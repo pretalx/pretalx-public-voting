@@ -17,6 +17,7 @@
         {% endblocktrans %}
     </p>
     <form method="post">
+        {% csrf_token %}
         {{ form }}
         <p class="d-flex">
             <button type="submit" class="btn btn-success ml-auto">Sign up</button>
