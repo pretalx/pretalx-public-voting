@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-12 12:05+0000\n"
+"POT-Creation-Date: 2024-12-10 16:16+0000\n"
 "PO-Revision-Date: 2023-03-23 08:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,15 +27,15 @@ msgstr "pretalx public voting plugin"
 msgid "A public voting plugin for pretalx"
 msgstr "Plugin pretalxu pro veřejné hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/exporters.py:16
+#: local/pretalx-public-voting/pretalx_public_voting/exporters.py:15
 msgid "Public Voting CSV"
 msgstr "Veřejné hlasování - CSV"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:30
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:29
 msgid "This address is not allowed to cast a vote."
 msgstr "Tato adresa nemá dovoleno hlasovat."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:47
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:46
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -64,30 +64,30 @@ msgstr ""
 "\n"
 "Organizátoři {event.name}\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:64
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:63
 msgid "Public voting registration"
 msgstr "Registrace k veřejnému hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:104
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:103
 #, python-brace-format
 msgid "Please assign a score between {self.min_value} and {self.max_value}!"
 msgstr "Přiřaďte prosím skóre mezi {self.min_value} a {self.max_value}!"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:126
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:125
 msgid "Score label ({})"
 msgstr "Popisek skóre ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:128
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:127
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr "Slovní vysvětlení, co skóre „{}“ znamená, např. „skvělé“."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:142
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr "Zadejte prosím minimální skóre nižší než maximální skóre!"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:23
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:22
 msgid ""
 "No public votes will be possible before this time. Submissions will not be "
 "publicly visible."
@@ -95,11 +95,11 @@ msgstr ""
 "Před tímto termínem nebude možné veřejně hlasovat. Přihlášky nebudou veřejně "
 "dostupné."
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:25
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:24
 msgid "Start"
 msgstr "Začátek"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:31
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:30
 msgid ""
 "No public votes will be possible after this time. Submissions will not be "
 "publicly visible."
@@ -107,40 +107,40 @@ msgstr ""
 "Po tomto termínu nebude možné veřejně hlasovat. Přihlášky nebudou veřejně "
 "dostupné."
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:33
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:32
 msgid "End"
 msgstr "Konec"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:38
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:37
 msgid "Text"
 msgstr "Text"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:39
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:38
 msgid "This text will be shown at the top of the public voting page."
 msgstr "Tento text se zobrazí v horní části stránky s veřejným hlasováním."
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:44
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:43
 msgid "Anonymise content"
 msgstr "Anonymizovat obsah"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:45
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:44
 msgid "Hide speaker names and use anonymized content where available?"
 msgstr ""
 "Skrýt jména přednášejících a použít anonymizovaný obsah, kde je to možné?"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:49
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:48
 msgid "Show session image"
 msgstr "Zobrazovat obrázek přednášky"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:50
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:49
 msgid "Show the session image if one was uploaded."
 msgstr "Zobrazovat obrázek přednášky, který její autor nahrál."
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:54
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:53
 msgid "Show session description"
 msgstr "Zobrazovat popis přednášky"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:56
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:55
 msgid ""
 "By default, only the abstract of each session is listed. By enabling this, "
 "the longer description text will also be shown."
@@ -148,27 +148,27 @@ msgstr ""
 "Ve výchozím nastavení se zobrazuje abstrakt přednášky. Vybráním této volby "
 "se zobrazí také delší popis."
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:62
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:61
 msgid "Minimum score"
 msgstr "Minimální skóre"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:63
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:62
 msgid "The minimum score voters can assign"
 msgstr "Minimální skóre, kterou mohou hlasující udělit"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:67
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:66
 msgid "Maximum score"
 msgstr "Maximální skóre"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:68
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:67
 msgid "The maximum score voters can assign"
 msgstr "Maximální skóre, kterou mohou hlasující udělit"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:74
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:73
 msgid "Allowed emails"
 msgstr "Povolené e-maily"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:76
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:75
 msgid ""
 "You can limit who is allowed to cast a vote. Please enter one email address "
 "per line."
@@ -176,16 +176,16 @@ msgstr ""
 "Tady můžete omezit, kdo může veřejně hlasovat. Zadejte prosím jednu e-"
 "mailovou adresu na řádek."
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:80
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:79
 msgid "Limit to tracks"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:92
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:91
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:48
 msgid "Score"
 msgstr "Skóre"
 
-#: local/pretalx-public-voting/pretalx_public_voting/signals.py:15
+#: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:23
 msgid "Public voting"
 msgstr "Veřejné hlasování"
@@ -268,7 +268,7 @@ msgstr ""
 "osobním odkazem pro hlasování. Pokud do přibližně pěti minut žádný e-mail "
 "neuvidíte, zkontrolujte také složku se spamem a nevyžádanou poštou."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:139
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:138
 msgid "Thank you for your vote!"
 msgstr "Děkujeme za váš hlas!"
 
