@@ -48,7 +48,7 @@ class SignupForm(forms.Form):
 you have registered to vote for submissions for {event.name}.
 Please confirm that this email address is valid by following this link:
 
-    {vote_url}
+{vote_url}
 
 If you did not register for voting, you can ignore this email.
 
