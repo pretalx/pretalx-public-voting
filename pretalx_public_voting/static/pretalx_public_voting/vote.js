@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const saveIndicator = document.querySelector("#js-save")
-  const saving = saveIndicator.querySelector(".badge-primary")
-  const saved = saveIndicator.querySelector(".badge-success")
+  const saving = saveIndicator.querySelector(".pretalx-vote-badge-primary")
+  const saved = saveIndicator.querySelector(".pretalx-vote-badge-success")
   const savingSpinner = document.querySelector(".fa-spin")
   const form = document.querySelector("form")
 
