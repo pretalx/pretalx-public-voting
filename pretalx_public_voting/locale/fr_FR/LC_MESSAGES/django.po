@@ -80,7 +80,7 @@ msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
-"Explication intelligible pour l'homme du score de \"{}\", par exemple " .
+"Explication intelligible pour l'homme du score de \"{}\", par exemple "
 "\"super !\"."
 
 #: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
