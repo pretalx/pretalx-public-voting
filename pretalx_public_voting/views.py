@@ -23,8 +23,13 @@ from .utils import event_unsign
 
 class PublicVotingRequired:
     def dispatch(self, request, *args, **kwargs):
-        start = request.event.public_vote_settings.start
-        end = request.event.public_vote_settings.end
+        try:
+            start = request.event.public_vote_settings.start
+            end = request.event.public_vote_settings.end
+        except Exception:
+            # No settings object exists
+            raise Http404()
+
         _now = now()
         start_valid = (not start) or _now > start
         end_valid = (not end) or _now < end
