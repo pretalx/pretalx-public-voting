@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-10 16:16+0000\n"
+"POT-Creation-Date: 2025-02-14 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,12 +51,15 @@ msgid ""
 msgstr ""
 "Bonjour,\n"
 "\n"
-"vous vous êtes inscrit(e) pour voter pour les soumissions de l'événement {event.name}.\n"
-"Veuillez confirmer que cette adresse électronique est valide en suivant ce lien :\n"
+"vous vous êtes inscrit(e) pour voter pour les soumissions de l'événement "
+"{event.name}.\n"
+"Veuillez confirmer que cette adresse électronique est valide en suivant ce "
+"lien :\n"
 "\n"
 "{vote_url}\n"
 "\n"
-"Si vous ne vous êtes pas inscrit(e) pour ce vote, vous pouvez ignorer ce courriel.\n"
+"Si vous ne vous êtes pas inscrit(e) pour ce vote, vous pouvez ignorer ce "
+"courriel.\n"
 "\n"
 "Merci de votre participation au vote !\n"
 "\n"
@@ -66,16 +69,11 @@ msgstr ""
 msgid "Public voting registration"
 msgstr "Inscription au vote du public"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:103
-#, python-brace-format
-msgid "Please assign a score between {self.min_value} and {self.max_value}!"
-msgstr "Veuillez attribuer une note entre {self.min_value} et {self.max_value} !"
-
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:125
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:128
 msgid "Score label ({})"
 msgstr "Libellé du score ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:127
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:130
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
@@ -83,7 +81,7 @@ msgstr ""
 "Explication intelligible pour l'homme du score de \"{}\", par exemple "
 "\"super !\"."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:144
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr "Veuillez indiquer un score minimal inférieur au scrore maximal !"
 
@@ -92,8 +90,8 @@ msgid ""
 "No public votes will be possible before this time. Submissions will not be "
 "publicly visible."
 msgstr ""
-"Aucun vote public ne sera possible avant cette date. Les soumissions ne seront pas "
-"visibles publiquement."
+"Aucun vote public ne sera possible avant cette date. Les soumissions ne "
+"seront pas visibles publiquement."
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:24
 msgid "Start"
@@ -104,8 +102,8 @@ msgid ""
 "No public votes will be possible after this time. Submissions will not be "
 "publicly visible."
 msgstr ""
-"Aucun vote public ne sera possible après cette date. Les soumissions ne seront pas "
-"visibles publiquement."
+"Aucun vote public ne sera possible après cette date. Les soumissions ne "
+"seront pas visibles publiquement."
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:32
 msgid "End"
@@ -146,8 +144,8 @@ msgid ""
 "By default, only the abstract of each session is listed. By enabling this, "
 "the longer description text will also be shown."
 msgstr ""
-"Par défaut, seul le résumé de chaque session est listé. En activant cette option, "
-"le texte de description, plus long, sera également affiché."
+"Par défaut, seul le résumé de chaque session est listé. En activant cette "
+"option, le texte de description, plus long, sera également affiché."
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:61
 msgid "Minimum score"
@@ -174,14 +172,22 @@ msgid ""
 "You can limit who is allowed to cast a vote. Please enter one email address "
 "per line."
 msgstr ""
-"Vous pouvez limiter le nombre de personnes autorisées à voter. "
-"Veuillez saisir une adresse électronique par ligne."
+"Vous pouvez limiter le nombre de personnes autorisées à voter. Veuillez "
+"saisir une adresse électronique par ligne."
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:79
 msgid "Limit to tracks"
 msgstr "Limiter aux parcours"
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:91
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:83
+msgid "Limit to session types"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:85
+msgid "If no session type is selected, then all submissions are shown."
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:97
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:48
 msgid "Score"
 msgstr "Score"
@@ -209,9 +215,10 @@ msgid ""
 "who provides a valid email address to vote. The email addresses are not "
 "saved, so the process is anonymous."
 msgstr ""
-"Le vote du public affichera vos soumissions publiquement et permettra à toute personne "
-"qui fournit une adresse électronique valide de voter. Les adresses électroniques ne sont pas "
-"sauvegardées, de sorte que le processus est anonyme."
+"Le vote du public affichera vos soumissions publiquement et permettra à "
+"toute personne qui fournit une adresse électronique valide de voter. Les "
+"adresses électroniques ne sont pas sauvegardées, de sorte que le processus "
+"est anonyme."
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:6
 msgid "Public voting signup"
@@ -223,17 +230,17 @@ msgid ""
 "and we just need to confirm your email address first. You will only need to "
 "do this once."
 msgstr ""
-"Bienvenue dans le processus de vote pour cet événement ! Le vote est ouvert au public, "
-"et nous devons d'abord confirmer votre adresse électronique. Vous n'aurez besoin de "
-"de le faire qu'une seule fois."
+"Bienvenue dans le processus de vote pour cet événement ! Le vote est ouvert "
+"au public, et nous devons d'abord confirmer votre adresse électronique. Vous "
+"n'aurez besoin de de le faire qu'une seule fois."
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:15
 msgid ""
 "Please note that we do <strong>not</strong> store your email address, and "
 "all votes will be completely anonymous."
 msgstr ""
-"Veuillez noter que nous <strong>ne stockons pas</strong> votre adresse électronique, et "
-"que tous les votes seront complètement anonymes."
+"Veuillez noter que nous <strong>ne stockons pas</strong> votre adresse "
+"électronique, et que tous les votes seront complètement anonymes."
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:32
 msgid "This talk's header image"
@@ -247,7 +254,9 @@ msgstr "Sauvegarder !"
 msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
-msgstr "Cette page est invalide. Veuillez vérifier que vous avez suivi un lien complet vers cet emplacement."
+msgstr ""
+"Cette page est invalide. Veuillez vérifier que vous avez suivi un lien "
+"complet vers cet emplacement."
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:75
 msgid "Click here to sign up for voting."
@@ -263,10 +272,16 @@ msgid ""
 "personal link to the vote. If you don't see an email within five minutes, "
 "please also check your spam folder."
 msgstr ""
-"Merci de vous être inscrit au vote du public. Vous avez reçu un courriel contenant votre "
-"lien personnel vers le vote. Si vous ne voyez pas de courriel dans les cinq minutes, "
-"veuillez également vérifier votre dossier de courrier indésirable."
+"Merci de vous être inscrit au vote du public. Vous avez reçu un courriel "
+"contenant votre lien personnel vers le vote. Si vous ne voyez pas de "
+"courriel dans les cinq minutes, veuillez également vérifier votre dossier de "
+"courrier indésirable."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:138
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:143
 msgid "Thank you for your vote!"
 msgstr "Merci pour votre vote !"
+
+#, python-brace-format
+#~ msgid "Please assign a score between {self.min_value} and {self.max_value}!"
+#~ msgstr ""
+#~ "Veuillez attribuer une note entre {self.min_value} et {self.max_value} !"

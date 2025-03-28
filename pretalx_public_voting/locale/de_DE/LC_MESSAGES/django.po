@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-25 16:35+0000\n"
+"POT-Creation-Date: 2025-02-14 13:01+0000\n"
 "PO-Revision-Date: 2022-01-11 17:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -68,24 +68,18 @@ msgstr ""
 msgid "Public voting registration"
 msgstr "Registrierung zur öffentlichen Abstimmung"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:103
-#, python-brace-format
-msgid "Please assign a score between {self.min_value} and {self.max_value}!"
-msgstr ""
-"Bitte wähle eine Wertung zwischen {self.min_value} und {self.max_value}!"
-
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:125
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:128
 msgid "Score label ({})"
 msgstr "Bezeichnung ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:127
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:130
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
 "Menschenlesbare Erklärung, was die Wertung \"{}\" bedeutet, z.B. \"super\"."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:144
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
 "Bitte wähle eine Mindestwertung, die niedriger als die Höchstwertung ist!"
@@ -185,7 +179,15 @@ msgstr ""
 msgid "Limit to tracks"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:91
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:83
+msgid "Limit to session types"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:85
+msgid "If no session type is selected, then all submissions are shown."
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:97
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:48
 msgid "Score"
 msgstr "Wertung"
@@ -274,9 +276,14 @@ msgstr ""
 "Falls du innerhalb von fünf Minuten keine E-Mail erhalten hast, guck bitte "
 "im Spam nach!"
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:138
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:143
 msgid "Thank you for your vote!"
 msgstr "Vielen Dank für deine Stimmabgabe!"
+
+#, python-brace-format
+#~ msgid "Please assign a score between {self.min_value} and {self.max_value}!"
+#~ msgstr ""
+#~ "Bitte wähle eine Wertung zwischen {self.min_value} und {self.max_value}!"
 
 #~ msgid "Save"
 #~ msgstr "Speichern"

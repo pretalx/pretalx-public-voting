@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-10 16:16+0000\n"
+"POT-Creation-Date: 2025-02-14 13:01+0000\n"
 "PO-Revision-Date: 2023-03-23 08:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -68,22 +68,17 @@ msgstr ""
 msgid "Public voting registration"
 msgstr "Registrace k veřejnému hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:103
-#, python-brace-format
-msgid "Please assign a score between {self.min_value} and {self.max_value}!"
-msgstr "Přiřaďte prosím skóre mezi {self.min_value} a {self.max_value}!"
-
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:125
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:128
 msgid "Score label ({})"
 msgstr "Popisek skóre ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:127
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:130
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr "Slovní vysvětlení, co skóre „{}“ znamená, např. „skvělé“."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:144
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr "Zadejte prosím minimální skóre nižší než maximální skóre!"
 
@@ -180,7 +175,15 @@ msgstr ""
 msgid "Limit to tracks"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:91
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:83
+msgid "Limit to session types"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:85
+msgid "If no session type is selected, then all submissions are shown."
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:97
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:48
 msgid "Score"
 msgstr "Skóre"
@@ -268,9 +271,13 @@ msgstr ""
 "osobním odkazem pro hlasování. Pokud do přibližně pěti minut žádný e-mail "
 "neuvidíte, zkontrolujte také složku se spamem a nevyžádanou poštou."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:138
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:143
 msgid "Thank you for your vote!"
 msgstr "Děkujeme za váš hlas!"
+
+#, python-brace-format
+#~ msgid "Please assign a score between {self.min_value} and {self.max_value}!"
+#~ msgstr "Přiřaďte prosím skóre mezi {self.min_value} a {self.max_value}!"
 
 #~ msgid "Save"
 #~ msgstr "Uložit"
