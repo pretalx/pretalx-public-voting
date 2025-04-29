@@ -50,6 +50,12 @@ Initial release
 Development setup
 -----------------
 
+.. note::
+   This project contains a .devcontainer specification.
+   Use development containers to start an a read-to-use containerized development
+   environment within minutes. If you have not done already, go to https://containers.dev/supporting to learn more about
+   the local requirements and preparations to get started with your supported editor or IDEA!
+
 1. Make sure that you have a working `pretalx development setup`_.
 
 2. Clone this repository, eg to ``local/pretalx-public-voting``.
