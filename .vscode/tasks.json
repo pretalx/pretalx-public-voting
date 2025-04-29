@@ -1,0 +1,37 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Pretalx: Initialize pretalx",
+      "icon": {
+        "color": "terminal.ansiGreen"
+      },
+      "type": "shell",
+      "command": "python3 -m pretalx init"
+    },
+    {
+      "label": "Pretalx: Create test Event",
+      "icon": {
+        "id": "book"
+      },
+      "type": "shell",
+      "command": "python3 -m pretalx create_test_event"
+    },
+    {
+      "label": "Pretalx: Start Development Server",
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiGreen"
+      },
+      "type": "shell",
+      "command": "python3 -m pretalx runserver",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
