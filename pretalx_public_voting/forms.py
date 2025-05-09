@@ -16,8 +16,9 @@ class SignupForm(forms.Form):
 
     email = forms.EmailField(required=True)
 
-    def __init__(self, *args, event=None, **kwargs):
+    def __init__(self, *args, event=None, sid=None, **kwargs):
         self.event = event
+        self.sid = sid
         super().__init__(*args, **kwargs)
 
     def clean_email(self):
@@ -41,6 +42,10 @@ class SignupForm(forms.Form):
             "plugins:pretalx_public_voting:talks",
             kwargs={"event": event.slug, "signed_user": email_signed},
         )
+        
+        # Preserve 'sid' parameter if it exists
+        if self.sid:
+            vote_url += f"?sid={self.sid}"
 
         mail_text = _(
             """Hi,

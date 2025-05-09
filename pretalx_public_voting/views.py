@@ -48,6 +48,7 @@ class SignupView(PublicVotingRequired, FormView):
     def get_form_kwargs(self):
         result = super().get_form_kwargs()
         result["event"] = self.request.event
+        result["sid"] = self.request.GET.get("sid")
         return result
 
     def form_valid(self, form):
@@ -84,6 +85,12 @@ class SubmissionListView(PublicVotingRequired, ListView):
         base_qs = self.request.event.submissions.all().filter(
             state=SubmissionStates.SUBMITTED
         )
+
+        # Filter by 'sid' query parameter if provided
+        sid = self.request.GET.get("sid")
+        if sid:
+            base_qs = base_qs.filter(pk=sid)
+
         tracks = self.request.event.public_vote_settings.limit_tracks.all()
         if tracks:
             base_qs = base_qs.filter(track__in=tracks)
@@ -124,6 +131,12 @@ class SubmissionListView(PublicVotingRequired, ListView):
 
     def get_context_data(self, **kwargs):
         result = super().get_context_data(**kwargs)
+        sid = self.request.GET.get("sid")
+        if sid:
+            result["filter_active"] = True
+            result["remove_filter_url"] = self.request.path
+        else:
+            result["filter_active"] = False
         for submission in result["submissions"]:
             submission.vote_form = self.get_form_for_submission(submission)
         return result
