@@ -9,6 +9,7 @@
     {% compress js %}
         <script src="{% static "js/jquery.js" %}"></script>
         <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
+        <script src="{% static "pretalx_public_voting/share.js" %}"></script>
     {% endcompress %}
 {% endblock %}
 
@@ -22,6 +23,14 @@
 {% block content %}
     <h1>{% trans "Public voting" %}</h1>
     {{ request.event.public_vote_settings.text|rich_text }}
+
+    {% if filter_active %}
+        <p class="alert alert-info">
+            {% trans "A filter is active. Only limited subset of all submission is shown." %}
+            <a href="{{ remove_filter_url }}">{% trans "Click here to reset." %}</a>
+        </p>
+    {% endif %}
+
     {% if hashed_email %}
         <form method="POST">
             {% csrf_token %}
@@ -33,7 +42,12 @@
                         </div>
                     {% endif %}
                     <div class="card-body">
-                        <h3 class="card-title">{{ submission.title }}</h3>
+                        <div class="header">
+                            <h3 class="card-title">{{ submission.title }}</h3>
+                            <a href="#" data-pretalx-voting-selector="share" data-pretalx-voting-share-url="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?sid={{ submission.id }}" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                            </a>
+                        </div>
                         {% if not request.event.public_vote_settings.anonymize_speakers %}
                             <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
                         {% endif %}
