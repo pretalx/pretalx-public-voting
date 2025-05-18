@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 13:01+0000\n"
+"POT-Creation-Date: 2025-04-08 14:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,7 +274,7 @@ msgstr ""
 "seu link pessoal para a votação. Se você não receber o e-mail dentro de "
 "cinco minutos, por favor, verifique também a sua pasta de spam."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:143
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:148
 msgid "Thank you for your vote!"
 msgstr "Obrigado pelo seu voto!"
 

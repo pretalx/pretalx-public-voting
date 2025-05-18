@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-14 13:01+0000\n"
+"POT-Creation-Date: 2025-04-08 14:28+0000\n"
 "PO-Revision-Date: 2023-03-23 08:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -271,7 +271,7 @@ msgstr ""
 "osobním odkazem pro hlasování. Pokud do přibližně pěti minut žádný e-mail "
 "neuvidíte, zkontrolujte také složku se spamem a nevyžádanou poštou."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:143
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:148
 msgid "Thank you for your vote!"
 msgstr "Děkujeme za váš hlas!"
 
