@@ -7,7 +7,7 @@ from pretalx.orga.signals import event_copy_data, nav_event_settings
 
 @receiver(nav_event_settings)
 def public_voting_settings(sender, request, **kwargs):
-    if not request.user.has_perm("orga.change_settings", request.event):
+    if not request.user.has_perm("event.update_event", request.event):
         return []
     return [
         {

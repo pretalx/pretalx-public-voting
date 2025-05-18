@@ -152,7 +152,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
 
 class PublicVotingSettingsView(PermissionRequired, FormView):
     form_class = PublicVotingSettingsForm
-    permission_required = "orga.change_settings"
+    permission_required = "event.update_event"
     template_name = "pretalx_public_voting/settings.html"
 
     def get_success_url(self):
