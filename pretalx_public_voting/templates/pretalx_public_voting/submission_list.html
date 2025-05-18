@@ -44,7 +44,7 @@
                     <div class="card-body">
                         <div class="header">
                             <h3 class="card-title">{{ submission.title }}</h3>
-                            <a href="#" data-pretalx-voting-selector="share" data-pretalx-voting-share-url="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?sid={{ submission.id }}" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
+                            <a href="#" data-pretalx-voting-selector="share" data-pretalx-voting-share-url="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code }}" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
                                 <i class="fa fa-link" aria-hidden="true"></i>
                             </a>
                         </div>

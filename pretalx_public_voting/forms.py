@@ -16,9 +16,9 @@ class SignupForm(forms.Form):
 
     email = forms.EmailField(required=True)
 
-    def __init__(self, *args, event=None, sid=None, **kwargs):
+    def __init__(self, *args, event=None, submission_code=None, **kwargs):
         self.event = event
-        self.sid = sid
+        self.submission_code = submission_code
         super().__init__(*args, **kwargs)
 
     def clean_email(self):
@@ -43,9 +43,9 @@ class SignupForm(forms.Form):
             kwargs={"event": event.slug, "signed_user": email_signed},
         )
         
-        # Preserve 'sid' parameter if it exists
-        if self.sid:
-            vote_url += f"?sid={self.sid}"
+        # Preserve 'submission_code' parameter if it exists
+        if self.submission_code:
+            vote_url += f"?submission_code={self.submission_code}"
 
         mail_text = _(
             """Hi,
