@@ -89,7 +89,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         # Filter by 'submission_code' query parameter if provided
         submission_code = self.request.GET.get("submission_code")
         if submission_code:
-            base_qs = base_qs.filter(code=submission_code) # TODO! Change filter to use code!
+            base_qs = base_qs.filter(code=submission_code)
 
         tracks = self.request.event.public_vote_settings.limit_tracks.all()
         if tracks:
