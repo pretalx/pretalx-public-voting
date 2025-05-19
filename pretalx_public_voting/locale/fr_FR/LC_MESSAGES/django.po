@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-08 14:28+0000\n"
+"POT-Creation-Date: 2025-05-19 08:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr "Une extension de vote du public pour pretalx"
 msgid "Public Voting CSV"
 msgstr "CSV du vote du public"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:29
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:30
 msgid "This address is not allowed to cast a vote."
 msgstr "Cette adresse n'est pas autorisée à voter."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:46
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:51
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -65,15 +65,15 @@ msgstr ""
 "\n"
 "Les organisateurs de {event.name}\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:63
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:68
 msgid "Public voting registration"
 msgstr "Inscription au vote du public"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:128
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:133
 msgid "Score label ({})"
 msgstr "Libellé du score ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:130
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:135
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
@@ -81,7 +81,7 @@ msgstr ""
 "Explication intelligible pour l'homme du score de \"{}\", par exemple "
 "\"super !\"."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:144
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:149
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr "Veuillez indiquer un score minimal inférieur au scrore maximal !"
 
@@ -188,12 +188,12 @@ msgid "If no session type is selected, then all submissions are shown."
 msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:97
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:48
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:62
 msgid "Score"
 msgstr "Score"
 
 #: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:23
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:24
 msgid "Public voting"
 msgstr "Vote du public"
 
@@ -242,15 +242,29 @@ msgstr ""
 "Veuillez noter que nous <strong>ne stockons pas</strong> votre adresse "
 "électronique, et que tous les votes seront complètement anonymes."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:32
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:29
+msgid "A filter is active. Only limited subset of all submission is shown."
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:30
+#, fuzzy
+#| msgid "Click here to sign up for voting."
+msgid "Click here to reset."
+msgstr "Cliquez ici pour vous inscrire au vote."
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:41
 msgid "This talk's header image"
 msgstr "L'image d'en-tête de cette présentation"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:66
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:47
+msgid "Copied!"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:80
 msgid "Save!"
 msgstr "Sauvegarder !"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:72
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:86
 msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
@@ -258,7 +272,7 @@ msgstr ""
 "Cette page est invalide. Veuillez vérifier que vous avez suivi un lien "
 "complet vers cet emplacement."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:75
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:89
 msgid "Click here to sign up for voting."
 msgstr "Cliquez ici pour vous inscrire au vote."
 
@@ -277,7 +291,7 @@ msgstr ""
 "courriel dans les cinq minutes, veuillez également vérifier votre dossier de "
 "courrier indésirable."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:148
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:161
 msgid "Thank you for your vote!"
 msgstr "Merci pour votre vote !"
 

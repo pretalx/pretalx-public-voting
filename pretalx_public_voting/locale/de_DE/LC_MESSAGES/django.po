@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-08 14:28+0000\n"
+"POT-Creation-Date: 2025-05-19 08:15+0000\n"
 "PO-Revision-Date: 2022-01-11 17:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,11 +29,11 @@ msgstr "Ein Plugin für eine öffentliche Bewertung von Einreichungen in pretalx
 msgid "Public Voting CSV"
 msgstr "CSV der öffentlichen Bewertungen"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:29
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:30
 msgid "This address is not allowed to cast a vote."
 msgstr "Diese E-Mail-Adresse kann keine Bewertungen abgeben."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:46
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:51
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -64,22 +64,22 @@ msgstr ""
 "\n"
 "Das {event.name}-Team\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:63
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:68
 msgid "Public voting registration"
 msgstr "Registrierung zur öffentlichen Abstimmung"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:128
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:133
 msgid "Score label ({})"
 msgstr "Bezeichnung ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:130
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:135
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr ""
 "Menschenlesbare Erklärung, was die Wertung \"{}\" bedeutet, z.B. \"super\"."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:144
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:149
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr ""
 "Bitte wähle eine Mindestwertung, die niedriger als die Höchstwertung ist!"
@@ -188,12 +188,12 @@ msgid "If no session type is selected, then all submissions are shown."
 msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:97
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:48
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:62
 msgid "Score"
 msgstr "Wertung"
 
 #: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:23
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:24
 msgid "Public voting"
 msgstr "Öffentliche Abstimmung"
 
@@ -241,15 +241,29 @@ msgstr ""
 "Bitte beachte, dass wir deine E-Mail-Adresse <strong>nicht</strong> "
 "speichern und dass die Stimmabgabe vollständig anonym ist."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:32
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:29
+msgid "A filter is active. Only limited subset of all submission is shown."
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:30
+#, fuzzy
+#| msgid "Click here to sign up for voting."
+msgid "Click here to reset."
+msgstr "Bitte klicke hier, um dich für die öffentliche Abstimmung anzumelden."
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:41
 msgid "This talk's header image"
 msgstr "Das Titelbild des Vortags"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:66
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:47
+msgid "Copied!"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:80
 msgid "Save!"
 msgstr "Speichern!"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:72
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:86
 msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
@@ -257,7 +271,7 @@ msgstr ""
 "Diese Seite ist nicht zulässig. Bitte vergewissere dich, dass du den "
 "gesamten Link verwendet hast."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:75
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:89
 msgid "Click here to sign up for voting."
 msgstr "Bitte klicke hier, um dich für die öffentliche Abstimmung anzumelden."
 
@@ -276,7 +290,7 @@ msgstr ""
 "Falls du innerhalb von fünf Minuten keine E-Mail erhalten hast, guck bitte "
 "im Spam nach!"
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:148
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:161
 msgid "Thank you for your vote!"
 msgstr "Vielen Dank für deine Stimmabgabe!"
 
