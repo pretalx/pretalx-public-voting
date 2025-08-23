@@ -19,7 +19,7 @@ class PublicVotingCSVExporter(CSVExporterMixin, BaseExporter):
         return f"{self.event.slug}-public-votes.csv"
 
     def get_data(self, **kwargs):
-        fieldnames = ["code", "voter", "timestamp", "score"]
+        fieldnames = ["code", "voter", "timestamp", "score", "type", "track", "title"]
         data = []
         votes = (
             PublicVote.objects.filter(submission__event=self.event)
@@ -33,6 +33,9 @@ class PublicVotingCSVExporter(CSVExporterMixin, BaseExporter):
                     "voter": vote.email_hash,
                     "timestamp": vote.timestamp.isoformat(),
                     "score": vote.score,
+                    "type": vote.submission.SubmissionType,
+                    "track": vote.submission.Track,
+                    "title": vote.submission.title,
                 }
             )
 
