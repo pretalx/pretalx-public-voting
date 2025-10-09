@@ -1,6 +1,11 @@
 {% extends "cfp/event/base.html" %}
+
+{% load form_media %}
 {% load i18n %}
-{% load static %}
+
+{% block cfp_stylesheets %}
+    {% form_media %}
+{% endblock cfp_stylesheets %}
 
 {% block content %}
     <h1>{% trans "Public voting signup" %}</h1>
@@ -23,5 +28,4 @@
             <button type="submit" class="btn btn-success ml-auto">Sign up</button>
         </p>
     </form>
-    <link rel="stylesheet" type="text/css" href="{% static "common/css/_forms.css" %}" />
 {% endblock %}

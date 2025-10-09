@@ -39,7 +39,9 @@ nav {
   background: #eff5f4;
   width: 100%;
   z-index: 50;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.12), 1px 1px 4px rgba(0, 0, 0, 0.24);
+  box-shadow:
+    1px 1px 5px rgba(0, 0, 0, 0.12),
+    1px 1px 4px rgba(0, 0, 0, 0.24);
 }
 #save-bar button {
   margin: 16px;

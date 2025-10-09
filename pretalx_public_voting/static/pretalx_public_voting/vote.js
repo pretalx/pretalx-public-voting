@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveIndicator = document.querySelector("#js-save")
   const saving = saveIndicator.querySelector(".pretalx-vote-badge-primary")
   const saved = saveIndicator.querySelector(".pretalx-vote-badge-success")
-  const savingSpinner = document.querySelector(".fa-spin")
+  const savingSpinner = document.querySelector(".fa-spinner")
   const form = document.querySelector("form")
 
   document.querySelectorAll('input[type="radio"]').forEach((input) => {

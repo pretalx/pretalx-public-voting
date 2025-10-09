@@ -1,24 +1,21 @@
 {% extends "cfp/event/base.html" %}
 
-{% load compress %}
+{% load form_media %}
 {% load i18n %}
 {% load rich_text %}
 {% load static %}
 
 {% block scripts %}
-    {% compress js %}
-        <script src="{% static "js/jquery.js" %}"></script>
-        <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
-        <script src="{% static "pretalx_public_voting/share.js" %}"></script>
-    {% endcompress %}
+    <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
+    <script src="{% static "pretalx_public_voting/share.js" %}"></script>
 {% endblock %}
 
-{% block stylesheets %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/css" href="{% static "common/css/_forms.css" %}" />
-        <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
-    {% endcompress %}
-{% endblock %}
+
+{% block cfp_stylesheets %}
+    {% form_media %}
+    <link rel="stylesheet" type="text/css" href="{% static "orga/css/ui/pagination.css" %}" />
+    <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
+{% endblock cfp_stylesheets %}
 
 {% block content %}
     <h1>{% trans "Public voting" %}</h1>
@@ -71,7 +68,7 @@
             {% include "orga/includes/pagination.html" %}
 
             <div id="save-bar">
-                <i class="fa fa-spinner fa-spin d-none"></i>
+                <i class="fa fa-spinner animate-spin d-none"></i>
                 <div id="js-save" class="m-2">
                     <span class="badge color-primary pretalx-vote-badge-primary d-none">Saving…</span>
                     <span class="badge color-success pretalx-vote-badge-success d-none">Saved!</span>
@@ -89,4 +86,5 @@
             <a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
         </p>
     {% endif %}
+    {% form_media %}
 {% endblock %}
