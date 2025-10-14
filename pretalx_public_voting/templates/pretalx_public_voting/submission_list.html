@@ -8,11 +8,11 @@
 {% block scripts %}
     <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
     <script src="{% static "pretalx_public_voting/share.js" %}"></script>
+    {% form_media %}
 {% endblock %}
 
 
 {% block cfp_stylesheets %}
-    {% form_media %}
     <link rel="stylesheet" type="text/css" href="{% static "orga/css/ui/pagination.css" %}" />
     <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
 {% endblock cfp_stylesheets %}
@@ -21,7 +21,19 @@
     <h1>{% trans "Public voting" %}</h1>
     {{ request.event.public_vote_settings.text|rich_text }}
 
-    {% if filter_active %}
+    {% if filter_form.fields %}
+        <div class="filter-group mb-3">
+            <form method="GET" class="search-form">
+                {{ filter_form.track.as_field_group }}
+                <div class="ml-auto">
+                    <button class="btn btn-success" type="submit">{% trans "Filter" %}</button>
+                    {% if filter_active %}
+                        <a role=button href="{{ remove_filter_url }}" class="btn btn-secondary">{% trans "Reset filter" %}</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    {% elif filter_active %}
         <p class="alert alert-info">
             {% trans "A filter is active. Only limited subset of all submission is shown." %}
             <a href="{{ remove_filter_url }}">{% trans "Click here to reset." %}</a>
@@ -86,5 +98,4 @@
             <a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
         </p>
     {% endif %}
-    {% form_media %}
 {% endblock %}

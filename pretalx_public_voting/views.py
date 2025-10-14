@@ -16,7 +16,12 @@ from pretalx.common.views.mixins import PermissionRequired
 from pretalx.submission.models import Submission, SubmissionStates
 
 from .exporters import PublicVotingCSVExporter
-from .forms import PublicVotingSettingsForm, SignupForm, VoteForm
+from .forms import (
+    PublicVotingFilterForm,
+    PublicVotingSettingsForm,
+    SignupForm,
+    VoteForm,
+)
 from .models import PublicVote, PublicVotingSettings
 from .utils import event_unsign
 
@@ -71,6 +76,15 @@ class SubmissionListView(PublicVotingRequired, ListView):
     def hashed_email(self):
         return event_unsign(self.kwargs["signed_user"], self.request.event)
 
+    @cached_property
+    def filter_form(self):
+        limit_tracks = self.request.event.public_vote_settings.limit_tracks.all()
+        return PublicVotingFilterForm(
+            data=self.request.GET,
+            event=self.request.event,
+            limit_tracks=limit_tracks,
+        )
+
     def get_queryset(self):
         if not self.hashed_email:
             # If the use wasn't valid, there is no point of returning a
@@ -91,6 +105,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         if submission_code:
             base_qs = base_qs.filter(code=submission_code)
 
+        # Apply organizer-configured track limits
         tracks = self.request.event.public_vote_settings.limit_tracks.all()
         if tracks:
             base_qs = base_qs.filter(track__in=tracks)
@@ -99,6 +114,11 @@ class SubmissionListView(PublicVotingRequired, ListView):
         )
         if submission_types:
             base_qs = base_qs.filter(submission_type__in=submission_types)
+
+        # Apply user-selected filters from filter form
+        if self.filter_form.is_valid():
+            base_qs = self.filter_form.filter_queryset(base_qs)
+
         submission_pks = list(base_qs.values_list("pk", flat=True))
         random.seed(self.hashed_email)
         random.shuffle(submission_pks)
@@ -108,7 +128,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
 
         return (
             base_qs.annotate(score=Subquery(votes))
-            .prefetch_related("speakers")
+            .prefetch_related("speakers", "submission_type", "track")
             .order_by(user_order)
         )
 
@@ -132,11 +152,24 @@ class SubmissionListView(PublicVotingRequired, ListView):
     def get_context_data(self, **kwargs):
         result = super().get_context_data(**kwargs)
         submission_code = self.request.GET.get("submission_code")
-        if submission_code:
+
+        # Provide filter form to template
+        result["filter_form"] = self.filter_form
+
+        # Check if any filters are active
+        if submission_code or (
+            self.filter_form.is_valid() and self.filter_form.cleaned_data.get("track")
+        ):
             result["filter_active"] = True
             result["remove_filter_url"] = self.request.path
         else:
             result["filter_active"] = False
+
+        # Check if we should show submission types
+        result["show_submission_types"] = (
+            self.request.event.submission_types.all().count() > 1
+        )
+
         for submission in result["submissions"]:
             submission.vote_form = self.get_form_for_submission(submission)
         return result

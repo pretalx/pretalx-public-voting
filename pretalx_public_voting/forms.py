@@ -1,11 +1,17 @@
 from django import forms
+from django.db.models import Count, Q
 from django.utils.translation import gettext_lazy as _
 from django_scopes.forms import SafeModelMultipleChoiceField
 from i18nfield.forms import I18nModelForm
 from pretalx.common.forms.renderers import InlineFormLabelRenderer, InlineFormRenderer
-from pretalx.common.forms.widgets import EnhancedSelectMultiple, HtmlDateTimeInput
+from pretalx.common.forms.widgets import (
+    EnhancedSelectMultiple,
+    HtmlDateTimeInput,
+    SelectMultipleWithCount,
+)
 from pretalx.common.urls import build_absolute_uri
 from pretalx.mail.models import QueuedMail
+from pretalx.submission.models import SubmissionStates, Track
 
 from .models import PublicVote, PublicVotingSettings
 from .utils import event_sign, hash_email
@@ -184,3 +190,48 @@ class PublicVotingSettingsForm(I18nModelForm):
             "limit_tracks": SafeModelMultipleChoiceField,
             "limit_submission_types": SafeModelMultipleChoiceField,
         }
+
+
+class PublicVotingFilterForm(forms.Form):
+    track = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=Track.objects.none(),
+        widget=SelectMultipleWithCount(
+            attrs={"title": _("Tracks")}, color_field="color"
+        ),
+    )
+
+    default_renderer = InlineFormRenderer
+
+    def __init__(self, event, limit_tracks=None, *args, **kwargs):
+        self.event = event
+        super().__init__(*args, **kwargs)
+
+        if limit_tracks and limit_tracks.exists():
+            available_tracks = limit_tracks
+        else:
+            available_tracks = event.tracks.all()
+
+        # Only show track filter if there are multiple tracks
+        if available_tracks.count() > 1:
+            self.fields["track"].queryset = available_tracks.annotate(
+                count=Count(
+                    "submissions",
+                    distinct=True,
+                    filter=Q(
+                        event=event, submissions__state=SubmissionStates.SUBMITTED
+                    ),
+                )
+            ).order_by("-count")
+        else:
+            self.fields.pop("track", None)
+
+    def filter_queryset(self, qs):
+        track = self.cleaned_data.get("track")
+        if track:
+            qs = qs.filter(track__in=track)
+        return qs
+
+    class Media:
+        js = [forms.Script("orga/js/forms/submissionfilter.js", defer="")]
+        css = {"all": ["orga/css/forms/search.css"]}
