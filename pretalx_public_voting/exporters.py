@@ -7,16 +7,12 @@ from .models import PublicVote
 class PublicVotingCSVExporter(CSVExporterMixin, BaseExporter):
     public = False
     icon = "fa-list"
-    identifier = "public_votes.csv"
+    filename_identifier = "public_votes"
     cors = "*"
 
     @property
     def verbose_name(self):
         return _("Public Voting CSV")
-
-    @property
-    def filename(self):
-        return f"{self.event.slug}-public-votes.csv"
 
     def get_data(self, **kwargs):
         fieldnames = ["code", "voter", "timestamp", "score"]
