@@ -60,6 +60,11 @@
                         {% if not request.event.public_vote_settings.anonymize_speakers %}
                             <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
                         {% endif %}
+                        {% if show_submission_types and submission.submission_type %}
+                            <p class="card-subtitle mb-2 text-muted">
+                                <strong>{% trans "Type" %}:</strong> {{ submission.submission_type.name }}
+                            </p>
+                        {% endif %}
                         <div class="card-text">
                             {{ submission.abstract|rich_text|default:'-' }}
                             {% if request.event.public_vote_settings.show_session_description and submission.description %}
