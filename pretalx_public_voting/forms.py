@@ -233,5 +233,4 @@ class PublicVotingFilterForm(forms.Form):
         return qs
 
     class Media:
-        js = [forms.Script("orga/js/forms/submissionfilter.js", defer="")]
         css = {"all": ["orga/css/forms/search.css"]}
