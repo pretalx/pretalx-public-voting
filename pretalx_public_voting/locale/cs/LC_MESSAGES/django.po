@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 08:15+0000\n"
+"POT-Creation-Date: 2025-11-05 15:59+0000\n"
 "PO-Revision-Date: 2023-03-23 08:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,11 +31,11 @@ msgstr "Plugin pretalxu pro veřejné hlasování"
 msgid "Public Voting CSV"
 msgstr "Veřejné hlasování - CSV"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:30
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:36
 msgid "This address is not allowed to cast a vote."
 msgstr "Tato adresa nemá dovoleno hlasovat."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:51
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:57
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -64,23 +64,29 @@ msgstr ""
 "\n"
 "Organizátoři {event.name}\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:68
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:74
 msgid "Public voting registration"
 msgstr "Registrace k veřejnému hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:133
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:139
+#, python-brace-format
 msgid "Score label ({})"
 msgstr "Popisek skóre ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:135
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
+#, python-brace-format
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
 "\"great!\"."
 msgstr "Slovní vysvětlení, co skóre „{}“ znamená, např. „skvělé“."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:149
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:155
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr "Zadejte prosím minimální skóre nižší než maximální skóre!"
+
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:200
+msgid "Tracks"
+msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:22
 msgid ""
@@ -184,28 +190,28 @@ msgid "If no session type is selected, then all submissions are shown."
 msgstr ""
 
 #: local/pretalx-public-voting/pretalx_public_voting/models.py:97
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:62
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:76
 msgid "Score"
 msgstr "Skóre"
 
 #: local/pretalx-public-voting/pretalx_public_voting/signals.py:14
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:24
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:21
 msgid "Public voting"
 msgstr "Veřejné hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:8
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:7
 msgid "Set up public voting"
 msgstr "Nastavit veřejné hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:11
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:10
 msgid "Download results CSV"
 msgstr "Stáhnout výsledky ve formátu CSV"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:14
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:13
 msgid "Go to public voting"
 msgstr "Otevřít veřejné hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:19
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/settings.html:18
 msgid ""
 "Public voting will show your submissions publicly, and will allow anybody "
 "who provides a valid email address to vote. The email addresses are not "
@@ -215,11 +221,11 @@ msgstr ""
 "mailovou adresu, o nich bude moci hlasovat. E-mailové adresy se neukládají, "
 "takže je hlasování anonymní."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:6
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:11
 msgid "Public voting signup"
 msgstr "Registrace k veřejnému hlasování"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:8
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:13
 msgid ""
 "Welcome to the voting process for this event! Voting is open to the public, "
 "and we just need to confirm your email address first. You will only need to "
@@ -229,7 +235,7 @@ msgstr ""
 "budeme potřebovat jenom ověřit vaši e-mailovou adresu. Ověření stačí jenom "
 "jednou."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:15
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:20
 msgid ""
 "Please note that we do <strong>not</strong> store your email address, and "
 "all votes will be completely anonymous."
@@ -238,28 +244,40 @@ msgstr ""
 "jsou zcela anonymní."
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:29
+msgid "Filter"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:31
+msgid "Reset filter"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:38
 msgid "A filter is active. Only limited subset of all submission is shown."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:30
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:39
 #, fuzzy
 #| msgid "Click here to sign up for voting."
 msgid "Click here to reset."
 msgstr "Pro registraci k hlasování klepněte sem."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:41
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:50
 msgid "This talk's header image"
 msgstr "Obrázek záhlaví této přednášky"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:47
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:56
 msgid "Copied!"
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:80
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:65
+msgid "Type"
+msgstr ""
+
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:94
 msgid "Save!"
 msgstr "Uložit!"
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:86
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:100
 msgid ""
 "This page is invalid. Please double-check that you have followed a complete "
 "link to this place."
@@ -267,7 +285,7 @@ msgstr ""
 "Tato stránka není platní. Zkontrolujte prosím, že jste správně otevřeli "
 "celou adresu odkazu."
 
-#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:89
+#: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:103
 msgid "Click here to sign up for voting."
 msgstr "Pro registraci k hlasování klepněte sem."
 
@@ -285,7 +303,7 @@ msgstr ""
 "osobním odkazem pro hlasování. Pokud do přibližně pěti minut žádný e-mail "
 "neuvidíte, zkontrolujte také složku se spamem a nevyžádanou poštou."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:161
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:194
 msgid "Thank you for your vote!"
 msgstr "Děkujeme za váš hlas!"
 
