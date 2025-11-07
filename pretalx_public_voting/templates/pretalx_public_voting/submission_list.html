@@ -6,8 +6,8 @@
 {% load static %}
 
 {% block scripts %}
-    <script src="{% static "pretalx_public_voting/vote.js" %}"></script>
-    <script src="{% static "pretalx_public_voting/share.js" %}"></script>
+    <script defer src="{% static "pretalx_public_voting/vote.js" %}"></script>
+    <script defer src="{% static "pretalx_public_voting/share.js" %}"></script>
     {% form_media %}
 {% endblock %}
 
@@ -41,7 +41,7 @@
     {% endif %}
 
     {% if hashed_email %}
-        <form method="POST">
+        <form method="POST" id="voting-form">
             {% csrf_token %}
             {% for submission in submissions %}
                 <div class="card submission-card">
