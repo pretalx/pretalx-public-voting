@@ -89,7 +89,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         if not self.hashed_email:
             # If the use wasn't valid, there is no point of returning a
             # QuerySet with the talks
-            return None
+            return Submission.objects.none()
 
         votes = PublicVote.objects.filter(
             email_hash=self.hashed_email, submission_id=OuterRef("pk")
