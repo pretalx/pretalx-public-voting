@@ -14,7 +14,7 @@ class PublicVotingCSVExporter(CSVExporterMixin, BaseExporter):
     def verbose_name(self):
         return _("Public Voting CSV")
 
-    def get_csv_data(self, **kwargs):
+    def get_csv_data(self, request, **kwargs):
         fieldnames = ["code", "voter", "timestamp", "score"]
         data = []
         votes = (
