@@ -12,6 +12,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django_context_decorator import context
+
 from pretalx.common.views.mixins import PermissionRequired
 from pretalx.submission.models import Submission, SubmissionStates
 
@@ -32,14 +33,13 @@ class PublicVotingRequired:
             start = request.event.public_vote_settings.start
             end = request.event.public_vote_settings.end
         except Exception:
-            # No settings object exists
-            raise Http404()
+            raise Http404 from None
 
         _now = now()
         start_valid = (not start) or _now > start
         end_valid = (not end) or _now < end
         if not start_valid or not end_valid:
-            raise Http404()
+            raise Http404
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -178,7 +178,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         submissions = {
             submission.code: submission for submission in self.get_queryset()
         }
-        for key in self.request.POST.keys():
+        for key in self.request.POST:
             if "score" not in key:
                 continue
             prefix, __ = key.split("-", maxsplit=1)
@@ -186,10 +186,8 @@ class SubmissionListView(PublicVotingRequired, ListView):
             if not submission:
                 continue
             form = self.get_form_for_submission(submission)
-            if form.is_valid():
-                # Only save the form if the score has changed
-                if form.initial["score"] != form.cleaned_data["score"]:
-                    form.save()
+            if form.is_valid() and form.initial["score"] != form.cleaned_data["score"]:
+                form.save()
         if request.POST.get("action") == "manual":
             messages.success(self.request, _("Thank you for your vote!"))
             return redirect(self.request.path)

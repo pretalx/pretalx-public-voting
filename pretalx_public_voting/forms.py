@@ -3,6 +3,7 @@ from django.db.models import Count, Q
 from django.utils.translation import gettext_lazy as _
 from django_scopes.forms import SafeModelMultipleChoiceField
 from i18nfield.forms import I18nModelForm
+
 from pretalx.common.forms.renderers import InlineFormLabelRenderer, InlineFormRenderer
 from pretalx.common.forms.widgets import (
     EnhancedSelectMultiple,
@@ -110,9 +111,8 @@ class VoteForm(forms.Form):
         score = int(self.cleaned_data.get("score"))
         if not self.min_value <= score <= self.max_value:
             raise forms.ValidationError(
-                _(
-                    f"Please assign a score between {self.min_value} and {self.max_value}!"
-                )
+                _("Please assign a score between %(min)s and %(max)s!")
+                % {"min": self.min_value, "max": self.max_value}
             )
         return score
 
@@ -128,9 +128,9 @@ class PublicVotingSettingsForm(I18nModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["limit_tracks"].queryset = self.instance.event.tracks.all()
-        self.fields["limit_submission_types"].queryset = (
-            self.instance.event.submission_types.all()
-        )
+        self.fields[
+            "limit_submission_types"
+        ].queryset = self.instance.event.submission_types.all()
         minimum = self.instance.min_score
         maximum = self.instance.max_score
         for number in range(abs(maximum - minimum + 1)):

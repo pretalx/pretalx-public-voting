@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy as _
+
 from pretalx.common.exporter import BaseExporter, CSVExporterMixin
 
 from .models import PublicVote
@@ -16,20 +17,19 @@ class PublicVotingCSVExporter(CSVExporterMixin, BaseExporter):
 
     def get_csv_data(self, request, **kwargs):
         fieldnames = ["code", "voter", "timestamp", "score"]
-        data = []
         votes = (
             PublicVote.objects.filter(submission__event=self.event)
             .order_by("submission__code")
             .select_related("submission")
         )
-        for vote in votes:
-            data.append(
-                {
-                    "code": vote.submission.code,
-                    "voter": vote.email_hash,
-                    "timestamp": vote.timestamp.isoformat(),
-                    "score": vote.score,
-                }
-            )
+        data = [
+            {
+                "code": vote.submission.code,
+                "voter": vote.email_hash,
+                "timestamp": vote.timestamp.isoformat(),
+                "score": vote.score,
+            }
+            for vote in votes
+        ]
 
         return fieldnames, data
