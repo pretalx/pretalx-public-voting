@@ -7,9 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
     initial = True
 
-    dependencies = [
-        ("submission", "0046_question_submission_types"),
-    ]
+    dependencies = [("submission", "0046_question_submission_types")]
 
     operations = [
         migrations.CreateModel(
@@ -33,8 +31,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "unique_together": {("submission", "email_hash")},
-            },
-        ),
+            options={"unique_together": {("submission", "email_hash")}},
+        )
     ]

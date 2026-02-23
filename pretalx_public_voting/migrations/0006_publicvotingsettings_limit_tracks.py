@@ -14,5 +14,5 @@ class Migration(migrations.Migration):
             model_name="publicvotingsettings",
             name="limit_tracks",
             field=models.ManyToManyField(to="submission.track"),
-        ),
+        )
     ]

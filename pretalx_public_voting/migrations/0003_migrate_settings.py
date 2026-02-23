@@ -3,8 +3,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        ("pretalx_public_voting", "0002_publicvotingsettings"),
-    ]
+    dependencies = [("pretalx_public_voting", "0002_publicvotingsettings")]
 
     operations = []

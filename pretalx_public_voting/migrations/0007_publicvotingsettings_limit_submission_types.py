@@ -14,5 +14,5 @@ class Migration(migrations.Migration):
             model_name="publicvotingsettings",
             name="limit_submission_types",
             field=models.ManyToManyField(to="submission.submissiontype"),
-        ),
+        )
     ]

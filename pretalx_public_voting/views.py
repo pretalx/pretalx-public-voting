@@ -1,7 +1,7 @@
 import random
 
 from django.contrib import messages
-from django.db.models import Case, OuterRef, Subquery, When
+from django.db.models import Case, ObjectDoesNotExist, OuterRef, Subquery, When
 from django.http import Http404, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -32,7 +32,7 @@ class PublicVotingRequired:
         try:
             start = request.event.public_vote_settings.start
             end = request.event.public_vote_settings.end
-        except Exception:
+        except (AttributeError, ObjectDoesNotExist):
             raise Http404 from None
 
         _now = now()
@@ -80,9 +80,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
     def filter_form(self):
         limit_tracks = self.request.event.public_vote_settings.limit_tracks.all()
         return PublicVotingFilterForm(
-            data=self.request.GET,
-            event=self.request.event,
-            limit_tracks=limit_tracks,
+            data=self.request.GET, event=self.request.event, limit_tracks=limit_tracks
         )
 
     def get_queryset(self):
@@ -214,11 +212,7 @@ class PublicVotingSettingsView(PermissionRequired, FormView):
         settings, _ = PublicVotingSettings.objects.get_or_create(
             event=self.request.event
         )
-        return {
-            "instance": settings,
-            "locales": self.request.event.locales,
-            **kwargs,
-        }
+        return {"instance": settings, "locales": self.request.event.locales, **kwargs}
 
     def get_context_data(self, **kwargs):
         result = super().get_context_data(**kwargs)

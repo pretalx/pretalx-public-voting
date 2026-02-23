@@ -86,6 +86,9 @@ class PublicVotingSettings(models.Model):
         help_text=_("If no session type is selected, then all submissions are shown."),
     )
 
+    def __str__(self):
+        return f"PublicVotingSettings(event={self.event})"
+
     @cached_property
     def allowed_email_list(self):
         allowed = (self.allowed_emails or "").strip().lower()

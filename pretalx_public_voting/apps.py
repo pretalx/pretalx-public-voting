@@ -16,7 +16,7 @@ class PluginApp(AppConfig):
         version = __version__
         category = "FEATURE"
         settings_links = [
-            (gettext_lazy("Settings"), "plugins:pretalx_public_voting:settings", {}),
+            (gettext_lazy("Settings"), "plugins:pretalx_public_voting:settings", {})
         ]
 
     def ready(self):

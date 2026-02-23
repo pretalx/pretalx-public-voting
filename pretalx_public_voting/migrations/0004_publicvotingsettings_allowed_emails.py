@@ -4,14 +4,12 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        ("pretalx_public_voting", "0003_migrate_settings"),
-    ]
+    dependencies = [("pretalx_public_voting", "0003_migrate_settings")]
 
     operations = [
         migrations.AddField(
             model_name="publicvotingsettings",
             name="allowed_emails",
             field=models.TextField(null=True),
-        ),
+        )
     ]

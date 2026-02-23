@@ -5,9 +5,10 @@ from django.core import mail
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.timezone import now
-from django_scopes import scopes_disabled
+from django_scopes import scope, scopes_disabled
 
 from pretalx.event.models import Event
+
 from pretalx_public_voting.exporters import PublicVotingCSVExporter
 from pretalx_public_voting.models import PublicVote, PublicVotingSettings
 from pretalx_public_voting.signals import copy_event_settings, public_voting_settings
@@ -22,8 +23,7 @@ TALKS_URL_NAME = "plugins:pretalx_public_voting:talks"
 @pytest.mark.django_db
 def test_orga_can_access_settings(orga_client, event):
     response = orga_client.get(
-        reverse(SETTINGS_URL_NAME, kwargs={"event": event.slug}),
-        follow=True,
+        reverse(SETTINGS_URL_NAME, kwargs={"event": event.slug}), follow=True
     )
     assert response.status_code == 200
 
@@ -31,7 +31,7 @@ def test_orga_can_access_settings(orga_client, event):
 @pytest.mark.django_db
 def test_reviewer_cannot_access_settings(review_client, event):
     response = review_client.get(
-        reverse(SETTINGS_URL_NAME, kwargs={"event": event.slug}),
+        reverse(SETTINGS_URL_NAME, kwargs={"event": event.slug})
     )
     assert response.status_code == 404
 
@@ -62,11 +62,7 @@ def test_settings_rejects_invalid_scores(orga_client, event):
     url = reverse(SETTINGS_URL_NAME, kwargs={"event": event.slug})
     response = orga_client.post(
         url,
-        {
-            "min_score": "5",
-            "max_score": "3",
-            "show_session_image": "on",
-        },
+        {"min_score": "5", "max_score": "3", "show_session_image": "on"},
         follow=True,
     )
     assert response.status_code == 200
@@ -164,13 +160,9 @@ def test_submission_list_with_invalid_link(client, voting_settings, submission):
 def test_vote_submission(client, voting_settings, submission, signed_email):
     event = voting_settings.event
     url = reverse(
-        TALKS_URL_NAME,
-        kwargs={"event": event.slug, "signed_user": signed_email},
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
     )
-    response = client.post(
-        url,
-        {f"{submission.code}-score": "2"},
-    )
+    response = client.post(url, {f"{submission.code}-score": "2"})
     assert response.status_code == 200
     with scopes_disabled():
         vote = PublicVote.objects.get(submission=submission)
@@ -183,13 +175,9 @@ def test_vote_manual_action_redirects(
 ):
     event = voting_settings.event
     url = reverse(
-        TALKS_URL_NAME,
-        kwargs={"event": event.slug, "signed_user": signed_email},
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
     )
-    response = client.post(
-        url,
-        {f"{submission.code}-score": "2", "action": "manual"},
-    )
+    response = client.post(url, {f"{submission.code}-score": "2", "action": "manual"})
     assert response.status_code == 302
 
 
@@ -200,8 +188,7 @@ def test_vote_updates_existing(client, voting_settings, submission, signed_email
     with scopes_disabled():
         PublicVote.objects.create(submission=submission, email_hash=email_hash, score=1)
     url = reverse(
-        TALKS_URL_NAME,
-        kwargs={"event": event.slug, "signed_user": signed_email},
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
     )
     client.post(url, {f"{submission.code}-score": "3"})
     with scopes_disabled():
@@ -213,8 +200,9 @@ def test_vote_updates_existing(client, voting_settings, submission, signed_email
 def test_submission_list_filter_by_track(
     client, voting_settings, submission, signed_email, track
 ):
-    submission.track = track
-    submission.save()
+    with scope(event=submission.event):
+        submission.track = track
+        submission.save()
     url = reverse(
         TALKS_URL_NAME,
         kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},

@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("pretalx_public_voting", "0004_publicvotingsettings_allowed_emails"),
+        ("pretalx_public_voting", "0004_publicvotingsettings_allowed_emails")
     ]
 
     operations = [
@@ -13,5 +13,5 @@ class Migration(migrations.Migration):
             model_name="publicvotingsettings",
             name="show_session_description",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]

@@ -2,8 +2,9 @@
 
 import django.db.models.deletion
 import i18nfield.fields
-import pretalx_public_voting.models
 from django.db import migrations, models
+
+import pretalx_public_voting.models
 
 
 class Migration(migrations.Migration):
@@ -42,5 +43,5 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-        ),
+        )
     ]
