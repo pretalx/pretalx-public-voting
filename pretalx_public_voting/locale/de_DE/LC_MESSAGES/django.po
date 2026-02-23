@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 11:37+0000\n"
+"POT-Creation-Date: 2026-02-23 12:04+0000\n"
 "PO-Revision-Date: 2022-01-11 17:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -25,15 +25,19 @@ msgstr "pretalx-Plugin für die offentliche Bewertung von Einreichungen"
 msgid "A public voting plugin for pretalx"
 msgstr "Ein Plugin für eine öffentliche Bewertung von Einreichungen in pretalx"
 
+#: src/local/pretalx-public-voting/pretalx_public_voting/apps.py:19
+msgid "Settings"
+msgstr ""
+
 #: src/local/pretalx-public-voting/pretalx_public_voting/exporters.py:16
 msgid "Public Voting CSV"
 msgstr "CSV der öffentlichen Bewertungen"
 
-#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:36
+#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:37
 msgid "This address is not allowed to cast a vote."
 msgstr "Diese E-Mail-Adresse kann keine Bewertungen abgeben."
 
-#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:57
+#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:58
 #, python-brace-format
 msgid ""
 "Hi,\n"
@@ -64,9 +68,16 @@ msgstr ""
 "\n"
 "Das {event.name}-Team\n"
 
-#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:74
+#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:75
 msgid "Public voting registration"
 msgstr "Registrierung zur öffentlichen Abstimmung"
+
+#: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:114
+#, fuzzy, python-format
+#| msgid "Please assign a score between {self.min_value} and {self.max_value}!"
+msgid "Please assign a score between %(min)s and %(max)s!"
+msgstr ""
+"Bitte wähle eine Wertung zwischen {self.min_value} und {self.max_value}!"
 
 #: src/local/pretalx-public-voting/pretalx_public_voting/forms.py:139
 #, python-brace-format
@@ -308,14 +319,9 @@ msgstr ""
 "Falls du innerhalb von fünf Minuten keine E-Mail erhalten hast, guck bitte "
 "im Spam nach!"
 
-#: src/local/pretalx-public-voting/pretalx_public_voting/views.py:191
+#: src/local/pretalx-public-voting/pretalx_public_voting/views.py:192
 msgid "Thank you for your vote!"
 msgstr "Vielen Dank für deine Stimmabgabe!"
-
-#, python-brace-format
-#~ msgid "Please assign a score between {self.min_value} and {self.max_value}!"
-#~ msgstr ""
-#~ "Bitte wähle eine Wertung zwischen {self.min_value} und {self.max_value}!"
 
 #~ msgid "Save"
 #~ msgstr "Speichern"
