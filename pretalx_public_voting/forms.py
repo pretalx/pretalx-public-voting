@@ -1,5 +1,6 @@
 from django import forms
 from django.db.models import Count, Q
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django_scopes.forms import SafeModelMultipleChoiceField
 from i18nfield.forms import I18nModelForm
@@ -11,7 +12,6 @@ from pretalx.common.forms.widgets import (
     SelectMultipleWithCount,
 )
 from pretalx.common.urls import build_absolute_uri
-from pretalx.mail.models import QueuedMail
 from pretalx.submission.models import SubmissionStates, Track
 
 from .models import PublicVote, PublicVotingSettings
@@ -54,10 +54,14 @@ class SignupForm(forms.Form):
         if self.submission_code:
             vote_url += f"?submission_code={self.submission_code}"
 
+        from pretalx.mail.models import (  # noqa: PLC0415 -- avoid circular import
+            MailTemplate,
+        )
+
         mail_text = _(
             """Hi,
 
-you have registered to vote for submissions for {event.name}.
+you have registered to vote for submissions for {event_name}.
 Please confirm that this email address is valid by following this link:
 
 {vote_url}
@@ -66,15 +70,19 @@ If you did not register for voting, you can ignore this email.
 
 Thank you for participating in the vote!
 
-The {event.name} organisers
+The {event_name} organisers
 """
         )
-        QueuedMail(
+        MailTemplate(subject=_("Public voting registration"), text=mail_text).to_mail(
+            user=self.cleaned_data["email"],
             event=event,
-            to=self.cleaned_data["email"],
-            subject=_("Public voting registration"),
-            text=str(mail_text).format(vote_url=vote_url, event=event),
-        ).send()
+            locale=event.locale,
+            safe_extra_context={
+                "vote_url": mark_safe(vote_url)  # noqa: S308 -- internally-built URL
+            },
+            commit=False,
+            skip_queue=True,
+        )
 
 
 class VoteForm(forms.Form):
