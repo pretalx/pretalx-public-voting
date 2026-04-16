@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 11:12+0000\n"
+"POT-Creation-Date: 2026-03-28 15:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,20 +25,24 @@ msgstr "Extension pretalx de vote du public"
 msgid "A public voting plugin for pretalx"
 msgstr "Une extension de vote du public pour pretalx"
 
+#: local/pretalx-public-voting/pretalx_public_voting/apps.py:19
+msgid "Settings"
+msgstr ""
+
 #: local/pretalx-public-voting/pretalx_public_voting/exporters.py:16
 msgid "Public Voting CSV"
 msgstr "CSV du vote du public"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:36
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:37
 msgid "This address is not allowed to cast a vote."
 msgstr "Cette adresse n'est pas autorisée à voter."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:57
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:58
 #, python-brace-format
 msgid ""
 "Hi,\n"
 "\n"
-"you have registered to vote for submissions for {event.name}.\n"
+"you have registered to vote for submissions for {event_name}.\n"
 "Please confirm that this email address is valid by following this link:\n"
 "\n"
 "{vote_url}\n"
@@ -47,34 +51,39 @@ msgid ""
 "\n"
 "Thank you for participating in the vote!\n"
 "\n"
-"The {event.name} organisers\n"
+"The {event_name} organisers\n"
 msgstr ""
 "Bonjour,\n"
 "\n"
-"vous vous êtes inscrit(e) pour voter pour les soumissions de l'événement "
-"{event.name}.\n"
-"Veuillez confirmer que cette adresse électronique est valide en suivant ce "
-"lien :\n"
+"vous vous êtes inscrit(e) pour voter pour les soumissions de l'événement {event_name}.\n"
+"Veuillez confirmer que cette adresse électronique est valide en suivant ce lien :\n"
 "\n"
 "{vote_url}\n"
 "\n"
-"Si vous ne vous êtes pas inscrit(e) pour ce vote, vous pouvez ignorer ce "
-"courriel.\n"
+"Si vous ne vous êtes pas inscrit(e) pour ce vote, vous pouvez ignorer ce courriel.\n"
 "\n"
 "Merci de votre participation au vote !\n"
 "\n"
-"Les organisateurs de {event.name}\n"
+"Les organisateurs de {event_name}\n"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:74
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:75
 msgid "Public voting registration"
 msgstr "Inscription au vote du public"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:139
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:112
+#, fuzzy, python-format
+#| msgid ""
+#| "Please assign a score between {self.min_value} and {self.max_value}!"
+msgid "Please assign a score between %(min)s and %(max)s!"
+msgstr ""
+"Veuillez attribuer une note entre {self.min_value} et {self.max_value} !"
+
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:137
 #, python-brace-format
 msgid "Score label ({})"
 msgstr "Libellé du score ({})"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:141
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:139
 #, python-brace-format
 msgid ""
 "Human readable explanation of what a score of \"{}\" actually means, e.g. "
@@ -83,11 +92,11 @@ msgstr ""
 "Explication intelligible pour l'homme du score de \"{}\", par exemple "
 "\"super !\"."
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:155
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:153
 msgid "Please assign a minimum score smaller than the maximum score!"
 msgstr "Veuillez indiquer un score minimal inférieur au scrore maximal !"
 
-#: local/pretalx-public-voting/pretalx_public_voting/forms.py:200
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:198
 msgid "Tracks"
 msgstr ""
 
@@ -193,7 +202,7 @@ msgstr ""
 msgid "If no session type is selected, then all submissions are shown."
 msgstr ""
 
-#: local/pretalx-public-voting/pretalx_public_voting/models.py:98
+#: local/pretalx-public-voting/pretalx_public_voting/models.py:101
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/submission_list.html:76
 msgid "Score"
 msgstr "Score"
@@ -237,8 +246,8 @@ msgid ""
 "do this once."
 msgstr ""
 "Bienvenue dans le processus de vote pour cet événement ! Le vote est ouvert "
-"au public, et nous devons d'abord confirmer votre adresse électronique. Vous "
-"n'aurez besoin de de le faire qu'une seule fois."
+"au public, et nous devons d'abord confirmer votre adresse électronique. Vous"
+" n'aurez besoin de de le faire qu'une seule fois."
 
 #: local/pretalx-public-voting/pretalx_public_voting/templates/pretalx_public_voting/signup.html:20
 msgid ""
@@ -306,14 +315,9 @@ msgid ""
 msgstr ""
 "Merci de vous être inscrit au vote du public. Vous avez reçu un courriel "
 "contenant votre lien personnel vers le vote. Si vous ne voyez pas de "
-"courriel dans les cinq minutes, veuillez également vérifier votre dossier de "
-"courrier indésirable."
+"courriel dans les cinq minutes, veuillez également vérifier votre dossier de"
+" courrier indésirable."
 
-#: local/pretalx-public-voting/pretalx_public_voting/views.py:191
+#: local/pretalx-public-voting/pretalx_public_voting/views.py:190
 msgid "Thank you for your vote!"
 msgstr "Merci pour votre vote !"
-
-#, python-brace-format
-#~ msgid "Please assign a score between {self.min_value} and {self.max_value}!"
-#~ msgstr ""
-#~ "Veuillez attribuer une note entre {self.min_value} et {self.max_value} !"
