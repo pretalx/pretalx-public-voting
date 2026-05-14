@@ -54,8 +54,8 @@ class SignupForm(forms.Form):
         if self.submission_code:
             vote_url += f"?submission_code={self.submission_code}"
 
-        from pretalx.mail.models import (  # noqa: PLC0415 -- avoid circular import
-            MailTemplate,
+        from pretalx.mail.domain.send import (  # noqa: PLC0415 -- avoid circular import
+            send_system_mail,
         )
 
         mail_text = _(
@@ -73,15 +73,15 @@ Thank you for participating in the vote!
 The {event_name} organisers
 """
         )
-        MailTemplate(subject=_("Public voting registration"), text=mail_text).to_mail(
-            user=self.cleaned_data["email"],
+        send_system_mail(
+            subject=_("Public voting registration"),
+            text=mail_text,
+            to=self.cleaned_data["email"],
             event=event,
             locale=event.locale,
             safe_extra_context={
                 "vote_url": mark_safe(vote_url)  # noqa: S308 -- internally-built URL
             },
-            commit=False,
-            skip_queue=True,
         )
 
 

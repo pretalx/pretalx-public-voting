@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils.timezone import now
 from django_scopes import scope, scopes_disabled
 
+from pretalx.event.domain.event import initialise_event
 from pretalx.event.models import Event
 
 from pretalx_public_voting.exporters import PublicVotingCSVExporter
@@ -237,6 +238,7 @@ def test_event_copy_copies_settings(event, voting_settings):
             date_to=event.date_to,
             organiser=event.organiser,
         )
+        initialise_event(new_event)
     copy_event_settings(sender=new_event, other=event)
     with scopes_disabled():
         new_settings = PublicVotingSettings.objects.get(event=new_event)
