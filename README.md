@@ -2,17 +2,17 @@
 
 [Full report](https://htmlpreview.github.io/?https://github.com/pretalx/pretalx-public-voting/blob/python-coverage-comment-action-data/htmlcov/index.html)
 
-| Name                                    |    Stmts |     Miss |   Branch |   BrPart |   Cover |   Missing |
-|---------------------------------------- | -------: | -------: | -------: | -------: | ------: | --------: |
-| pretalx\_public\_voting/\_\_init\_\_.py |        1 |        0 |        0 |        0 |    100% |           |
-| pretalx\_public\_voting/apps.py         |       15 |        0 |        0 |        0 |    100% |           |
-| pretalx\_public\_voting/exporters.py    |       16 |        1 |        0 |        0 |     94% |        16 |
-| pretalx\_public\_voting/forms.py        |      105 |        5 |       20 |        4 |     93% |55, 119, 217, 223, 238 |
-| pretalx\_public\_voting/models.py       |       36 |        0 |        2 |        0 |    100% |           |
-| pretalx\_public\_voting/signals.py      |       20 |        1 |        4 |        1 |     92% |30, 36-\>exit |
-| pretalx\_public\_voting/utils.py        |       12 |        0 |        0 |        0 |    100% |           |
-| pretalx\_public\_voting/views.py        |      132 |        6 |       28 |        7 |     92% |104, 109, 114, 117-\>120, 161-162, 185, 187-\>179 |
-| **TOTAL**                               |  **337** |   **13** |   **54** |   **12** | **94%** |           |
+| Name                                    |    Stmts |     Miss |   Branch |   BrPart |    Cover |   Missing |
+|---------------------------------------- | -------: | -------: | -------: | -------: | -------: | --------: |
+| pretalx\_public\_voting/\_\_init\_\_.py |        1 |        0 |        0 |        0 |     100% |           |
+| pretalx\_public\_voting/apps.py         |       15 |        0 |        0 |        0 |     100% |           |
+| pretalx\_public\_voting/exporters.py    |       16 |        0 |        0 |        0 |     100% |           |
+| pretalx\_public\_voting/forms.py        |      105 |        0 |       20 |        0 |     100% |           |
+| pretalx\_public\_voting/models.py       |       36 |        0 |        2 |        0 |     100% |           |
+| pretalx\_public\_voting/signals.py      |       20 |        0 |        4 |        0 |     100% |           |
+| pretalx\_public\_voting/utils.py        |       12 |        0 |        0 |        0 |     100% |           |
+| pretalx\_public\_voting/views.py        |      132 |        0 |       28 |        0 |     100% |           |
+| **TOTAL**                               |  **337** |    **0** |   **54** |    **0** | **100%** |           |
 
 
 ## Setup coverage badge
