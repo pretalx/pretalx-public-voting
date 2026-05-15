@@ -1,6 +1,7 @@
 import datetime as dt
 
 import pytest
+from django import forms
 from django.core import mail
 from django.test import RequestFactory
 from django.urls import reverse
@@ -9,10 +10,16 @@ from django_scopes import scope, scopes_disabled
 
 from pretalx.event.domain.event import initialise_event
 from pretalx.event.models import Event
+from pretalx.submission.models import Track
 
 from pretalx_public_voting.exporters import PublicVotingCSVExporter
+from pretalx_public_voting.forms import VoteForm
 from pretalx_public_voting.models import PublicVote, PublicVotingSettings
-from pretalx_public_voting.signals import copy_event_settings, public_voting_settings
+from pretalx_public_voting.signals import (
+    copy_event_settings,
+    public_voting_settings,
+    register_data_exporter,
+)
 from pretalx_public_voting.utils import event_sign, event_unsign, hash_email
 
 SETTINGS_URL_NAME = "plugins:pretalx_public_voting:settings"
@@ -287,3 +294,153 @@ def test_event_sign_unsign_roundtrip(event):
 @pytest.mark.django_db
 def test_event_unsign_invalid(event):
     assert event_unsign("invalid:signature", event) is None
+
+
+@pytest.mark.django_db
+def test_csv_exporter_verbose_name(event):
+    exporter = PublicVotingCSVExporter(event)
+    assert str(exporter.verbose_name) == "Public Voting CSV"
+
+
+@pytest.mark.django_db
+def test_signup_preserves_submission_code(client, voting_settings, submission):
+    url = reverse(SIGNUP_URL_NAME, kwargs={"event": voting_settings.event.slug})
+    response = client.post(
+        url + f"?submission_code={submission.code}",
+        {"email": "voter@example.com"},
+        follow=True,
+    )
+    assert response.status_code == 200
+    assert len(mail.outbox) == 1
+    assert f"submission_code={submission.code}" in mail.outbox[0].body
+
+
+@pytest.mark.django_db
+def test_vote_form_clean_score_out_of_range(event, voting_settings):
+    form = VoteForm(event=event)
+    form.cleaned_data = {"score": "99"}
+    with pytest.raises(forms.ValidationError):
+        form.clean_score()
+
+
+@pytest.mark.django_db
+def test_register_data_exporter_signal(event):
+    assert register_data_exporter(sender=event) is PublicVotingCSVExporter
+
+
+@pytest.mark.django_db
+def test_event_copy_without_settings(event):
+    class NoSettings:
+        pass
+
+    assert copy_event_settings(sender=event, other=NoSettings()) is None
+
+
+@pytest.mark.django_db
+def test_submission_list_filter_by_submission_code(
+    client, voting_settings, submission, signed_email
+):
+    with scopes_disabled():
+        other = submission.event.submissions.create(
+            title="Other Submission",
+            submission_type=submission.event.submission_types.first(),
+            state="submitted",
+        )
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.get(url, {"submission_code": submission.code})
+    assert response.status_code == 200
+    assert submission in response.context["submissions"]
+    assert other not in response.context["submissions"]
+    assert response.context["filter_active"] is True
+
+
+@pytest.mark.django_db
+def test_submission_list_limit_tracks_and_filter(
+    client, voting_settings, submission, signed_email
+):
+    with scope(event=voting_settings.event):
+        track_a = Track.objects.create(event=voting_settings.event, name="Track A")
+        track_b = Track.objects.create(event=voting_settings.event, name="Track B")
+        submission.track = track_a
+        submission.save()
+        voting_settings.event.submissions.create(
+            title="Other",
+            submission_type=voting_settings.event.submission_types.first(),
+            state="submitted",
+            track=track_b,
+        )
+        voting_settings.limit_tracks.set([track_a, track_b])
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.get(url, {"track": [track_a.pk]})
+    assert response.status_code == 200
+    assert submission in response.context["submissions"]
+
+
+@pytest.mark.django_db
+def test_submission_list_invalid_filter_form(
+    client, voting_settings, submission, signed_email
+):
+    with scope(event=voting_settings.event):
+        Track.objects.create(event=voting_settings.event, name="Track A")
+        Track.objects.create(event=voting_settings.event, name="Track B")
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.get(url, {"track": ["not-a-pk"]})
+    assert response.status_code == 200
+    assert response.context["filter_active"] is False
+
+
+@pytest.mark.django_db
+def test_submission_list_limit_submission_types(
+    client, voting_settings, submission, signed_email
+):
+    with scope(event=voting_settings.event):
+        sub_type = voting_settings.event.submission_types.first()
+        voting_settings.limit_submission_types.set([sub_type])
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.get(url)
+    assert response.status_code == 200
+    assert submission in response.context["submissions"]
+
+
+@pytest.mark.django_db
+def test_vote_unknown_submission_prefix(
+    client, voting_settings, submission, signed_email
+):
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.post(url, {"nonexistent-score": "2"})
+    assert response.status_code == 200
+    with scopes_disabled():
+        assert not PublicVote.objects.filter(submission=submission).exists()
+
+
+@pytest.mark.django_db
+def test_vote_unchanged_score_not_saved(
+    client, voting_settings, submission, signed_email
+):
+    event = voting_settings.event
+    email_hash = hash_email("voter@example.com", event)
+    with scopes_disabled():
+        PublicVote.objects.create(submission=submission, email_hash=email_hash, score=2)
+    url = reverse(
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
+    )
+    response = client.post(url, {f"{submission.code}-score": "2"})
+    assert response.status_code == 200
+    with scopes_disabled():
+        vote = PublicVote.objects.get(submission=submission, email_hash=email_hash)
+    assert vote.score == 2
