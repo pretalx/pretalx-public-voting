@@ -7,12 +7,12 @@
 | pretalx\_public\_voting/\_\_init\_\_.py |        1 |        0 |        0 |        0 |     100% |           |
 | pretalx\_public\_voting/apps.py         |       15 |        0 |        0 |        0 |     100% |           |
 | pretalx\_public\_voting/exporters.py    |       16 |        0 |        0 |        0 |     100% |           |
-| pretalx\_public\_voting/forms.py        |      105 |        0 |       20 |        0 |     100% |           |
+| pretalx\_public\_voting/forms.py        |      106 |        0 |       20 |        0 |     100% |           |
 | pretalx\_public\_voting/models.py       |       36 |        0 |        2 |        0 |     100% |           |
 | pretalx\_public\_voting/signals.py      |       20 |        0 |        4 |        0 |     100% |           |
 | pretalx\_public\_voting/utils.py        |       12 |        0 |        0 |        0 |     100% |           |
 | pretalx\_public\_voting/views.py        |      132 |        0 |       28 |        0 |     100% |           |
-| **TOTAL**                               |  **337** |    **0** |   **54** |    **0** | **100%** |           |
+| **TOTAL**                               |  **338** |    **0** |   **54** |    **0** | **100%** |           |
 
 
 ## Setup coverage badge
