@@ -1,3 +1,5 @@
+from urllib.parse import urlencode
+
 from django import forms
 from django.db.models import Count, Q
 from django.utils.safestring import mark_safe
@@ -50,9 +52,11 @@ class SignupForm(forms.Form):
             kwargs={"event": event.slug, "signed_user": email_signed},
         )
 
-        # Preserve 'submission_code' parameter if it exists
+        # Preserve 'submission_code' parameter if it exists. The value is
+        # attacker-controlled (GET param), so it must be URL-encoded to keep it
+        # from breaking out into the surrounding (mark_safe'd) mail markdown.
         if self.submission_code:
-            vote_url += f"?submission_code={self.submission_code}"
+            vote_url += "?" + urlencode({"submission_code": self.submission_code})
 
         from pretalx.mail.domain.send import (  # noqa: PLC0415 -- avoid circular import
             send_system_mail,

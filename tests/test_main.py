@@ -316,6 +316,29 @@ def test_signup_preserves_submission_code(client, voting_settings, submission):
 
 
 @pytest.mark.django_db
+def test_signup_does_not_inject_markdown_via_submission_code(client, voting_settings):
+    # submission_code is an attacker-controlled GET param embedded into the
+    # (mark_safe'd) confirmation mail; it must be URL-encoded so it cannot
+    # inject a markdown link into the trusted-sender email body.
+    url = reverse(SIGNUP_URL_NAME, kwargs={"event": voting_settings.event.slug})
+    payload = "%0A%0A%5BConfirm%20your%20account%5D(https%3A//evil.example)%0A%0A"
+    response = client.post(
+        url + f"?submission_code={payload}",
+        {"email": "voter@example.com"},
+        follow=True,
+    )
+    assert response.status_code == 200
+    assert len(mail.outbox) == 1
+    message = mail.outbox[0]
+    html = "".join(
+        content for content, mimetype in message.alternatives if mimetype == "text/html"
+    )
+    # No live phishing link, and the markdown label never decoded into the body.
+    assert 'href="https://evil.example"' not in html
+    assert "Confirm your account" not in html
+
+
+@pytest.mark.django_db
 def test_vote_form_clean_score_out_of_range(event, voting_settings):
     form = VoteForm(event=event)
     form.cleaned_data = {"score": "99"}
