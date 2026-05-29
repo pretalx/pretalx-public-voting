@@ -323,9 +323,7 @@ def test_signup_does_not_inject_markdown_via_submission_code(client, voting_sett
     url = reverse(SIGNUP_URL_NAME, kwargs={"event": voting_settings.event.slug})
     payload = "%0A%0A%5BConfirm%20your%20account%5D(https%3A//evil.example)%0A%0A"
     response = client.post(
-        url + f"?submission_code={payload}",
-        {"email": "voter@example.com"},
-        follow=True,
+        url + f"?submission_code={payload}", {"email": "voter@example.com"}, follow=True
     )
     assert response.status_code == 200
     assert len(mail.outbox) == 1
