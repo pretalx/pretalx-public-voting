@@ -1,6 +1,7 @@
 import random
 
 from django.contrib import messages
+from django.core.cache import cache
 from django.db.models import Case, ObjectDoesNotExist, OuterRef, Subquery, When
 from django.http import Http404, JsonResponse
 from django.shortcuts import redirect
@@ -24,7 +25,11 @@ from .forms import (
     VoteForm,
 )
 from .models import PublicVote, PublicVotingSettings
-from .utils import event_unsign
+from .utils import event_unsign, hash_email
+
+# Throttle unauthenticated signups to prevent spam
+SIGNUP_RATE_LIMIT_WINDOW = 3600  # seconds
+SIGNUP_RATE_LIMIT_THRESHOLD = 3  # confirmation mails per recipient per window
 
 
 class PublicVotingRequired:
@@ -57,8 +62,20 @@ class SignupView(PublicVotingRequired, FormView):
         return result
 
     def form_valid(self, form):
-        form.send_email()
+        if not self.is_rate_limited(form.cleaned_data["email"]):
+            form.send_email()
+        # Report success to prevent leaking the throttle
         return super().form_valid(form)
+
+    def is_rate_limited(self, email):
+        key = f"pretalx_public_voting_signup_{self.request.event.pk}_{hash_email(email, self.request.event)}"
+        if (cache.get(key) or 0) >= SIGNUP_RATE_LIMIT_THRESHOLD:
+            return True
+        try:
+            cache.incr(key)
+        except ValueError:
+            cache.set(key, 1, SIGNUP_RATE_LIMIT_WINDOW)
+        return False
 
 
 class ThanksView(PublicVotingRequired, TemplateView):

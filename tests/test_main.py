@@ -468,6 +468,25 @@ def test_vote_unchanged_score_not_saved(
 
 
 @pytest.mark.django_db
+def test_signup_throttles_per_recipient(client, voting_settings, locmem_cache):
+    url = reverse(SIGNUP_URL_NAME, kwargs={"event": voting_settings.event.slug})
+    for _i in range(5):
+        response = client.post(url, {"email": "victim@example.com"}, follow=True)
+        assert response.status_code == 200
+    assert len(mail.outbox) == 3
+
+
+@pytest.mark.django_db
+def test_signup_throttle_is_per_recipient(client, voting_settings, locmem_cache):
+    url = reverse(SIGNUP_URL_NAME, kwargs={"event": voting_settings.event.slug})
+    for _i in range(5):
+        client.post(url, {"email": "victim@example.com"}, follow=True)
+    client.post(url, {"email": "someone-else@example.com"}, follow=True)
+    assert len(mail.outbox) == 4
+    assert mail.outbox[-1].to == ["someone-else@example.com"]
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize(
     ("anonymize", "present", "absent"),
     (

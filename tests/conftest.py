@@ -2,6 +2,8 @@ import datetime as dt
 
 import pytest
 from django.core import management
+from django.core.cache import caches
+from django.test import override_settings
 from django.utils.timezone import now
 from django_scopes import scopes_disabled
 
@@ -18,6 +20,21 @@ from pretalx_public_voting.utils import event_sign, hash_email
 @pytest.fixture(scope="session", autouse=True)
 def collect_static(request):
     management.call_command("collectstatic", "--noinput", "--clear")
+
+
+@pytest.fixture
+def locmem_cache():
+    """Replace the DummyCache test default with a real LocMemCache so that
+    cache-backed rate limiting actually stores and retrieves counters."""
+    locmem_settings = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "test-cache-public-voting",
+        }
+    }
+    with override_settings(CACHES=locmem_settings):
+        caches["default"].clear()
+        yield
 
 
 @pytest.fixture
