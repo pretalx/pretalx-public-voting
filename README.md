@@ -11,8 +11,8 @@
 | pretalx\_public\_voting/models.py       |       36 |        0 |        2 |        0 |     100% |           |
 | pretalx\_public\_voting/signals.py      |       20 |        0 |        4 |        0 |     100% |           |
 | pretalx\_public\_voting/utils.py        |       12 |        0 |        0 |        0 |     100% |           |
-| pretalx\_public\_voting/views.py        |      132 |        0 |       28 |        0 |     100% |           |
-| **TOTAL**                               |  **338** |    **0** |   **54** |    **0** | **100%** |           |
+| pretalx\_public\_voting/views.py        |      145 |        0 |       32 |        0 |     100% |           |
+| **TOTAL**                               |  **351** |    **0** |   **58** |    **0** | **100%** |           |
 
 
 ## Setup coverage badge
