@@ -1,5 +1,6 @@
 {% extends "cfp/event/base.html" %}
 
+{% load anonymisation %}
 {% load form_media %}
 {% load i18n %}
 {% load rich_text %}
@@ -52,7 +53,11 @@
                     {% endif %}
                     <div class="card-body">
                         <div class="public-voting-header">
-                            <h3 class="card-title">{{ submission.title }}</h3>
+                            {% if request.event.public_vote_settings.anonymize_speakers %}
+                                <h3 class="card-title">{{ submission|anonymised_value:"title" }}</h3>
+                            {% else %}
+                                <h3 class="card-title">{{ submission.title }}</h3>
+                            {% endif %}
                             <a href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code }}" data-pretalx-voting-selector="share" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
                                 <i class="fa fa-link" aria-hidden="true"></i>
                             </a>
@@ -66,9 +71,16 @@
                             </p>
                         {% endif %}
                         <div class="card-text">
-                            {{ submission.abstract|rich_text|default:'-' }}
-                            {% if request.event.public_vote_settings.show_session_description and submission.description %}
-                                {{ submission.description|rich_text|default:'-' }}
+                            {% if request.event.public_vote_settings.anonymize_speakers %}
+                                {{ submission|anonymised_value:"abstract"|rich_text|default:'-' }}
+                                {% if request.event.public_vote_settings.show_session_description and submission.description %}
+                                    {{ submission|anonymised_value:"description"|rich_text|default:'-' }}
+                                {% endif %}
+                            {% else %}
+                                {{ submission.abstract|rich_text|default:'-' }}
+                                {% if request.event.public_vote_settings.show_session_description and submission.description %}
+                                    {{ submission.description|rich_text|default:'-' }}
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>

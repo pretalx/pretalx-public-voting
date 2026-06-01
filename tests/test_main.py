@@ -465,3 +465,54 @@ def test_vote_unchanged_score_not_saved(
     with scopes_disabled():
         vote = PublicVote.objects.get(submission=submission, email_hash=email_hash)
     assert vote.score == 2
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    ("anonymize", "present", "absent"),
+    (
+        (
+            True,
+            ["A redacted title", "A redacted abstract.", "A redacted description."],
+            ["Original title", "Original abstract.", "Original description."],
+        ),
+        (
+            False,
+            ["Original title", "Original abstract.", "Original description."],
+            ["A redacted title", "A redacted abstract.", "A redacted description."],
+        ),
+    ),
+)
+def test_anonymise_content_uses_redacted_fields(
+    client, voting_settings, signed_email, anonymize, present, absent
+):
+    # With "Anonymise content" enabled, the public list must render the
+    # organiser's redacted title/abstract/description, never the originals.
+    with scopes_disabled():
+        voting_settings.anonymize_speakers = anonymize
+        voting_settings.show_session_description = True
+        voting_settings.save()
+        voting_settings.event.submissions.create(
+            title="Original title",
+            abstract="Original abstract.",
+            description="Original description.",
+            submission_type=voting_settings.event.submission_types.first(),
+            state="submitted",
+            anonymised={
+                "_anonymised": True,
+                "title": "A redacted title",
+                "abstract": "A redacted abstract.",
+                "description": "A redacted description.",
+            },
+        )
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.get(url)
+    assert response.status_code == 200
+    html = response.content.decode()
+    for value in present:
+        assert value in html
+    for value in absent:
+        assert value not in html
