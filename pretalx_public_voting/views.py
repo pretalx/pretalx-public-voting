@@ -111,7 +111,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         ).values("score")
 
         # Idea is from https://stackoverflow.com/questions/4916851/django-get-a-queryset-from-array-of-ids-in-specific-order/37648265#37648265
-        base_qs = self.request.event.submissions.all().filter(
+        base_qs = self.request.event.submissions.filter(
             state=SubmissionStates.SUBMITTED
         )
 
@@ -182,7 +182,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
 
         # Check if we should show submission types
         result["show_submission_types"] = (
-            self.request.event.submission_types.all().count() > 1
+            self.request.event.submission_types.count() > 1
         )
 
         for submission in result["submissions"]:
