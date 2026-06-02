@@ -7,15 +7,15 @@
 {% load static %}
 
 {% block scripts %}
-    <script defer src="{% static "pretalx_public_voting/vote.js" %}"></script>
-    <script defer src="{% static "pretalx_public_voting/share.js" %}"></script>
+    <script defer src="{% static 'pretalx_public_voting/vote.js' %}"></script>
+    <script defer src="{% static 'pretalx_public_voting/share.js' %}"></script>
     {% form_media %}
 {% endblock %}
 
 
 {% block cfp_stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{% static "orga/css/ui/pagination.css" %}" />
-    <link rel="stylesheet" href="{% static "pretalx_public_voting/vote.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'orga/css/ui/pagination.css' %}" />
+    <link rel="stylesheet" href="{% static 'pretalx_public_voting/vote.css' %}" />
 {% endblock cfp_stylesheets %}
 
 {% block content %}
@@ -112,7 +112,7 @@
             {% blocktrans trimmed %}
                 This page is invalid. Please double-check that you have followed a complete link to this place.
             {% endblocktrans %}
-            <a href="{% url "plugins:pretalx_public_voting:signup" event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
+            <a href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
         </p>
     {% endif %}
 {% endblock %}
