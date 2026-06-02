@@ -58,7 +58,7 @@
                             {% else %}
                                 <h3 class="card-title">{{ submission.title }}</h3>
                             {% endif %}
-                            <a href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code }}" data-pretalx-voting-selector="share" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
+                            <a href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code|urlencode }}" data-pretalx-voting-selector="share" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
                                 <i class="fa fa-link" aria-hidden="true"></i>
                             </a>
                         </div>
