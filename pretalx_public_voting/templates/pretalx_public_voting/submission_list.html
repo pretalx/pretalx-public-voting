@@ -12,10 +12,9 @@
     {% form_media %}
 {% endblock %}
 
-
 {% block cfp_stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{% static 'orga/css/ui/pagination.css' %}" />
-    <link rel="stylesheet" href="{% static 'pretalx_public_voting/vote.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'orga/css/ui/pagination.css' %}">
+    <link rel="stylesheet" href="{% static 'pretalx_public_voting/vote.css' %}">
 {% endblock cfp_stylesheets %}
 
 {% block content %}
@@ -29,7 +28,11 @@
                 <div class="ml-auto">
                     <button class="btn btn-success" type="submit">{% trans "Filter" %}</button>
                     {% if filter_active %}
-                        <a role=button href="{{ remove_filter_url }}" class="btn btn-secondary">{% trans "Reset filter" %}</a>
+                        <a
+                            role="button"
+                            href="{{ remove_filter_url }}"
+                            class="btn btn-secondary"
+                        >{% trans "Reset filter" %}</a>
                     {% endif %}
                 </div>
             </form>
@@ -48,7 +51,12 @@
                 <div class="card submission-card">
                     {% if submission.image and request.event.public_vote_settings.show_session_image %}
                         <div class="card-img-top-wrapper">
-                            <img loading="lazy" src="{{ submission.image.url }}" alt="{% trans "This talk's header image" %}" class="card-img-top">
+                            <img
+                                loading="lazy"
+                                src="{{ submission.image.url }}"
+                                alt="{% trans "This talk's header image" %}"
+                                class="card-img-top"
+                            >
                         </div>
                     {% endif %}
                     <div class="card-body">
@@ -58,7 +66,12 @@
                             {% else %}
                                 <h3 class="card-title">{{ submission.title }}</h3>
                             {% endif %}
-                            <a href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code|urlencode }}" data-pretalx-voting-selector="share" class="btn btn-link" data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}">
+                            <a
+                                href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code|urlencode }}"
+                                data-pretalx-voting-selector="share"
+                                class="btn btn-link"
+                                data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}"
+                            >
                                 <i class="fa fa-link" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -112,7 +125,9 @@
             {% blocktrans trimmed %}
                 This page is invalid. Please double-check that you have followed a complete link to this place.
             {% endblocktrans %}
-            <a href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}">{% trans "Click here to sign up for voting." %}</a>
+            <a
+                href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}"
+            >{% trans "Click here to sign up for voting." %}</a>
         </p>
     {% endif %}
 {% endblock %}
