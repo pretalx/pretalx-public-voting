@@ -4,3 +4,4 @@ exclude pretalx_public_voting/locale/django.pot
 recursive-include pretalx_public_voting/locale *
 recursive-include pretalx_public_voting *.py
 include justfile
+include uv.lock
