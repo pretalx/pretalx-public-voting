@@ -225,8 +225,8 @@ def test_csv_exporter(event, voting_settings, submission):
     with scopes_disabled():
         PublicVote.objects.create(submission=submission, email_hash=email_hash, score=2)
 
-    exporter = PublicVotingCSVExporter(event)
     with scopes_disabled():
+        exporter = PublicVotingCSVExporter(event.wip_schedule)
         fieldnames, data = exporter.get_csv_data(request=None)
     assert "code" in fieldnames
     assert len(data) == 1
@@ -298,7 +298,8 @@ def test_event_unsign_invalid(event):
 
 @pytest.mark.django_db
 def test_csv_exporter_verbose_name(event):
-    exporter = PublicVotingCSVExporter(event)
+    with scopes_disabled():
+        exporter = PublicVotingCSVExporter(event.wip_schedule)
     assert str(exporter.verbose_name) == "Public Voting CSV"
 
 
