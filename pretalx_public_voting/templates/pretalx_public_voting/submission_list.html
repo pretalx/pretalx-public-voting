@@ -18,7 +18,7 @@
 {% endblock cfp_stylesheets %}
 
 {% block content %}
-    <h1>{% trans "Public voting" %}</h1>
+    <h2 class="page-heading">{% trans "Public voting" %}</h2>
     {{ request.event.public_vote_settings.text|rich_text }}
 
     {% if filter_form.fields %}
@@ -60,7 +60,7 @@
                         </div>
                     {% endif %}
                     <div class="card-body">
-                        <div class="heading-with-buttons">
+                        <div class="public-voting-header">
                             {% if request.event.public_vote_settings.anonymize_speakers %}
                                 <h3 class="card-title">{{ submission|anonymised_value:"title" }}</h3>
                             {% else %}
