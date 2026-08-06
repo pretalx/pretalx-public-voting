@@ -60,20 +60,22 @@
                         </div>
                     {% endif %}
                     <div class="card-body">
-                        <div class="public-voting-header">
+                        <div class="heading-with-buttons">
                             {% if request.event.public_vote_settings.anonymize_speakers %}
                                 <h3 class="card-title">{{ submission|anonymised_value:"title" }}</h3>
                             {% else %}
                                 <h3 class="card-title">{{ submission.title }}</h3>
                             {% endif %}
-                            <a
-                                href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code|urlencode }}"
-                                data-pretalx-voting-selector="share"
-                                class="btn btn-link"
-                                data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}"
-                            >
-                                <i class="fa fa-link" aria-hidden="true"></i>
-                            </a>
+                            <div class="buttons">
+                                <a
+                                    href="{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}?submission_code={{ submission.code|urlencode }}"
+                                    data-pretalx-voting-selector="share"
+                                    class="btn btn-link"
+                                    data-pretalx-voting-copied-successful-text="{% trans 'Copied!' %}"
+                                >
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                </a>
+                            </div>
                         </div>
                         {% if not request.event.public_vote_settings.anonymize_speakers %}
                             <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>

@@ -3,9 +3,9 @@
 {% load i18n %}
 
 {% block content %}
-    <h2 class="d-flex">
-        {% trans "Set up public voting" %}
-        <div class="ml-auto">
+    <div class="heading-with-buttons mb-2">
+        <h2>{% trans "Set up public voting" %}</h2>
+        <div class="buttons">
             <a class="btn btn-outline-info" href="{{ export_url }}">
                 {% translate "Download results CSV" %}
             </a>
@@ -16,7 +16,7 @@
                 {% translate "Go to public voting" %}
             </a>
         </div>
-    </h2>
+    </div>
     <p>
         {% blocktrans trimmed %}
             Public voting will show your submissions publicly, and will allow anybody who provides a valid email address
