@@ -1,3 +1,16 @@
+.filter-group .search-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+
+  & > .form-group {
+    width: 300px;
+    margin-right: 16px;
+    margin-bottom: 0;
+  }
+}
+
 .public-voting-header {
   display: flex;
   flex-wrap: wrap;

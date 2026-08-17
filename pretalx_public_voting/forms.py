@@ -241,6 +241,3 @@ class PublicVotingFilterForm(forms.Form):
         if track:
             qs = qs.filter(track__in=track)
         return qs
-
-    class Media:
-        css = {"all": ["orga/css/forms/search.css"]}

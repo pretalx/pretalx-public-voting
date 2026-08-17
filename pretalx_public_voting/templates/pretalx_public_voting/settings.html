@@ -10,7 +10,7 @@
                 {% translate "Download results CSV" %}
             </a>
             <a
-                class="btn btn-info"
+                class="btn btn-secondary"
                 href="{% if request.event.custom_domain %}{{ request.event.custom_domain }}{% endif %}{% url 'plugins:pretalx_public_voting:signup' event=request.event.slug %}"
             >
                 {% translate "Go to public voting" %}
