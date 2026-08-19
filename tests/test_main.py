@@ -380,6 +380,24 @@ def test_submission_list_filter_by_submission_code(
 
 
 @pytest.mark.django_db
+def test_submission_list_empty_result(
+    client, voting_settings, submission, signed_email
+):
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.get(url, {"submission_code": "NOSUCH"})
+    assert response.status_code == 200
+    assert not response.context["submissions"]
+    # Tests run on sqlite, which accepts ORDER BY NULL, while PostgreSQL 500s on it.
+    assert "ORDER BY NULL" not in str(response.context["paginator"].object_list.query)
+
+    response = client.post(url, {"submission_code": "NOSUCH"}, follow=True)
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
 def test_submission_list_limit_tracks_and_filter(
     client, voting_settings, submission, signed_email
 ):

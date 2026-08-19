@@ -137,15 +137,18 @@ class SubmissionListView(PublicVotingRequired, ListView):
         submission_pks = list(base_qs.values_list("pk", flat=True))
         random.seed(self.hashed_email)
         random.shuffle(submission_pks)
+
+        result = base_qs.annotate(score=Subquery(votes)).prefetch_related(
+            "speakers", "submission_type", "track"
+        )
+        if not submission_pks:
+            # A Case() without branches renders as ORDER BY NULL, which
+            # PostgreSQL rejects, so we order the (empty) result.
+            return result.order_by("pk")
         user_order = Case(
             *[When(pk=pk, then=pos) for pos, pk in enumerate(submission_pks)]
         )
-
-        return (
-            base_qs.annotate(score=Subquery(votes))
-            .prefetch_related("speakers", "submission_type", "track")
-            .order_by(user_order)
-        )
+        return result.order_by(user_order)
 
     def get_form_for_submission(self, submission):
         if self.request.method == "POST":
