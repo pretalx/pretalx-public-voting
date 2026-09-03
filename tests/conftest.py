@@ -1,6 +1,7 @@
 import datetime as dt
 
 import pytest
+from django.conf import settings
 from django.core import management
 from django.core.cache import caches
 from django.test import override_settings
@@ -28,10 +29,11 @@ def locmem_cache():
     """Replace the DummyCache test default with a real LocMemCache so that
     cache-backed rate limiting actually stores and retrieves counters."""
     locmem_settings = {
+        **settings.CACHES,
         "default": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
             "LOCATION": "test-cache-public-voting",
-        }
+        },
     }
     with override_settings(CACHES=locmem_settings):
         caches["default"].clear()
