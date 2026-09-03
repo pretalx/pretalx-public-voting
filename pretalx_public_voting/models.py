@@ -89,6 +89,10 @@ class PublicVotingSettings(models.Model):
     def __str__(self):
         return f"PublicVotingSettings(event={self.event})"
 
+    @classmethod
+    def for_event(cls, event):
+        return cls.objects.filter(event=event).first()
+
     @cached_property
     def allowed_email_list(self):
         allowed = (self.allowed_emails or "").strip().lower()

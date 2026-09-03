@@ -25,16 +25,19 @@ class SignupForm(forms.Form):
 
     email = forms.EmailField(required=True)
 
-    def __init__(self, *args, event=None, submission_code=None, **kwargs):
+    def __init__(
+        self, *args, event=None, voting_settings=None, submission_code=None, **kwargs
+    ):
         self.event = event
+        self.voting_settings = voting_settings
         self.submission_code = submission_code
         super().__init__(*args, **kwargs)
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        if not self.event.public_vote_settings.allowed_email_list:
+        if not self.voting_settings.allowed_email_list:
             return email
-        if email.strip().lower() in self.event.public_vote_settings.allowed_email_list:
+        if email.strip().lower() in self.voting_settings.allowed_email_list:
             return email
         raise forms.ValidationError(_("This address is not allowed to cast a vote."))
 
@@ -95,22 +98,22 @@ class VoteForm(forms.Form):
     def __init__(
         self,
         *args,
-        event=None,
+        voting_settings=None,
         submission=None,
         hashed_email=None,
         require_score=False,
         **kwargs,
     ):
-        self.event = event
+        self.voting_settings = voting_settings
         self.submission = submission
         self.hashed_email = hashed_email
         super().__init__(*args, **kwargs)
-        self.min_value = event.public_vote_settings.min_score
-        self.max_value = event.public_vote_settings.max_score
+        self.min_value = voting_settings.min_score
+        self.max_value = voting_settings.max_score
         choices = []
         for counter in range(abs(self.max_value - self.min_value) + 1):
             value = self.min_value + counter
-            name = event.public_vote_settings.score_names.get(str(value)) or value
+            name = voting_settings.score_names.get(str(value)) or value
             choices.append((str(value), name))
         self.fields["score"] = forms.ChoiceField(
             choices=choices, required=require_score, widget=forms.RadioSelect

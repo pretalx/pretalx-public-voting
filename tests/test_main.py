@@ -338,8 +338,8 @@ def test_signup_does_not_inject_markdown_via_submission_code(client, voting_sett
 
 
 @pytest.mark.django_db
-def test_vote_form_clean_score_out_of_range(event, voting_settings):
-    form = VoteForm(event=event)
+def test_vote_form_clean_score_out_of_range(voting_settings):
+    form = VoteForm(voting_settings=voting_settings)
     form.cleaned_data = {"score": "99"}
     with pytest.raises(forms.ValidationError):
         form.clean_score()
@@ -352,10 +352,9 @@ def test_register_data_exporter_signal(event):
 
 @pytest.mark.django_db
 def test_event_copy_without_settings(event):
-    class NoSettings:
-        pass
-
-    assert copy_event_settings(sender=event, other=NoSettings()) is None
+    assert copy_event_settings(sender=event, other=event) is None
+    with scopes_disabled():
+        assert not PublicVotingSettings.objects.filter(event=event).exists()
 
 
 @pytest.mark.django_db

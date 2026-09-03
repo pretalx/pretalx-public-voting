@@ -2,7 +2,7 @@ import random
 
 from django.contrib import messages
 from django.core.cache import cache
-from django.db.models import Case, ObjectDoesNotExist, OuterRef, Subquery, When
+from django.db.models import Case, OuterRef, Subquery, When
 from django.http import Http404, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -33,12 +33,16 @@ SIGNUP_RATE_LIMIT_THRESHOLD = 3  # confirmation mails per recipient per window
 
 
 class PublicVotingRequired:
+    @context
+    @cached_property
+    def voting_settings(self):
+        return PublicVotingSettings.for_event(self.request.event)
+
     def dispatch(self, request, *args, **kwargs):
-        try:
-            start = request.event.public_vote_settings.start
-            end = request.event.public_vote_settings.end
-        except (AttributeError, ObjectDoesNotExist):
-            raise Http404 from None
+        if not self.voting_settings:
+            raise Http404
+        start = self.voting_settings.start
+        end = self.voting_settings.end
 
         _now = now()
         start_valid = (not start) or _now > start
@@ -58,6 +62,7 @@ class SignupView(PublicVotingRequired, FormView):
     def get_form_kwargs(self):
         result = super().get_form_kwargs()
         result["event"] = self.request.event
+        result["voting_settings"] = self.voting_settings
         result["submission_code"] = self.request.GET.get("submission_code")
         return result
 
@@ -95,7 +100,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
 
     @cached_property
     def filter_form(self):
-        limit_tracks = self.request.event.public_vote_settings.limit_tracks.all()
+        limit_tracks = self.voting_settings.limit_tracks.all()
         return PublicVotingFilterForm(
             data=self.request.GET, event=self.request.event, limit_tracks=limit_tracks
         )
@@ -121,12 +126,10 @@ class SubmissionListView(PublicVotingRequired, ListView):
             base_qs = base_qs.filter(code=submission_code)
 
         # Apply organizer-configured track limits
-        tracks = self.request.event.public_vote_settings.limit_tracks.all()
+        tracks = self.voting_settings.limit_tracks.all()
         if tracks:
             base_qs = base_qs.filter(track__in=tracks)
-        submission_types = (
-            self.request.event.public_vote_settings.limit_submission_types.all()
-        )
+        submission_types = self.voting_settings.limit_submission_types.all()
         if submission_types:
             base_qs = base_qs.filter(submission_type__in=submission_types)
 
@@ -158,12 +161,12 @@ class SubmissionListView(PublicVotingRequired, ListView):
                 hashed_email=self.hashed_email,
                 require_score=True,
                 initial={"score": submission.score},
-                event=self.request.event,
+                voting_settings=self.voting_settings,
                 prefix=submission.code,
             )
         return VoteForm(
             initial={"score": submission.score},
-            event=self.request.event,
+            voting_settings=self.voting_settings,
             prefix=submission.code,
         )
 

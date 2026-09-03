@@ -19,7 +19,7 @@
 
 {% block content %}
     <h2 class="page-heading">{% trans "Public voting" %}</h2>
-    {{ request.event.public_vote_settings.text|rich_text }}
+    {{ voting_settings.text|rich_text }}
 
     {% if filter_form.fields %}
         <div class="filter-group mb-3">
@@ -49,7 +49,7 @@
             {% csrf_token %}
             {% for submission in submissions %}
                 <div class="card submission-card">
-                    {% if submission.image and request.event.public_vote_settings.show_session_image %}
+                    {% if submission.image and voting_settings.show_session_image %}
                         <div class="card-img-top-wrapper">
                             <img
                                 loading="lazy"
@@ -61,7 +61,7 @@
                     {% endif %}
                     <div class="card-body">
                         <div class="public-voting-header">
-                            {% if request.event.public_vote_settings.anonymize_speakers %}
+                            {% if voting_settings.anonymize_speakers %}
                                 <h3 class="card-title">{{ submission|anonymised_value:"title" }}</h3>
                             {% else %}
                                 <h3 class="card-title">{{ submission.title }}</h3>
@@ -77,7 +77,7 @@
                                 </a>
                             </div>
                         </div>
-                        {% if not request.event.public_vote_settings.anonymize_speakers %}
+                        {% if not voting_settings.anonymize_speakers %}
                             <p class="card-subtitle mb-2 text-muted">{{ submission.display_speaker_names }}</p>
                         {% endif %}
                         {% if show_submission_types and submission.submission_type %}
@@ -86,14 +86,14 @@
                             </p>
                         {% endif %}
                         <div class="card-text">
-                            {% if request.event.public_vote_settings.anonymize_speakers %}
+                            {% if voting_settings.anonymize_speakers %}
                                 {{ submission|anonymised_value:"abstract"|rich_text|default:'-' }}
-                                {% if request.event.public_vote_settings.show_session_description and submission.description %}
+                                {% if voting_settings.show_session_description and submission.description %}
                                     {{ submission|anonymised_value:"description"|rich_text|default:'-' }}
                                 {% endif %}
                             {% else %}
                                 {{ submission.abstract|rich_text|default:'-' }}
-                                {% if request.event.public_vote_settings.show_session_description and submission.description %}
+                                {% if voting_settings.show_session_description and submission.description %}
                                     {{ submission.description|rich_text|default:'-' }}
                                 {% endif %}
                             {% endif %}

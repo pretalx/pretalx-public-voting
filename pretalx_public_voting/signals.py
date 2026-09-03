@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 from pretalx.common.signals import register_data_exporters
 from pretalx.orga.signals import event_copy_data, nav_event_settings
 
+from .models import PublicVotingSettings
+
 
 @receiver(nav_event_settings)
 def public_voting_settings(sender, request, **kwargs):
@@ -32,7 +34,7 @@ def register_data_exporter(sender, **kwargs):
 
 @receiver(event_copy_data)
 def copy_event_settings(sender, other, **kwargs):
-    old_settings = getattr(other, "public_vote_settings", None)
+    old_settings = PublicVotingSettings.for_event(other)
     if old_settings:
         old_settings.id = None
         old_settings.event = sender
