@@ -8,7 +8,8 @@ from django.urls import reverse
 from django.utils.timezone import now
 from django_scopes import scope, scopes_disabled
 
-from pretalx.event.domain.event import initialise_event
+from pretalx.event.domain.event import copy_event_data, initialise_event
+from pretalx.event.domain.plugins import enable_plugin
 from pretalx.event.models import Event
 from pretalx.submission.models import Track
 
@@ -234,23 +235,44 @@ def test_csv_exporter(event, voting_settings, submission):
 
 
 @pytest.mark.django_db
-def test_event_copy_copies_settings(event, voting_settings):
+@pytest.mark.parametrize("with_dates", (True, False))
+def test_event_copy_copies_settings(event, voting_settings, with_dates):
+    if not with_dates:
+        voting_settings.start = None
+        voting_settings.end = None
+        voting_settings.save()
     with scopes_disabled():
+        track = Track.objects.create(event=event, name="Track A")
+        Track.objects.create(event=event, name="Track B")
+        voting_settings.limit_tracks.add(track)
+        voting_settings.limit_submission_types.add(event.cfp.default_type)
         new_event = Event.objects.create(
             name="Copied event",
             is_public=True,
             slug="copied",
             email="orga@orga.org",
-            date_from=event.date_from,
-            date_to=event.date_to,
+            date_from=event.date_from + dt.timedelta(days=7),
+            date_to=event.date_to + dt.timedelta(days=7),
             organiser=event.organiser,
         )
         initialise_event(new_event)
-    copy_event_settings(sender=new_event, other=event)
-    with scopes_disabled():
+        enable_plugin(new_event, "pretalx_public_voting")
+        copy_event_data(event=new_event, source=event)
         new_settings = PublicVotingSettings.objects.get(event=new_event)
-    assert new_settings.min_score == voting_settings.min_score
-    assert new_settings.max_score == voting_settings.max_score
+        assert new_settings.min_score == voting_settings.min_score
+        assert new_settings.max_score == voting_settings.max_score
+        if with_dates:
+            assert new_settings.start == voting_settings.start + dt.timedelta(days=7)
+            assert new_settings.end == voting_settings.end + dt.timedelta(days=7)
+        else:
+            assert new_settings.start is None
+            assert new_settings.end is None
+        assert [t.name for t in new_settings.limit_tracks.all()] == ["Track A"]
+        assert all(t.event == new_event for t in new_settings.limit_tracks.all())
+        assert list(new_settings.limit_submission_types.all()) == [
+            new_event.cfp.default_type
+        ]
+        assert voting_settings.limit_tracks.count() == 1
 
 
 @pytest.mark.django_db
@@ -352,7 +374,7 @@ def test_register_data_exporter_signal(event):
 
 @pytest.mark.django_db
 def test_event_copy_without_settings(event):
-    assert copy_event_settings(sender=event, other=event) is None
+    assert copy_event_settings(sender=event, other=event.slug) is None
     with scopes_disabled():
         assert not PublicVotingSettings.objects.filter(event=event).exists()
 
