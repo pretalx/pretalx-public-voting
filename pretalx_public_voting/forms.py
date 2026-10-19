@@ -61,9 +61,7 @@ class SignupForm(forms.Form):
         if self.submission_code:
             vote_url += "?" + urlencode({"submission_code": self.submission_code})
 
-        from pretalx.mail.domain.send import (  # noqa: PLC0415 -- avoid circular import
-            send_system_mail,
-        )
+        from pretalx.mail.domain.send import send_system_mail  # noqa: PLC0415 -- avoid circular import
 
         mail_text = _(
             """Hi,
