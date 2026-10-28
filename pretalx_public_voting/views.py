@@ -151,7 +151,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         user_order = Case(
             *[When(pk=pk, then=pos) for pos, pk in enumerate(submission_pks)]
         )
-        return result.order_by(user_order)
+        return result.order_by(user_order, "pk")
 
     def get_form_for_submission(self, submission):
         if self.request.method == "POST":
