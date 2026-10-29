@@ -96,7 +96,8 @@ class SubmissionListView(PublicVotingRequired, ListView):
     @context
     @cached_property
     def hashed_email(self):
-        return event_unsign(self.kwargs["signed_user"], self.request.event)
+        signed_user = self.kwargs.get("signed_user")
+        return signed_user and event_unsign(signed_user, self.request.event)
 
     @cached_property
     def filter_form(self):
@@ -109,7 +110,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
         if not self.hashed_email:
             # If the use wasn't valid, there is no point of returning a
             # QuerySet with the talks
-            return Submission.objects.none()
+            return Submission.objects.none().order_by("pk")
 
         votes = PublicVote.objects.filter(
             email_hash=self.hashed_email, submission_id=OuterRef("pk")
