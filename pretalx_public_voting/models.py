@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.functional import cached_property
+from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
 from django_scopes import ScopedManager
 from i18nfield.fields import I18nTextField
@@ -36,9 +37,11 @@ class PublicVotingSettings(models.Model):
         null=True,
         blank=True,
         verbose_name=_("Text"),
-        help_text=_("This text will be shown at the top of the public voting page.")
-        + " "
-        + phrases.base.use_markdown,
+        help_text=format_lazy(
+            "{} {}",
+            _("This text will be shown at the top of the public voting page."),
+            phrases.base.use_markdown,
+        ),
     )
     anonymize_speakers = models.BooleanField(
         verbose_name=_("Anonymise content"),
