@@ -71,6 +71,10 @@ msgstr ""
 msgid "Public voting registration"
 msgstr "Registrierung zur öffentlichen Abstimmung"
 
+#: local/pretalx-public-voting/pretalx_public_voting/forms.py:115
+msgid "No score"
+msgstr "Keine Wertung"
+
 #: local/pretalx-public-voting/pretalx_public_voting/forms.py:112
 #, fuzzy, python-format
 #| msgid ""

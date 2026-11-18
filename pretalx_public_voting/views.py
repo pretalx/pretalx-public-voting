@@ -208,7 +208,7 @@ class SubmissionListView(PublicVotingRequired, ListView):
             if not submission:
                 continue
             form = self.get_form_for_submission(submission)
-            if form.is_valid() and form.initial["score"] != form.cleaned_data["score"]:
+            if form.is_valid() and submission.score != form.cleaned_data["score"]:
                 form.save()
         if request.POST.get("action") == "manual":
             messages.success(self.request, _("Thank you for your vote!"))

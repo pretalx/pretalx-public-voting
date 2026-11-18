@@ -106,9 +106,13 @@ class VoteForm(forms.Form):
         self.submission = submission
         self.hashed_email = hashed_email
         super().__init__(*args, **kwargs)
+        if self.initial.get("score") is None:
+            self.initial["score"] = "-"
         self.min_value = voting_settings.min_score
         self.max_value = voting_settings.max_score
-        choices = []
+        # Not an empty value: the HTML minifier drops value="", and then a radio
+        # without a value attribute submits "on".
+        choices = [("-", _("No score"))]
         for counter in range(abs(self.max_value - self.min_value) + 1):
             value = self.min_value + counter
             name = voting_settings.score_names.get(str(value)) or value
@@ -119,7 +123,10 @@ class VoteForm(forms.Form):
         self.fields["score"].widget.attrs["autocomplete"] = "off"
 
     def clean_score(self):
-        score = int(self.cleaned_data.get("score"))
+        score = self.cleaned_data.get("score")
+        if score == "-":
+            return None
+        score = int(score)
         if not self.min_value <= score <= self.max_value:
             raise forms.ValidationError(
                 _("Please assign a score between %(min)s and %(max)s!")
@@ -128,6 +135,10 @@ class VoteForm(forms.Form):
         return score
 
     def save(self):
+        if self.cleaned_data["score"] is None:
+            return PublicVote.objects.filter(
+                submission=self.submission, email_hash=self.hashed_email
+            ).delete()
         return PublicVote.objects.update_or_create(
             submission=self.submission,
             email_hash=self.hashed_email,

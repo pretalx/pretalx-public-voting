@@ -508,6 +508,87 @@ def test_vote_unchanged_score_not_saved(
 
 
 @pytest.mark.django_db
+def test_vote_can_be_retracted(client, voting_settings, submission, signed_email):
+    event = voting_settings.event
+    email_hash = hash_email("voter@example.com", event)
+    with scopes_disabled():
+        other = event.submissions.create(
+            title="Other Submission",
+            submission_type=event.submission_types.first(),
+            state="submitted",
+        )
+        PublicVote.objects.create(submission=submission, email_hash=email_hash, score=2)
+        PublicVote.objects.create(submission=other, email_hash=email_hash, score=3)
+        PublicVote.objects.create(submission=submission, email_hash="x" * 32, score=1)
+    url = reverse(
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
+    )
+    response = client.post(
+        url, {f"{submission.code}-score": "-", f"{other.code}-score": "3"}
+    )
+    assert response.status_code == 200
+    with scopes_disabled():
+        votes = set(
+            PublicVote.objects.values_list("submission__code", "email_hash", "score")
+        )
+    assert votes == {(other.code, email_hash, 3), (submission.code, "x" * 32, 1)}
+
+
+@pytest.mark.django_db
+def test_vote_no_score_without_vote(client, voting_settings, submission, signed_email):
+    url = reverse(
+        TALKS_URL_NAME,
+        kwargs={"event": voting_settings.event.slug, "signed_user": signed_email},
+    )
+    response = client.post(url, {f"{submission.code}-score": "-"})
+    assert response.status_code == 200
+    with scopes_disabled():
+        assert not PublicVote.objects.exists()
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("score", ("99", "abc", "2.5", " ", "", "on", "--"))
+def test_vote_invalid_score_keeps_vote(
+    client, voting_settings, submission, signed_email, score
+):
+    event = voting_settings.event
+    email_hash = hash_email("voter@example.com", event)
+    with scopes_disabled():
+        PublicVote.objects.create(submission=submission, email_hash=email_hash, score=2)
+    url = reverse(
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
+    )
+    response = client.post(url, {f"{submission.code}-score": score})
+    assert response.status_code == 200
+    with scopes_disabled():
+        vote = PublicVote.objects.get(submission=submission, email_hash=email_hash)
+    assert vote.score == 2
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(("score", "checked"), ((None, "-"), (2, "2")))
+def test_submission_list_renders_no_vote_option(
+    client, voting_settings, submission, signed_email, score, checked
+):
+    event = voting_settings.event
+    if score:
+        with scopes_disabled():
+            PublicVote.objects.create(
+                submission=submission,
+                email_hash=hash_email("voter@example.com", event),
+                score=score,
+            )
+    url = reverse(
+        TALKS_URL_NAME, kwargs={"event": event.slug, "signed_user": signed_email}
+    )
+    response = client.get(url)
+    field = response.context["submissions"][0].vote_form["score"]
+    assert [
+        (widget.data["value"], widget.data["selected"]) for widget in field.subwidgets
+    ] == [(value, value == checked) for value in ("-", "1", "2", "3")]
+
+
+@pytest.mark.django_db
 def test_signup_throttles_per_recipient(client, voting_settings, locmem_cache):
     url = reverse(SIGNUP_URL_NAME, kwargs={"event": voting_settings.event.slug})
     for _i in range(5):
