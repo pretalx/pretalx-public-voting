@@ -74,6 +74,8 @@ localegen: ensure-pretalx
     module=$(find . -maxdepth 1 -type d -name 'pretalx_*' -not -name '*.egg-info' | head -1)
     {{ uv_dev }} django-admin makemessages --add-location file -i build -i dist -i "*egg*" $(find "$module/locale/" -mindepth 1 -maxdepth 1 -type d -printf "-l %f " 2>/dev/null)
 
+alias makemessages := localegen
+
 # Compile locale files
 [group('development')]
 localecompile: ensure-pretalx
